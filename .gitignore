@@ -1,22 +1,13 @@
-# build output
-dist/
-# generated types
-.astro/
-.idea/
+# macOS
+.DS_Store
 
-# dependencies
-node_modules/
+# GitHub Pages 打包目录
+_site/
 
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+# 原 Astro 工程归档（本地保留，不入库）
+_archive-astro/
 
-
-# environment variables
+# 日志 / 环境变量
+*.log
 .env
 .env.production
-
-# macOS-specific files
-.DS_Store

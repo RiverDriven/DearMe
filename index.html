@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DearMe · 对自己，好一点</title>
+<meta name="description" content="DearMe 是一款把「想要的生活」变成心愿、计划和一天天记录的 iOS App。由独立开发者 RiverDriven 打造，lobus 出品。">
+<link rel="icon" type="image/png" href="assets/dearme-icon-256.png">
+<link rel="apple-touch-icon" href="assets/dearme-icon-512.png">
+<meta name="theme-color" content="#FFFBF7">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DearMe">
+<meta property="og:title" content="DearMe · 对自己，好一点">
+<meta property="og:description" content="把想要的生活，变成心愿、计划和一天天记录。lobus 出品，RiverDriven 独立开发。">
+<meta property="og:image" content="https://RiverDriven.github.io/DearMe/assets/dearme-icon-512.png">
+<meta property="og:url" content="https://RiverDriven.github.io/DearMe/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DearMe · 对自己，好一点">
+<meta name="twitter:description" content="把想要的生活，变成心愿、计划和一天天记录。">
+<meta name="twitter:image" content="https://RiverDriven.github.io/DearMe/assets/dearme-icon-512.png">
+<link rel="preconnect" href="https://miaoda.feishu.cn">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+<style>
+/* ============================================================
+   ※ 视觉系统：黏土粉紫 + 奶油底 + 玻璃件（与 App 图标同源）
+   ============================================================ */
+:root{
+  --ink:#241E30;
+  --ink-2:#453C58;
+  --muted:#7A7190;
+  --pink:#FF80AB;
+  --pink-deep:#F2669B;
+  --pink-soft:#FFC0D6;
+  --lilac:#B39DDB;
+  --lilac-deep:#8E77C4;
+  --lilac-soft:#E9E1FB;
+  --gold:#FFC94D;
+  --cream:#FFFBF7;
+  --cream-2:#FDF3F8;
+  --card:rgba(255,255,255,.66);
+  --line:rgba(70,52,96,.12);
+  --shadow-s:0 8px 24px rgba(120,80,150,.10);
+  --shadow-m:0 18px 50px rgba(120,80,150,.14);
+  --shadow-l:0 40px 100px rgba(120,80,150,.20);
+  --r-s:14px; --r-m:22px; --r-l:32px; --r-xl:44px;
+  --maxw:1160px;
+  --display:"Fredoka","Noto Sans SC",-apple-system,"PingFang SC","Helvetica Neue",sans-serif;
+  --sans:"Noto Sans SC",-apple-system,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--ink);font-family:var(--sans);font-weight:400;
+  background:var(--cream);line-height:1.75;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(1100px 700px at 8% -10%, rgba(255,192,214,.55), transparent 60%),
+    radial-gradient(900px 620px at 92% 2%, rgba(200,182,245,.50), transparent 62%),
+    radial-gradient(800px 600px at 50% 108%, rgba(255,214,170,.22), transparent 60%),
+    var(--cream);
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--pink-soft);color:#5c2343}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--pink)}
+h1,h2,h3{font-family:var(--display);font-weight:600;letter-spacing:-.01em;line-height:1.15;margin:0}
+h1{font-size:clamp(38px,6vw,68px)}
+h2{font-size:clamp(26px,3.4vw,40px)}
+h3{font-size:clamp(18px,2vw,22px);line-height:1.4}
+p{margin:0}
+.muted{color:var(--muted)}
+.small{font-size:13.5px;line-height:1.7}
+
+/* ---------- 顶部导航 ---------- */
+header.nav{
+  position:sticky;top:0;z-index:60;
+  backdrop-filter:blur(18px) saturate(180%);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);
+  background:rgba(255,251,247,.72);
+  border-bottom:1px solid rgba(70,52,96,.08);
+  transition:padding .25s ease, background .25s ease;
+}
+header.nav.shrink{padding:4px 0;background:rgba(255,251,247,.88)}
+.nav-in{display:flex;align-items:center;gap:18px;padding:14px 0;transition:padding .25s}
+header.nav.shrink .nav-in{padding:9px 0}
+.brand{display:flex;align-items:center;gap:11px;flex-shrink:0}
+.brand img{width:38px;height:38px;border-radius:50%;box-shadow:0 6px 18px rgba(200,120,160,.28)}
+.brand b{font-family:var(--display);font-size:19px;font-weight:600;letter-spacing:.01em}
+.brand .sub{font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase}
+.nav-links{display:flex;gap:6px;margin-left:auto}
+.nav-links a{
+  padding:9px 15px;border-radius:999px;font-size:14.5px;color:var(--ink-2);
+  transition:.2s;font-weight:500;
+}
+.nav-links a:hover{background:rgba(255,180,205,.18);color:var(--ink)}
+.nav-links a.on{background:rgba(255,128,171,.16);color:var(--pink-deep)}
+.nav-right{display:flex;align-items:center;gap:10px;margin-left:6px}
+.lang{
+  display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;
+  overflow:hidden;background:rgba(255,255,255,.6);font-size:12px;font-weight:600;
+}
+.lang button{
+  border:0;background:none;cursor:pointer;padding:6px 10px;color:var(--muted);
+  font-family:var(--sans);font-weight:600;font-size:12px;transition:.2s;letter-spacing:.06em;
+}
+.lang button.on{background:linear-gradient(135deg,var(--pink),var(--lilac));color:#fff}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  border:0;cursor:pointer;font-family:var(--sans);font-weight:600;
+  border-radius:999px;transition:transform .25s cubic-bezier(.2,.8,.3,1),box-shadow .25s,filter .2s;
+}
+.btn-primary{
+  padding:13px 24px;font-size:15px;color:#fff;
+  background:linear-gradient(135deg,#FF95B8 0%,#FF7BA9 45%,#B79BF0 100%);
+  box-shadow:0 14px 32px rgba(240,110,160,.34),inset 0 1px 0 rgba(255,255,255,.5);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(240,110,160,.42)}
+.btn-ghost{
+  padding:13px 22px;font-size:15px;color:var(--ink-2);
+  background:rgba(255,255,255,.72);border:1px solid var(--line);box-shadow:var(--shadow-s);
+}
+.btn-ghost:hover{transform:translateY(-2px);background:#fff}
+.nav .btn-primary{padding:10px 19px;font-size:14px}
+.menu-btn{
+  display:none;width:38px;height:38px;border-radius:12px;border:1px solid var(--line);
+  background:rgba(255,255,255,.72);cursor:pointer;flex-direction:column;gap:4px;
+  align-items:center;justify-content:center;padding:0;
+}
+.menu-btn span{display:block;width:16px;height:2px;border-radius:2px;background:var(--ink-2);transition:.25s}
+.menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn.open span:nth-child(2){opacity:0}
+.menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{
+  position:absolute;left:0;right:0;top:100%;display:none;padding:8px 18px 18px;
+  background:#FFFCF9;
+  border-bottom:1px solid var(--line);box-shadow:0 24px 40px rgba(120,80,150,.12);
+}
+.mobile-menu.on{display:block;animation:viewIn .35s cubic-bezier(.2,.8,.3,1) both}
+.mobile-menu a{display:block;padding:13px 14px;border-radius:14px;font-size:15px;color:var(--ink-2);font-weight:500}
+.mobile-menu a:hover,.mobile-menu a.on{background:rgba(255,128,171,.14);color:var(--pink-deep)}
+.mobile-menu .btn-primary{width:100%;margin-top:8px}
+
+
+/* ---------- 视图路由 ---------- */
+.view{display:none;animation:viewIn .55s cubic-bezier(.2,.8,.3,1) both}
+.view.on{display:block}
+@keyframes viewIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ---------- 首页 Hero ---------- */
+.hero{position:relative;padding:54px 0 92px;overflow:hidden;text-align:center}
+.hero-clouds{
+  position:absolute;left:0;right:0;bottom:-6%;height:78%;z-index:-1;
+  background:url("assets/clay-clouds.jpg") center bottom/cover no-repeat;
+  opacity:.52;
+  -webkit-mask-image:linear-gradient(to top,rgba(0,0,0,.95) 8%,rgba(0,0,0,.35) 52%,transparent 88%);
+  mask-image:linear-gradient(to top,rgba(0,0,0,.95) 8%,rgba(0,0,0,.35) 52%,transparent 88%);
+}
+.hero-spot{
+  position:absolute;width:520px;height:520px;border-radius:50%;z-index:-1;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.85),transparent 66%);
+  left:50%;top:120px;transform:translateX(-50%);opacity:.9;
+}
+.hero-inner{position:relative;z-index:2}
+.hero-inner>*{opacity:0;filter:blur(7px);transition:opacity 1s cubic-bezier(.2,.8,.3,1),filter 1s cubic-bezier(.2,.8,.3,1)}
+.hero-inner>*:nth-child(1){transition-delay:.04s}
+.hero-inner>*:nth-child(2){transition-delay:.10s}
+.hero-inner>*:nth-child(3){transition-delay:.20s}
+.hero-inner>*:nth-child(4){transition-delay:.30s}
+.hero-inner>*:nth-child(5){transition-delay:.38s}
+.hero-inner>*:nth-child(6){transition-delay:.46s}
+.hero-inner.ready>*{opacity:1;filter:none}
+
+/* 图标舞台 */
+.stage{position:relative;width:min(352px,70vw);aspect-ratio:1;margin:34px auto 44px;display:grid;place-items:center}
+.stage .halo{
+  position:absolute;inset:-9%;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,.92) 40%,rgba(255,214,232,.34) 60%,rgba(206,186,246,.10) 76%,transparent 80%);
+}
+.stage .orbit{
+  position:absolute;inset:-5%;border-radius:50%;
+  border:1.5px dashed rgba(179,157,219,.42);
+  animation:spin 46s linear infinite;
+}
+.stage .orbit.o2{inset:-11%;border-color:rgba(255,128,171,.20);animation-duration:70s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.stage img{
+  position:relative;width:100%;height:auto;border-radius:50%;
+  box-shadow:0 30px 70px rgba(190,110,155,.32),0 6px 18px rgba(140,110,190,.20);
+  animation:floatY 7s ease-in-out infinite;
+  will-change:transform;
+}
+@keyframes floatY{0%,100%{transform:translateY(-8px)}50%{transform:translateY(10px)}}
+.stage .spark{position:absolute;width:11px;height:11px;border-radius:50%;background:#fff;box-shadow:0 0 18px 6px rgba(255,236,180,.9);animation:twinkle 4s ease-in-out infinite}
+.stage .s1{left:-4%;top:26%}
+.stage .s2{right:-2%;top:14%;animation-delay:1.4s;width:8px;height:8px}
+.stage .s3{right:12%;bottom:4%;animation-delay:2.6s;width:9px;height:9px}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.8)}50%{opacity:1;transform:scale(1.15)}}
+
+/* 漂浮小卡 */
+.chip{
+  position:absolute;display:flex;align-items:center;gap:9px;
+  padding:9px 14px 9px 9px;border-radius:999px;
+  background:rgba(255,255,255,.82);border:1px solid rgba(255,255,255,.9);
+  box-shadow:0 14px 34px rgba(150,100,170,.16);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  font-size:12.5px;font-weight:500;color:var(--ink-2);white-space:nowrap;
+  animation:floatChip 8s ease-in-out infinite;
+}
+.chip i{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  font-style:normal;font-size:13px;
+}
+.chip.c1{left:-16%;top:16%;animation-delay:.2s}
+.chip.c2{right:-18%;top:46%;animation-delay:1.8s}
+.chip.c3{left:-10%;bottom:8%;animation-delay:3.2s}
+@keyframes floatChip{0%,100%{transform:translateY(-6px)}50%{transform:translateY(8px)}}
+
+.hero h1{margin:0 auto;max-width:840px;font-size:clamp(34px,5.6vw,62px)}
+.hero h1 .hl{
+  background:linear-gradient(120deg,#F2669B,#B39DDB 70%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  position:relative;
+}
+.hero .lead{
+  max-width:600px;margin:20px auto 0;font-size:clamp(15px,1.7vw,17.5px);
+  color:var(--ink-2);line-height:1.85;
+}
+.hero .actions{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.hero .meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:22px;font-size:12.5px;color:var(--muted)}
+.hero .meta span{display:inline-flex;align-items:center;gap:6px}
+.hero .meta span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lilac)}
+
+/* ---------- 通用区块 ---------- */
+section.blk{padding:92px 0}
+.sec-head{max-width:660px;margin-bottom:52px}
+.sec-head h2{margin-top:14px}
+.sec-head p{margin-top:16px;color:var(--muted);font-size:15.5px;line-height:1.9}
+
+/* 三条价值 */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pillar{
+  background:var(--card);border:1px solid rgba(255,255,255,.85);border-radius:var(--r-l);
+  padding:34px 30px 30px;box-shadow:var(--shadow-s);position:relative;overflow:hidden;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s;
+}
+.pillar:hover{transform:translateY(-6px);box-shadow:var(--shadow-m)}
+.pillar .num{
+  font-family:var(--display);font-size:12px;letter-spacing:.22em;color:var(--lilac-deep);font-weight:600;
+}
+.pillar h3{margin:12px 0 10px}
+.pillar p{font-size:14.5px;color:var(--muted);line-height:1.85}
+.pillar .glow{
+  position:absolute;width:170px;height:170px;border-radius:50%;right:-60px;top:-60px;
+  background:radial-gradient(circle,rgba(255,180,205,.55),transparent 70%);pointer-events:none;
+}
+
+/* 功能预览卡 */
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{
+  display:flex;flex-direction:column;justify-content:space-between;gap:26px;
+  background:linear-gradient(160deg,rgba(255,255,255,.92),rgba(255,247,252,.78));
+  border:1px solid rgba(255,255,255,.9);border-radius:var(--r-l);
+  padding:32px 30px;box-shadow:var(--shadow-s);position:relative;overflow:hidden;
+  transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s;
+}
+.card:hover{transform:translateY(-7px);box-shadow:var(--shadow-m)}
+.card .tag{
+  display:inline-flex;align-items:center;gap:7px;font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--lilac-deep);font-weight:600;
+}
+.card .tag em{font-style:normal;width:6px;height:6px;border-radius:50%;background:var(--pink)}
+.card h3{margin:14px 0 10px;font-size:24px}
+.card p{font-size:14.5px;color:var(--muted);line-height:1.85}
+.card .go{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--pink-deep)}
+.card .go svg{transition:transform .3s}
+.card:hover .go svg{transform:translateX(4px)}
+.card .art{height:112px;display:flex;align-items:center;justify-content:flex-end}
+
+/* 流程 */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.step{
+  background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.9);
+  border-radius:var(--r-m);padding:26px 22px;box-shadow:var(--shadow-s);
+}
+.step b{font-family:var(--display);font-size:13px;color:var(--pink-deep);letter-spacing:.16em}
+.step h3{font-size:17px;margin:10px 0 8px}
+.step p{font-size:13.5px;color:var(--muted);line-height:1.8}
+
+/* 引言 */
+.quote{
+  position:relative;padding:88px 0 88px;text-align:center;overflow:hidden;
+}
+.quote .mark{
+  font-family:var(--display);font-size:120px;line-height:.4;color:rgba(179,157,219,.35);
+}
+.quote blockquote{
+  margin:0 auto;max-width:820px;font-family:var(--display);font-weight:500;
+  font-size:clamp(24px,3.2vw,38px);line-height:1.6;color:var(--ink);
+  letter-spacing:-.01em;position:relative;z-index:1;
+}
+.quote blockquote span{
+  background:linear-gradient(120deg,#FF9DBD,#B39DDB);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.quote .who{margin-top:26px;font-size:13px;color:var(--muted);letter-spacing:.08em}
+.quote .mark2{display:block;transform:rotate(180deg);margin-top:20px}
+.quote .blob{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(60px);opacity:.5;pointer-events:none}
+.quote .b1{background:#FFD3E2;left:-8%;top:0}
+.quote .b2{background:#DCD1FA;right:-6%;bottom:-10%}
+
+/* 故事预告 */
+.teaser{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:center;
+  background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(248,242,255,.85));
+  border:1px solid rgba(255,255,255,.9);border-radius:var(--r-xl);overflow:hidden;
+  box-shadow:var(--shadow-m);
+}
+.teaser .txt{padding:56px 48px}
+.teaser h2{margin:14px 0 16px;font-size:clamp(24px,2.8vw,34px)}
+.teaser p{font-size:14.5px;color:var(--muted);line-height:1.9;max-width:400px}
+.teaser .btn-ghost{margin-top:26px}
+.teaser .pic{position:relative;height:100%;min-height:380px}
+.teaser .pic img{width:100%;height:100%;object-fit:cover}
+.teaser .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,251,247,.7),transparent 40%)}
+
+/* CTA 条 */
+.cta-band{
+  position:relative;overflow:hidden;border-radius:var(--r-xl);
+  background:linear-gradient(130deg,#2A2238 0%,#3B2C57 46%,#5B3E72 100%);
+  color:#fff;padding:66px 56px;display:flex;align-items:center;justify-content:space-between;gap:30px;
+  box-shadow:var(--shadow-l);
+}
+.cta-band::before{
+  content:"";position:absolute;width:520px;height:520px;border-radius:50%;right:-90px;top:-190px;
+  background:radial-gradient(circle,rgba(255,128,171,.42),transparent 66%);
+}
+.cta-band::after{
+  content:"";position:absolute;width:420px;height:420px;border-radius:50%;left:-120px;bottom:-220px;
+  background:radial-gradient(circle,rgba(179,157,219,.40),transparent 66%);
+}
+.cta-band h2{font-size:clamp(24px,3vw,36px);position:relative;z-index:1}
+.cta-band p{margin-top:12px;font-size:14.5px;color:rgba(255,255,255,.72);position:relative;z-index:1}
+.cta-band .acts{display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1}
+.cta-band .btn-primary{background:linear-gradient(135deg,#FFA3C0,#FF7BA9);box-shadow:0 16px 36px rgba(255,120,170,.35)}
+.cta-band .btn-line{
+  padding:13px 22px;font-size:15px;color:#fff;border:1px solid rgba(255,255,255,.32);
+  background:rgba(255,255,255,.08);border-radius:999px;
+}
+.cta-band .btn-line:hover{background:rgba(255,255,255,.16);transform:translateY(-2px)}
+
+/* ---------- 二级页 ---------- */
+.page-hero{padding:64px 0 40px;position:relative}
+.crumb{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);margin-bottom:22px;letter-spacing:.04em}
+.crumb a:hover{color:var(--pink-deep)}
+.crumb i{font-style:normal;opacity:.45}
+.page-hero h1{font-size:clamp(30px,4.4vw,52px);margin-top:16px}
+.page-hero p{margin-top:18px;max-width:640px;font-size:15.5px;color:var(--muted);line-height:1.9}
+.page-hero .deco{
+  position:absolute;right:-40px;top:-30px;width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,190,215,.45),transparent 68%);pointer-events:none;z-index:-1;
+}
+
+/* 功能模块行 */
+.feat{display:grid;grid-template-columns:1fr 1.02fr;gap:64px;align-items:center;padding:78px 0;border-top:1px solid var(--line)}
+.feat.rev .copy{order:2}
+.feat.rev .visual{order:1}
+.feat .idx{font-family:var(--display);font-size:13px;letter-spacing:.2em;color:var(--lilac-deep);font-weight:600}
+.feat h2{margin:12px 0 14px;font-size:clamp(24px,3vw,34px)}
+.feat .copy p{font-size:14.8px;color:var(--muted);line-height:1.95}
+.feat .points{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:11px}
+.feat .points li{display:flex;gap:11px;font-size:14px;color:var(--ink-2);line-height:1.7}
+.feat .points li b{
+  flex-shrink:0;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(255,128,171,.14);color:var(--pink-deep);font-size:11px;font-weight:700;margin-top:3px;
+}
+.visual{position:relative;min-height:340px;display:grid;place-items:center;padding:20px}
+
+/* —— 示意界面：心愿卡 —— */
+.mock{
+  width:min(360px,100%);background:rgba(255,255,255,.92);border-radius:28px;
+  box-shadow:0 26px 60px rgba(140,100,170,.20),inset 0 1px 0 #fff;
+  padding:24px 24px 20px;border:1px solid rgba(255,255,255,.9);position:relative;
+}
+.mock .m-top{display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:var(--muted);letter-spacing:.04em}
+.mock .m-top .pill{padding:3px 9px;border-radius:999px;background:rgba(179,157,219,.18);color:var(--lilac-deep);font-weight:600}
+.mock h4{font-family:var(--display);font-size:20px;margin:12px 0 4px;font-weight:600}
+.mock .sub{font-size:12px;color:var(--muted)}
+.ring-wrap{display:flex;align-items:center;gap:18px;margin:18px 0 6px}
+.ring{
+  width:78px;height:78px;border-radius:50%;flex-shrink:0;
+  background:conic-gradient(var(--pink) 0 62%,rgba(179,157,219,.20) 62% 100%);
+  display:grid;place-items:center;position:relative;
+}
+.ring::after{content:"";position:absolute;inset:8px;border-radius:50%;background:#fff}
+.ring b{position:relative;z-index:1;font-family:var(--display);font-size:17px;color:var(--pink-deep)}
+.ring-side{font-size:12.5px;color:var(--muted);line-height:1.6}
+.ring-side b{display:block;font-family:var(--display);font-size:15px;color:var(--ink);margin-bottom:2px}
+.steps3{display:flex;gap:7px;margin-top:14px}
+.steps3 span{
+  flex:1;text-align:center;font-size:11.5px;padding:8px 0;border-radius:11px;
+  background:rgba(255,201,77,.14);color:#9A7414;font-weight:600;
+}
+.steps3 span:nth-child(2){background:rgba(255,128,171,.14);color:var(--pink-deep)}
+.steps3 span:nth-child(3){background:rgba(179,157,219,.16);color:var(--lilac-deep)}
+.mile{margin-top:16px;display:grid;gap:9px}
+.mile div{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--ink-2)}
+.mile u{
+  width:15px;height:15px;border-radius:50%;border:1.5px solid rgba(179,157,219,.7);
+  text-decoration:none;flex-shrink:0;display:grid;place-items:center;font-size:9px;color:#fff;
+}
+.mile u.on{background:var(--pink);border-color:var(--pink)}
+.mile .d{opacity:.45;font-size:11px;margin-left:auto}
+
+/* —— 示意界面：习惯 7 格 + 今日卡 —— */
+.habit{
+  width:min(360px,100%);background:linear-gradient(160deg,#332B44,#241E30);border-radius:28px;padding:26px 24px;
+  color:#fff;box-shadow:0 26px 60px rgba(60,40,90,.35);position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.12);
+}
+.habit::before{content:"";position:absolute;width:220px;height:220px;border-radius:50%;right:-90px;top:-100px;background:radial-gradient(circle,rgba(255,128,171,.5),transparent 65%)}
+.habit .h-top{font-size:11.5px;letter-spacing:.12em;color:rgba(255,255,255,.55);text-transform:uppercase}
+.habit h4{font-family:var(--display);font-size:20px;margin:8px 0 18px;position:relative}
+.dots{display:flex;gap:8px;margin-bottom:20px}
+.dots i{
+  flex:1;height:34px;border-radius:11px;background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.10);display:grid;place-items:center;font-size:10px;
+  font-style:normal;color:rgba(255,255,255,.45);
+}
+.dots i.on{background:linear-gradient(160deg,rgba(255,128,171,.9),rgba(179,157,219,.9));color:#fff;border-color:transparent;box-shadow:0 6px 16px rgba(255,128,171,.35)}
+.dots i.on::after{content:"✓";font-size:13px}
+.habit .today{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-radius:18px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+}
+.habit .today .t1{font-size:12.5px;color:rgba(255,255,255,.72)}
+.habit .today b{font-family:var(--display);font-size:15px;color:#fff;display:block;margin-top:2px}
+.habit .today .cta{
+  padding:9px 16px;border-radius:999px;font-size:12.5px;font-weight:600;color:#3a2540;
+  background:linear-gradient(135deg,#FFD9A0,#FFC94D);box-shadow:0 8px 20px rgba(255,201,77,.35);white-space:nowrap;
+}
+.habit .note{margin-top:14px;font-size:11px;color:rgba(255,255,255,.42);text-align:center}
+
+/* —— 示意界面：记录页热力 + 一天的记录卡 —— */
+.rec{width:min(380px,100%);display:grid;gap:16px}
+.heat{background:rgba(255,255,255,.92);border-radius:24px;padding:20px;box-shadow:0 20px 46px rgba(140,100,170,.16);border:1px solid rgba(255,255,255,.9)}
+.heat .h-h{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--muted);margin-bottom:13px}
+.heat .g{display:grid;grid-template-columns:repeat(14,1fr);gap:5px}
+.heat .g b{aspect-ratio:1;border-radius:5px;background:rgba(179,157,219,.16);display:block}
+.heat .g b.l1{background:rgba(255,128,171,.22)}
+.heat .g b.l2{background:rgba(255,128,171,.42)}
+.heat .g b.l3{background:rgba(255,128,171,.66)}
+.heat .g b.l4{background:rgba(242,102,155,.88)}
+.day{background:rgba(255,255,255,.92);border-radius:24px;padding:18px 20px;box-shadow:0 20px 46px rgba(140,100,170,.16);border:1px solid rgba(255,255,255,.9)}
+.day .d-h{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.day .d-h em{font-style:normal;padding:2px 8px;border-radius:999px;background:rgba(255,128,171,.14);color:var(--pink-deep);font-size:11px;font-weight:600}
+.day p{margin:10px 0 12px;font-size:13px;color:var(--ink-2);line-height:1.7}
+.day .ph{display:flex;gap:7px}
+.day .ph i{width:52px;height:52px;border-radius:12px;background:linear-gradient(140deg,#FFD7E4,#D9CBF5);display:block}
+.day .undo{margin-top:12px;font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.day .undo::before{content:"↺";color:var(--lilac-deep)}
+
+/* —— 示意界面：关怀日志 —— */
+.care{width:min(360px,100%);background:rgba(255,255,255,.94);border-radius:26px;padding:26px 24px;box-shadow:0 24px 56px rgba(140,100,170,.18);border:1px solid rgba(255,255,255,.9)}
+.care .c-date{font-size:11px;color:var(--muted);letter-spacing:.08em}
+.care p{margin:12px 0 16px;font-size:14px;line-height:1.9;color:var(--ink)}
+.care p .cap{
+  display:inline-flex;align-items:center;gap:4px;padding:1px 8px 2px;margin:0 2px;border-radius:8px;
+  background:rgba(255,128,171,.14);color:var(--pink-deep);font-size:11.5px;font-weight:600;vertical-align:1px;
+}
+.care p .cap.g{background:rgba(179,157,219,.18);color:var(--lilac-deep)}
+.care p .cap.s{background:rgba(255,201,77,.18);color:#8C6A10}
+.care .thumbs{display:flex;gap:8px}
+.care .thumbs i{flex:1;aspect-ratio:1;border-radius:14px;background:linear-gradient(140deg,#FFD7E4,#CFC0F2)}
+.care .bar{
+  margin-top:16px;display:flex;gap:6px;padding-top:14px;border-top:1px solid rgba(70,52,96,.1);
+}
+.care .bar span{padding:5px 10px;border-radius:9px;font-size:11px;background:rgba(179,157,219,.14);color:var(--lilac-deep);font-weight:600}
+
+/* —— 示意界面：星图 —— */
+.starmap{
+  width:min(420px,100%);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 50% 45%,#332B48,#1E1929 70%);
+  box-shadow:0 30px 70px rgba(50,35,80,.42);position:relative;overflow:hidden;
+}
+.starmap svg{width:100%;height:100%;display:block}
+.starmap .cap{position:absolute;left:0;right:0;bottom:16px;text-align:center;font-size:11px;color:rgba(255,255,255,.50);letter-spacing:.1em}
+
+/* —— 示意界面：霓虹横滑卡 —— */
+.neon{width:min(400px,100%);position:relative;height:320px;display:flex;align-items:center;justify-content:center}
+.neon .ncard{
+  position:absolute;width:176px;height:250px;border-radius:22px;padding:18px;
+  background:linear-gradient(165deg,rgba(45,33,64,.94),rgba(28,23,38,.96));
+  border:1px solid rgba(255,255,255,.14);box-shadow:0 22px 50px rgba(30,20,50,.5);
+  color:#fff;display:flex;flex-direction:column;justify-content:space-between;
+}
+.neon .ncard .k{font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.5);text-transform:uppercase}
+.neon .ncard b{font-family:var(--display);font-size:30px;background:linear-gradient(120deg,#FFB0C9,#C7B2F5);-webkit-background-clip:text;background-clip:text;color:transparent}
+.neon .ncard .l{font-size:10.5px;color:rgba(255,255,255,.55);line-height:1.5}
+.neon .a{transform:translateX(-104px) rotate(-7deg) scale(.9);opacity:.62;filter:blur(.4px)}
+.neon .b{transform:translateX(0) translateY(-10px) scale(1.04);z-index:3}
+.neon .c{transform:translateX(104px) rotate(7deg) scale(.9);opacity:.62;filter:blur(.4px)}
+.neon .glowline{position:absolute;bottom:26px;width:76px;height:3px;border-radius:3px;background:linear-gradient(90deg,transparent,#FF80AB,transparent);filter:blur(1px)}
+
+/* 原则条 */
+.principles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:56px}
+.prin{background:var(--card);border:1px solid rgba(255,255,255,.9);border-radius:var(--r-m);padding:24px 22px;box-shadow:var(--shadow-s)}
+.prin b{font-family:var(--display);font-size:13px;color:var(--pink-deep)}
+.prin h3{font-size:15px;margin:8px 0 6px}
+.prin p{font-size:13px;color:var(--muted);line-height:1.75}
+
+/* ---------- 故事页 ---------- */
+.story-hero{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;padding:56px 0 30px}
+.story-hero .pic{border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-m);aspect-ratio:1}
+.story-hero .pic img{width:100%;height:100%;object-fit:cover}
+.prose{max-width:760px;margin:0 auto}
+.prose p{font-size:16px;line-height:2.05;color:var(--ink-2);margin-bottom:22px}
+.prose p.big{font-size:19px;line-height:1.95;color:var(--ink)}
+.prose .sig{font-family:var(--display);font-size:15px;color:var(--muted);margin-top:34px}
+.tl{position:relative;padding-left:38px;margin-top:10px}
+.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--pink-soft),var(--lilac-soft))}
+.tl .item{position:relative;padding-bottom:42px}
+.tl .item::before{content:"";position:absolute;left:-38px;top:6px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid var(--pink-soft);box-shadow:0 0 0 5px rgba(255,255,255,.85)}
+.tl .item.now::before{background:var(--pink);border-color:var(--pink);box-shadow:0 0 0 5px rgba(255,192,214,.45),0 0 22px rgba(255,128,171,.7)}
+.tl .when{font-size:12px;letter-spacing:.14em;color:var(--lilac-deep);font-weight:600;text-transform:uppercase}
+.tl .item h3{font-size:19px;margin:7px 0 8px}
+.tl .item p{font-size:14px;color:var(--muted);line-height:1.85;max-width:560px}
+.lobus-card{
+  margin-top:20px;padding:48px;border-radius:var(--r-xl);
+  background:linear-gradient(150deg,#2B2338,#3E2E54);color:#fff;position:relative;overflow:hidden;
+}
+.lobus-card::after{content:"";position:absolute;width:340px;height:340px;border-radius:50%;right:-90px;bottom:-140px;background:radial-gradient(circle,rgba(179,157,219,.42),transparent 68%)}
+.lobus-card h2{color:#fff;position:relative;z-index:1;font-size:28px}
+.lobus-card p{color:rgba(255,255,255,.76);font-size:14.5px;line-height:1.95;max-width:640px;margin-top:14px;position:relative;z-index:1}
+.lobus-card .mark{font-family:var(--display);font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:#FFB7CD;position:relative;z-index:1}
+.contact{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.contact .c{background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.9);border-radius:var(--r-m);padding:24px;box-shadow:var(--shadow-s)}
+.contact .c .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.contact .c .v{margin-top:8px;font-family:var(--display);font-size:16px;color:var(--ink)}
+
+/* ---------- 页脚 ---------- */
+footer{padding:72px 0 46px;border-top:1px solid var(--line);margin-top:60px}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:40px}
+.foot-brand .fb{display:flex;align-items:center;gap:12px}
+.foot-brand img{width:44px;height:44px;border-radius:50%;box-shadow:0 8px 22px rgba(200,120,160,.25)}
+.foot-brand b{font-family:var(--display);font-size:20px}
+.foot-brand p{margin-top:14px;font-size:13px;color:var(--muted);line-height:1.9;max-width:320px}
+.foot-col .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.foot-col a{display:block;font-size:14px;color:var(--ink-2);padding:5px 0;transition:.2s}
+.foot-col a:hover{color:var(--pink-deep);transform:translateX(3px)}
+.foot-bottom{display:flex;justify-content:space-between;gap:18px;padding-top:26px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);flex-wrap:wrap}
+.foot-bottom .dot{opacity:.4}
+
+/* ---------- 下载弹层 ---------- */
+.modal{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:24px;background:rgba(36,30,48,.42);backdrop-filter:blur(8px)}
+.modal.on{display:grid;animation:fadeIn .3s ease both}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal .box{
+  width:min(420px,100%);background:linear-gradient(160deg,#fff,#FFF6FA);border-radius:30px;
+  padding:38px 34px 30px;text-align:center;box-shadow:var(--shadow-l);position:relative;
+  animation:pop .45s cubic-bezier(.2,.9,.3,1.2) both;
+}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+.modal .x{
+  position:absolute;right:16px;top:14px;border:0;background:none;font-size:22px;line-height:1;
+  color:var(--muted);cursor:pointer;padding:8px;
+}
+.modal img{width:96px;height:96px;border-radius:50%;margin:0 auto 18px;box-shadow:0 14px 34px rgba(200,120,160,.3)}
+.modal h3{font-size:23px;font-family:var(--display)}
+.modal p{font-size:13.5px;color:var(--muted);line-height:1.85;margin-top:12px}
+.modal form{display:flex;gap:8px;margin-top:22px}
+.modal input{
+  flex:1;min-width:0;border:1px solid var(--line);border-radius:999px;padding:12px 18px;
+  font-family:var(--sans);font-size:14px;background:#fff;color:var(--ink);outline:none;
+}
+.modal input:focus{border-color:var(--pink-soft);box-shadow:0 0 0 4px rgba(255,192,214,.28)}
+.modal .btn-primary{padding:12px 20px;font-size:14px;white-space:nowrap}
+.modal .tiny{font-size:11px;color:var(--muted);opacity:.8;margin-top:16px}
+.modal .done{display:none;margin-top:20px;font-size:13px;color:var(--pink-deep);font-weight:600}
+
+/* ---------- 动效 ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.3,1),transform .8s cubic-bezier(.2,.8,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
+
+/* ---------- 响应式 ---------- */
+@media (max-width:980px){
+  .hero{padding:52px 0 84px}
+  .chip{display:none}
+  .pillars{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .feat{grid-template-columns:1fr;gap:36px;padding:56px 0}
+  .feat.rev .copy,.feat.rev .visual{order:0}
+  .visual{min-height:auto}
+  .teaser{grid-template-columns:1fr}
+  .teaser .pic{min-height:280px;order:-1}
+  .teaser .pic::after{background:linear-gradient(180deg,transparent 60%,rgba(255,251,247,.7))}
+  .teaser .txt{padding:36px 30px}
+  .principles{grid-template-columns:repeat(2,1fr)}
+  .story-hero{grid-template-columns:1fr;gap:30px}
+  .story-hero .pic{max-width:340px}
+  .contact{grid-template-columns:1fr}
+  .cta-band{flex-direction:column;align-items:flex-start;padding:44px 34px}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .foot-brand{grid-column:1/-1}
+  .nav-links{display:none}
+  .menu-btn{display:flex}
+}
+@media (max-width:620px){
+  .wrap{padding:0 18px}
+  .stage{width:min(320px,80vw)}
+  .hero h1{font-size:32px}
+  .hero .actions .btn{width:100%}
+  .flow{grid-template-columns:1fr}
+  .foot-top{grid-template-columns:1fr}
+  .btn-ghost,.btn-primary{width:100%}
+  .principles{grid-template-columns:1fr}
+  header.nav .nav-right .btn-primary{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== 顶部导航 ==================== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#/" aria-label="DearMe">
+      <img src="assets/dearme-icon-256.png" alt="DearMe 应用图标">
+      <span class="subwrap" style="display:flex;flex-direction:column;line-height:1.1">
+        <b>DearMe</b>
+        <span class="sub" data-zh="lobus 出品" data-en="by lobus">lobus 出品</span>
+      </span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#/" data-route="home" data-zh="首页" data-en="Home">首页</a>
+      <a href="#/features" data-route="features" data-zh="功能" data-en="Features">功能</a>
+      <a href="#/story" data-route="story" data-zh="故事" data-en="Story">故事</a>
+    </nav>
+    <div class="nav-right">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-lang="zh" class="on">中</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <button class="btn btn-primary" data-open-dl data-zh="下载 App" data-en="Get the app">下载 App</button>
+      <button class="menu-btn" id="menuBtn" aria-label="菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#/" data-route="home" data-zh="首页" data-en="Home">首页</a>
+    <a href="#/features" data-route="features" data-zh="功能" data-en="Features">功能</a>
+    <a href="#/story" data-route="story" data-zh="故事" data-en="Story">故事</a>
+    <button class="btn btn-primary" data-open-dl data-zh="App Store 下载" data-en="Download on App Store">App Store 下载</button>
+  </div>
+</header>
+
+<!-- ==================== 视图：首页 ==================== -->
+<main id="view-home" class="view on">
+
+  <section class="hero">
+    <div class="hero-clouds"></div>
+    <div class="hero-spot" id="spot"></div>
+    <div class="wrap hero-inner">
+
+      <span class="eyebrow" data-zh="lobus · 独立作品 No.01" data-en="lobus · Solo work No.01">lobus · 独立作品 No.01</span>
+
+      <div class="stage" id="stage">
+        <div class="halo"></div>
+        <div class="orbit"></div>
+        <div class="orbit o2"></div>
+        <img src="assets/dearme-icon-512.png" alt="DearMe 图标：戴护目镜的小女孩">
+        <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
+
+        <div class="chip c1">
+          <i style="background:rgba(255,201,77,.22);color:#9A7414">◍</i>
+          <span data-zh="心愿 · 存钱 68%" data-en="Wish · saved 68%">心愿 · 存钱 68%</span>
+        </div>
+        <div class="chip c2">
+          <i style="background:rgba(255,128,171,.18);color:#F2669B">✓</i>
+          <span data-zh="今天 · 已打卡" data-en="Today · checked in">今天 · 已打卡</span>
+        </div>
+        <div class="chip c3">
+          <i style="background:rgba(179,157,219,.22);color:#8E77C4">▤</i>
+          <span data-zh="记录 · 第 87 天" data-en="Journal · day 87">记录 · 第 87 天</span>
+        </div>
+      </div>
+
+      <h1>
+        <span data-zh="对自己，" data-en="Be a little">对自己，</span><br class="br-m">
+        <span class="hl" data-zh="好一点。" data-en="kinder.">好一点。</span>
+      </h1>
+
+      <p class="lead"
+         data-zh="DearMe 把「想要的生活」拆成看得见的心愿、推得动的计划，和一天一天被你认真过掉的记录。没有催促，没有归零，没有失败。"
+         data-en="DearMe turns the life you want into wishes you can see, plans you can move, and days you actually live. No nagging, no resets, no failures.">DearMe 把「想要的生活」拆成看得见的心愿、推得动的计划，和一天一天被你认真过掉的记录。没有催促，没有归零，没有失败。</p>
+
+      <div class="actions">
+        <button class="btn btn-primary" data-open-dl data-zh="App Store 下载" data-en="Download on App Store">App Store 下载</button>
+        <a class="btn btn-ghost" href="#/features" data-zh="先看看它能做什么 →" data-en="See what it does →">先看看它能做什么 →</a>
+      </div>
+
+      <div class="meta">
+        <span data-zh="iPhone · iOS 17 起" data-en="iPhone · iOS 17+">iPhone · iOS 17 起</span>
+        <span data-zh="数据只留在你的手机里" data-en="Data stays on your phone">数据只留在你的手机里</span>
+        <span data-zh="无账号 · 无云同步" data-en="No account · no sync">无账号 · 无云同步</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 三条价值 ---------- -->
+  <section class="blk">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-zh="它和别的 App 不一样的地方" data-en="How it is different">它和别的 App 不一样的地方</span>
+        <h2 data-zh="不做任务系统，做陪伴。" data-en="Not a task manager. A companion.">不做任务系统，做陪伴。</h2>
+        <p data-zh="效率工具让你完成它，陪伴让你想起自己。DearMe 的每一条规则，都在回答同一个问题：怎么让「想变好」这件事，不再变成新的压力。"
+           data-en="Productivity tools want you to finish them. A companion helps you remember yourself. Every rule in DearMe answers one question: how do we keep wanting to be better from turning into more pressure?">效率工具让你完成它，陪伴让你想起自己。DearMe 的每一条规则，都在回答同一个问题：怎么让「想变好」这件事，不再变成新的压力。</p>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal">
+          <div class="glow"></div>
+          <span class="num">01</span>
+          <h3 data-zh="不催你" data-en="No nagging">不催你</h3>
+          <p data-zh="一天最多一条提醒。连续几天没打开，它会安静下来，第七天才轻轻问一句「最近还好吗」。没有红点，没有感叹号。"
+             data-en="One reminder a day at most. If you disappear for a few days it goes quiet, and on the seventh day gently asks how you are. No red badges, no exclamation marks.">一天最多一条提醒。连续几天没打开，它会安静下来，第七天才轻轻问一句「最近还好吗」。没有红点，没有感叹号。</p>
+        </div>
+        <div class="pillar reveal d1">
+          <div class="glow"></div>
+          <span class="num">02</span>
+          <h3 data-zh="记得你" data-en="It remembers">记得你</h3>
+          <p data-zh="心愿、里程碑、存下的每一笔钱、打过的每一次卡，都连在同一条时间线上。你随时能翻回去，看见自己是怎么走到这里的。"
+             data-en="Wishes, milestones, every yuan saved, every check-in — all on one timeline. Scroll back any time and see how you got here.">心愿、里程碑、存下的每一笔钱、打过的每一次卡，都连在同一条时间线上。你随时能翻回去，看见自己是怎么走到这里的。</p>
+        </div>
+        <div class="pillar reveal d2">
+          <div class="glow"></div>
+          <span class="num">03</span>
+          <h3 data-zh="只属于你" data-en="Only yours">只属于你</h3>
+          <p data-zh="没有账号，没有服务器，没有云端备份。照片不申请相册权限，所有内容只写在这台手机的本地沙盒里。"
+             data-en="No account, no server, no cloud. Photos never ask for library access. Everything lives in the local sandbox of this one phone.">没有账号，没有服务器，没有云端备份。照片不申请相册权限，所有内容只写在这台手机的本地沙盒里。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 功能预览 ---------- -->
+  <section class="blk" style="padding-top:20px">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-zh="四个入口，一条主线" data-en="Four doors, one line">四个入口，一条主线</span>
+        <h2 data-zh="从「想要」到「做到」" data-en="From wanting to doing">从「想要」到「做到」</h2>
+        <p data-zh="想要的 → 做着的 → 做到的。这不是三个列表，是一件事的三个阶段。"
+           data-en="Wanted → doing → done. Not three lists — three stages of one thing.">想要的 → 做着的 → 做到的。这不是三个列表，是一件事的三个阶段。</p>
+      </div>
+
+      <div class="cards">
+        <a class="card reveal" href="#/features">
+          <div>
+            <span class="tag"><em></em><span data-zh="心愿" data-en="Wishes">心愿</span></span>
+            <h3 data-zh="六种心愿，六种算法" data-en="Six kinds of wishes">六种心愿，六种算法</h3>
+            <p data-zh="物质、体验、成长、关系、自我关怀、愿景。存钱的心愿看金额台阶，做项目的心愿看里程碑权重，旅行的心愿只等一个日期。"
+               data-en="Material, experience, growth, relationship, self-care, vision. Saving wishes track amount steps; project wishes track weighted milestones; trips just wait for a date.">物质、体验、成长、关系、自我关怀、愿景。存钱的心愿看金额台阶，做项目的心愿看里程碑权重，旅行的心愿只等一个日期。</p>
+          </div>
+          <div class="art">
+            <svg width="150" height="96" viewBox="0 0 150 96" fill="none" aria-hidden="true">
+              <circle cx="48" cy="48" r="30" stroke="#FFC0D6" stroke-width="6"/>
+              <path d="M48 18a30 30 0 0 1 26 44" stroke="#FF80AB" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="106" cy="34" r="7" fill="#E9E1FB"/>
+              <circle cx="124" cy="60" r="5" fill="#FFD9A0"/>
+              <circle cx="98" cy="74" r="4" fill="#CFC0F2"/>
+            </svg>
+          </div>
+          <span class="go"><span data-zh="了解心愿" data-en="Explore wishes">了解心愿</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#F2669B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a class="card reveal d1" href="#/features">
+          <div>
+            <span class="tag"><em></em><span data-zh="计划" data-en="Plans">计划</span></span>
+            <h3 data-zh="五档节奏，随便跳" data-en="Five rhythms, freely skipped">五档节奏，随便跳</h3>
+            <p data-zh="单次、每日、每周、每月、每年。到点生成今天这一格，可以补记，可以跳过，可以「先放一放」。跳过不算失败，也不会进分母。"
+               data-en="Once, daily, weekly, monthly, yearly. Each day makes one cell: backfill it, skip it, or set it down for a while. Skipping is not failure and never counts against you.">单次、每日、每周、每月、每年。到点生成今天这一格，可以补记，可以跳过，可以「先放一放」。跳过不算失败，也不会进分母。</p>
+          </div>
+          <div class="art">
+            <svg width="160" height="96" viewBox="0 0 160 96" fill="none" aria-hidden="true">
+              <rect x="12" y="30" width="26" height="36" rx="9" fill="#E9E1FB"/>
+              <rect x="46" y="30" width="26" height="36" rx="9" fill="#FFC0D6"/>
+              <rect x="80" y="18" width="26" height="48" rx="9" fill="#FF80AB"/>
+              <rect x="114" y="30" width="26" height="36" rx="9" fill="#E9E1FB"/>
+              <path d="M88 42l4 4 8-9" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="go"><span data-zh="了解计划" data-en="Explore plans">了解计划</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#F2669B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a class="card reveal d1" href="#/features">
+          <div>
+            <span class="tag"><em></em><span data-zh="关怀日志" data-en="Care log">关怀日志</span></span>
+            <h3 data-zh="写一句，配张图" data-en="One line, one photo">写一句，配张图</h3>
+            <p data-zh="今天想说的话，最多三张照片。可以顺手插一枚小胶囊，标注这条记录里的人、物、地点——以后就能顺着它找回来。"
+               data-en="A line about today, up to three photos, and little capsules marking the people, things and places in it — so you can find your way back later.">今天想说的话，最多三张照片。可以顺手插一枚小胶囊，标注这条记录里的人、物、地点——以后就能顺着它找回来。</p>
+          </div>
+          <div class="art">
+            <svg width="150" height="96" viewBox="0 0 150 96" fill="none" aria-hidden="true">
+              <rect x="16" y="16" width="76" height="64" rx="16" fill="#FFF3D6"/>
+              <rect x="34" y="28" width="40" height="6" rx="3" fill="#FFD9A0"/>
+              <rect x="34" y="42" width="52" height="5" rx="2.5" fill="#FFE6BE"/>
+              <rect x="34" y="56" width="34" height="5" rx="2.5" fill="#FFE6BE"/>
+              <rect x="82" y="34" width="54" height="30" rx="10" fill="#FFC0D6"/>
+              <circle cx="126" cy="76" r="9" fill="#CFC0F2"/>
+            </svg>
+          </div>
+          <span class="go"><span data-zh="了解记录" data-en="Explore the journal">了解记录</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#F2669B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+
+        <a class="card reveal d2" href="#/features">
+          <div>
+            <span class="tag"><em></em><span data-zh="我在意什么" data-en="What I care about">我在意什么</span></span>
+            <h3 data-zh="一张属于你的星图" data-en="A star map of your own">一张属于你的星图</h3>
+            <p data-zh="把在意的人、物、地方一颗颗挂上去。记录得越多，星星越亮；它们之间连成的线，就是你生活真正的形状。"
+               data-en="Hang the people, things and places you care about into the sky. The more you record, the brighter they glow — and the lines between them draw the real shape of your life.">把在意的人、物、地方一颗颗挂上去。记录得越多，星星越亮；它们之间连成的线，就是你生活真正的形状。</p>
+          </div>
+          <div class="art">
+            <svg width="150" height="96" viewBox="0 0 150 96" fill="none" aria-hidden="true">
+              <circle cx="76" cy="48" r="34" stroke="#E9E1FB" stroke-width="1.5" stroke-dasharray="3 5"/>
+              <circle cx="76" cy="48" r="18" stroke="#E9E1FB" stroke-width="1.5"/>
+              <circle cx="76" cy="30" r="4.5" fill="#FF80AB"/>
+              <circle cx="104" cy="60" r="4" fill="#FFD9A0"/>
+              <circle cx="52" cy="64" r="3.4" fill="#CFC0F2"/>
+              <path d="M76 30L104 60M104 60L52 64M52 64L76 30" stroke="#FFC0D6" stroke-width="1"/>
+            </svg>
+          </div>
+          <span class="go"><span data-zh="了解星图" data-en="Explore the map">了解星图</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#F2669B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 四步流程 ---------- -->
+  <section class="blk" style="padding-top:36px">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-zh="一次完整的闭环" data-en="One full loop">一次完整的闭环</span>
+        <h2 data-zh="许一个愿，然后走完它" data-en="Make a wish. Then walk it">许一个愿，然后走完它</h2>
+      </div>
+      <div class="flow">
+        <div class="step reveal"><b>01</b><h3 data-zh="许下" data-en="Wish">许下</h3><p data-zh="写下想要的东西，选一个类型，可选地填上金额、期望日期、几个里程碑。" data-en="Write down what you want, pick a type, optionally add an amount, a date, a few milestones.">写下想要的东西，选一个类型，可选地填上金额、期望日期、几个里程碑。</p></div>
+        <div class="step reveal d1"><b>02</b><h3 data-zh="拆成计划" data-en="Split into plans">拆成计划</h3><p data-zh="把它变成能做的事：每周存一笔、每月走一步、每天做一次。计划和心愿会互相回写进度。" data-en="Turn it into something doable: save weekly, step monthly, do it daily. Wish and plan write progress back to each other.">把它变成能做的事：每周存一笔、每月走一步、每天做一次。计划和心愿会互相回写进度。</p></div>
+        <div class="step reveal d2"><b>03</b><h3 data-zh="打卡" data-en="Check in">打卡</h3><p data-zh="今天这一格亮了，就留一张照片或一句话。错过也没关系，七天内可以补记。" data-en="When today's cell lights up, leave a photo or a line. Missed it? You have seven days to backfill.">今天这一格亮了，就留一张照片或一句话。错过也没关系，七天内可以补记。</p></div>
+        <div class="step reveal d3"><b>04</b><h3 data-zh="纪念" data-en="Remember">纪念</h3><p data-zh="点「我做到了」，会有一页只属于那件事的纪念。收下它，或者，再许一个。" data-en="Tap “I did it” and get a memorial page for that one thing. Keep it — or make another wish.">点「我做到了」，会有一页只属于那件事的纪念。收下它，或者，再许一个。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 引言 ---------- -->
+  <section class="quote">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="wrap">
+      <div class="mark reveal">“</div>
+      <blockquote class="reveal d1">
+        <span data-zh="我们不做任务系统。" data-en="We don’t build task systems.">我们不做任务系统。</span><br>
+        <span data-zh="任务系统让你完成它，" data-en="Task systems want you to finish them.">任务系统让你完成它，</span><br>
+        <span data-zh="陪伴让你想起自己。" data-en="Companionship helps you remember yourself.">陪伴让你想起自己。</span>
+      </blockquote>
+      <div class="who reveal d2" data-zh="— RiverDriven，DearMe 唯一的开发者" data-en="— RiverDriven, the only person behind DearMe">— RiverDriven，DearMe 唯一的开发者</div>
+      <div class="mark mark2 reveal d2">“</div>
+    </div>
+  </section>
+
+  <!-- ---------- 故事预告 ---------- -->
+  <section class="blk" style="padding-top:30px">
+    <div class="wrap">
+      <div class="teaser reveal">
+        <div class="txt">
+          <span class="eyebrow" data-zh="一个人做的 App" data-en="Built by one person">一个人做的 App</span>
+          <h2 data-zh="为什么会有 DearMe" data-en="Why DearMe exists">为什么会有 DearMe</h2>
+          <p data-zh="它起源于一个问题：为什么那些「想对自己好一点」的念头，最后都变成了又一个没完成的清单？"
+             data-en="It started with a question: why do all those intentions to be kinder to yourself end up as one more unfinished list?">它起源于一个问题：为什么那些「想对自己好一点」的念头，最后都变成了又一个没完成的清单？</p>
+          <a class="btn btn-ghost" href="#/story" data-zh="读这个故事 →" data-en="Read the story →">读这个故事 →</a>
+        </div>
+        <div class="pic"><img src="assets/clay-door.jpg" alt="黏土风格的门与台阶" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- CTA ---------- -->
+  <section class="blk" style="padding-top:20px">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <h2 data-zh="今天，对自己好一点。" data-en="Today, be a little kinder.">今天，对自己好一点。</h2>
+          <p data-zh="iOS 17 起 · 数据全部留在本地 · 免费下载" data-en="iOS 17+ · everything stays local · free">iOS 17 起 · 数据全部留在本地 · 免费下载</p>
+        </div>
+        <div class="acts">
+          <button class="btn btn-primary" data-open-dl data-zh="App Store 下载" data-en="Download on App Store">App Store 下载</button>
+          <a class="btn-line btn" href="#/features" data-zh="看功能" data-en="Features">看功能</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== 视图：功能（二级） ==================== -->
+<main id="view-features" class="view">
+  <section class="page-hero">
+    <div class="wrap" style="position:relative">
+      <div class="deco"></div>
+      <div class="crumb"><a href="#/" data-zh="首页" data-en="Home">首页</a><i>/</i><span data-zh="功能" data-en="Features">功能</span></div>
+      <span class="eyebrow" data-zh="六个模块" data-en="Six modules">六个模块</span>
+      <h1 data-zh="它具体能做什么" data-en="What it actually does">它具体能做什么</h1>
+      <p data-zh="下面每一个模块都已经在真机上跑起来了。我们尽量说清楚细节——因为温柔这件事，常常藏在很具体的地方。"
+         data-en="Every module below already runs on a real device. We try to be specific — because gentleness usually hides in very concrete places.">下面每一个模块都已经在真机上跑起来了。我们尽量说清楚细节——因为温柔这件事，常常藏在很具体的地方。</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+
+    <!-- 01 心愿 -->
+    <section class="feat">
+      <div class="copy reveal">
+        <span class="idx">01 / <span data-zh="心愿" data-en="Wishes">心愿</span></span>
+        <h2 data-zh="六种心愿，各自算数" data-en="Six kinds of wishes, six ways to count">六种心愿，各自算数</h2>
+        <p data-zh="物质、体验、成长、关系、自我关怀、愿景——选择类型之后，专属字段会跟着展开：要存多少钱、什么时候去、做到哪一步算实现。"
+           data-en="Material, experience, growth, relationship, self-care, vision — pick a type and its own fields open up: how much to save, when to go, what counts as done.">物质、体验、成长、关系、自我关怀、愿景——选择类型之后，专属字段会跟着展开：要存多少钱、什么时候去、做到哪一步算实现。</p>
+        <ul class="points">
+          <li><b>·</b><span data-zh="金额型心愿有三档台阶：加油、努力、夯爆了。" data-en="Saving wishes have three steps: keep going, push harder, nearly there.">金额型心愿有三档台阶：加油、努力、夯爆了。</span></li>
+          <li><b>·</b><span data-zh="里程碑按权重加权，改一个档位，总进度会重新算。" data-en="Milestones are weighted; change a weight and the total recalculates.">里程碑按权重加权，改一个档位，总进度会重新算。</span></li>
+          <li><b>·</b><span data-zh="只有「我做到了」能结束一个心愿，而且不拦你——条件不够时只给一行温柔的提示。" data-en="Only “I did it” ends a wish, and it never blocks you — if something’s missing it just leaves a gentle line.">只有「我做到了」能结束一个心愿，而且不拦你——条件不够时只给一行温柔的提示。</span></li>
+        </ul>
+      </div>
+      <div class="visual reveal d1">
+        <div class="mock">
+          <div class="m-top"><span class="pill" data-zh="体验类" data-en="Experience">体验类</span><span data-zh="在途中" data-en="In progress">在途中</span></div>
+          <h4 data-zh="去看一次海" data-en="See the sea">去看一次海</h4>
+          <div class="sub" data-zh="期望时间 · 明年夏天" data-en="Target · next summer">期望时间 · 明年夏天</div>
+          <div class="ring-wrap">
+            <div class="ring"><b>62%</b></div>
+            <div class="ring-side"><b data-zh="3 个里程碑" data-en="3 milestones">3 个里程碑</b><span data-zh="已完成 2 个 · 最近一次 11 月 2 日" data-en="2 done · last on Nov 2">已完成 2 个 · 最近一次 11 月 2 日</span></div>
+          </div>
+          <div class="steps3"><span data-zh="加油" data-en="Go">加油</span><span data-zh="努力" data-en="Push">努力</span><span data-zh="夯爆了" data-en="Almost">夯爆了</span></div>
+          <div class="mile">
+            <div><u class="on">✓</u><span data-zh="定下目的地" data-en="Pick the coast">定下目的地</span><i class="d">10/06</i></div>
+            <div><u class="on">✓</u><span data-zh="订好车票" data-en="Book the tickets">订好车票</span><i class="d">11/02</i></div>
+            <div><u></u><span data-zh="拍一张自己的照片" data-en="Take one photo of yourself">拍一张自己的照片</span><i class="d">—</i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 计划 -->
+    <section class="feat rev">
+      <div class="copy reveal">
+        <span class="idx">02 / <span data-zh="计划" data-en="Plans">计划</span></span>
+        <h2 data-zh="今天是哪一格" data-en="Which cell is today">今天是哪一格</h2>
+        <p data-zh="计划只有一件事要做：告诉你今天该干什么。打开 App，先看到的是「今天」——不是三十条待办的海洋。"
+           data-en="A plan only has one job: tell you what today looks like. Open the app and you see today — not an ocean of thirty todos.">计划只有一件事要做：告诉你今天该干什么。打开 App，先看到的是「今天」——不是三十条待办的海洋。</p>
+        <ul class="points">
+          <li><b>·</b><span data-zh="五档频次：单次、每日、每周、每月、每年；短月与闰年都有兜底。" data-en="Five rhythms: once, daily, weekly, monthly, yearly — short months and leap years handled.">五档频次：单次、每日、每周、每月、每年；短月与闰年都有兜底。</span></li>
+          <li><b>·</b><span data-zh="单次型也有常驻「做到啦」，不用等提醒。" data-en="Even one-off plans have a permanent “Done it” button — no waiting for a reminder.">单次型也有常驻「做到啦」，不用等提醒。</span></li>
+          <li><b>·</b><span data-zh="措辞里没有失败：只有「先放一放」和「放下了」。跳过不进分母，不算你欠。" data-en="The words never say failure — only “set it down for now”. Skips never count against you.">措辞里没有失败：只有「先放一放」和「放下了」。跳过不进分母，不算你欠。</span></li>
+        </ul>
+      </div>
+      <div class="visual reveal d1">
+        <div class="habit">
+          <div class="h-top" data-zh="每日 · 习惯" data-en="Daily · habit">每日 · 习惯</div>
+          <h4 data-zh="睡前读 20 页" data-en="Read 20 pages before bed">睡前读 20 页</h4>
+          <div class="dots">
+            <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i>
+          </div>
+          <div class="today">
+            <div><span class="t1" data-zh="今天这一格" data-en="Today’s cell">今天这一格</span><b data-zh="还差一点点" data-en="Almost there">还差一点点</b></div>
+            <span class="cta" data-zh="做到啦" data-en="Done it">做到啦</span>
+          </div>
+          <div class="note" data-zh="错过也能补记 · 最近 7 天" data-en="Missed it? Backfill within 7 days">错过也能补记 · 最近 7 天</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 记录 -->
+    <section class="feat">
+      <div class="copy reveal">
+        <span class="idx">03 / <span data-zh="记录与回顾" data-en="Record & review">记录与回顾</span></span>
+        <h2 data-zh="每一格都能点开" data-en="Every cell can open">每一格都能点开</h2>
+        <p data-zh="打卡之后的那一层，才是最重要的：那天的文字、那天的照片、那天你到底感觉怎么样。点热力图上任意一格，它就会展开成一张「一天的记录卡」。"
+           data-en="The layer after checking in is the point: that day’s words, that day’s photo, how that day actually felt. Tap any cell on the heatmap and it opens into a day card.">打卡之后的那一层，才是最重要的：那天的文字、那天的照片、那天你到底感觉怎么样。点热力图上任意一格，它就会展开成一张「一天的记录卡」。</p>
+        <ul class="points">
+          <li><b>·</b><span data-zh="完成率只算「做到 ÷（做到 + 过期）」，跳过永远不进分母。" data-en="Completion is done ÷ (done + expired). Skips never enter the denominator.">完成率只算「做到 ÷（做到 + 过期）」，跳过永远不进分母。</span></li>
+          <li><b>·</b><span data-zh="中断之后不显示「0 天」，只显示累计，或者「新的第 1 天」。" data-en="After a break it never shows “0 days” — only your total, or “a new day one”.">中断之后不显示「0 天」，只显示累计，或者「新的第 1 天」。</span></li>
+          <li><b>·</b><span data-zh="撤销有 30 秒缓冲；改历史记录会二次确认。" data-en="Undo gives you 30 seconds; editing an older day asks once more.">撤销有 30 秒缓冲；改历史记录会二次确认。</span></li>
+        </ul>
+      </div>
+      <div class="visual reveal d1">
+        <div class="rec">
+          <div class="heat">
+            <div class="h-h"><span data-zh="最近 8 周" data-en="Last 8 weeks">最近 8 周</span><span data-zh="完成 78%" data-en="78% done">完成 78%</span></div>
+            <div class="g" id="heatGrid"></div>
+          </div>
+          <div class="day">
+            <div class="d-h"><span data-zh="11 月 18 日" data-en="Nov 18">11 月 18 日</span><em data-zh="做到" data-en="Done">做到</em></div>
+            <p data-zh="今天在回家的车上读完了，窗外是橘子色的天。" data-en="Finished it on the ride home. The sky outside was tangerine.">今天在回家的车上读完了，窗外是橘子色的天。</p>
+            <div class="ph"><i></i><i></i></div>
+            <div class="undo" data-zh="30 秒内可撤销" data-en="Undo within 30s">30 秒内可撤销</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 关怀日志 -->
+    <section class="feat rev">
+      <div class="copy reveal">
+        <span class="idx">04 / <span data-zh="关怀日志" data-en="Care log">关怀日志</span></span>
+        <h2 data-zh="把人、物、地方写进句子里" data-en="Write people, things and places into the sentence">把人、物、地方写进句子里</h2>
+        <p data-zh="「今天和 ⟦妈咪⟧ 在 ⟦海边⟧ 吃了 ⟦那家面⟧。」——那些小胶囊就长在正文里，像小时候贴在本子上的贴纸。以后翻记录，看到的不只是文字，还有那时的人和地方。"
+           data-en="“Today I had noodles with ⟦Mum⟧ by the ⟦sea⟧.” Those capsules live inside the sentence, like stickers in a childhood notebook. Later, you see not just words but who and where you were.">「今天和 ⟦妈咪⟧ 在 ⟦海边⟧ 吃了 ⟦那家面⟧。」——那些小胶囊就长在正文里，像小时候贴在本子上的贴纸。以后翻记录，看到的不只是文字，还有那时的人和地方。</p>
+        <ul class="points">
+          <li><b>·</b><span data-zh="一条日志最多三张照片，选图不申请相册权限。" data-en="Up to three photos per entry; picking never asks for library access.">一条日志最多三张照片，选图不申请相册权限。</span></li>
+          <li><b>·</b><span data-zh="选完可以取消，取消后沙盒里零残留。" data-en="You can cancel after picking — and nothing is left behind.">选完可以取消，取消后沙盒里零残留。</span></li>
+          <li><b>·</b><span data-zh="人 / 物 / 地三个分组，按你最近常用的顺序排。" data-en="Three groups — people, things, places — ordered by what you used most recently.">人 / 物 / 地三个分组，按你最近常用的顺序排。</span></li>
+        </ul>
+      </div>
+      <div class="visual reveal d1">
+        <div class="care">
+          <div class="c-date" data-zh="2026 年 11 月 18 日 · 星期二" data-en="Nov 18, 2026 · Tuesday">2026 年 11 月 18 日 · 星期二</div>
+          <p data-html="1" data-zh="今天和<span class=&quot;cap&quot;>👩 妈咪</span>在<span class=&quot;cap s&quot;>📍 海边</span>吃了<span class=&quot;cap g&quot;>🍜 那家面</span>，她还记得我小时候不吃葱。"
+             data-en="Today I had noodles with <span class=&quot;cap&quot;>👩 Mum</span> by the <span class=&quot;cap s&quot;>📍 sea</span>. She still remembers I hated scallions.">今天和<span class="cap">👩 妈咪</span>在<span class="cap s">📍 海边</span>吃了<span class="cap g">🍜 那家面</span>，她还记得我小时候不吃葱。</p>
+          <div class="thumbs"><i></i><i></i><i></i></div>
+          <div class="bar"><span data-zh="人 · 12" data-en="People · 12">人 · 12</span><span data-zh="物 · 6" data-en="Things · 6">物 · 6</span><span data-zh="地 · 9" data-en="Places · 9">地 · 9</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 星图 -->
+    <section class="feat">
+      <div class="copy reveal">
+        <span class="idx">05 / <span data-zh="我在意什么" data-en="What I care about">我在意什么</span></span>
+        <h2 data-zh="一张会变亮的星图" data-en="A star map that brightens">一张会变亮的星图</h2>
+        <p data-zh="你在意的每一个人、每一件东西、每一个地方，都是星图上的一颗星。点一下加号，它就在同一屏里亮起来。记录得越多，星越亮，相关的人与物之间也会连出线。"
+           data-en="Every person, thing and place you care about is a star. Tap plus and it lights up on the same screen. The more you record, the brighter it glows — and lines appear between the ones that meet.">你在意的每一个人、每一件东西、每一个地方，都是星图上的一颗星。点一下加号，它就在同一屏里亮起来。记录得越多，星越亮，相关的人与物之间也会连出线。</p>
+        <ul class="points">
+          <li><b>·</b><span data-zh="新加的星是虚线的、暗的；挂上第一件事才真正亮起来。" data-en="A new star is dim and dashed; it only truly lights up once something hangs on it.">新加的星是虚线的、暗的；挂上第一件事才真正亮起来。</span></li>
+          <li><b>·</b><span data-zh="改名一处改，全局生效；抹掉一颗星，记录还在，4 秒内可撤销。" data-en="Rename once and it changes everywhere; remove a star and its records stay, undoable for 4 seconds.">改名一处改，全局生效；抹掉一颗星，记录还在，4 秒内可撤销。</span></li>
+          <li><b>·</b><span data-zh="复盘页会说「关于「妈咪」的 12 件事」——那是你和她真正发生过的。" data-en="The review page says “12 things about Mum” — things that actually happened.">复盘页会说「关于「妈咪」的 12 件事」——那是你和她真正发生过的。</span></li>
+        </ul>
+      </div>
+      <div class="visual reveal d1">
+        <div class="starmap">
+          <svg viewBox="0 0 420 420" aria-hidden="true">
+            <circle cx="210" cy="205" r="150" stroke="rgba(255,255,255,.13)" stroke-width="1" fill="none"/>
+            <circle cx="210" cy="205" r="108" stroke="rgba(255,255,255,.10)" stroke-width="1" fill="none"/>
+            <circle cx="210" cy="205" r="66" stroke="rgba(255,255,255,.08)" stroke-width="1" fill="none"/>
+            <path d="M210 118 L 292 176 L 268 268 L 176 286 L 128 196 Z" stroke="rgba(255,160,196,.28)" stroke-width="1" fill="none"/>
+            <line x1="210" y1="118" x2="268" y2="268" stroke="rgba(255,160,196,.18)" stroke-width="1"/>
+            <line x1="292" y1="176" x2="176" y2="286" stroke="rgba(200,180,255,.18)" stroke-width="1"/>
+            <g>
+              <circle cx="210" cy="118" r="14" fill="rgba(255,128,171,.18)"/>
+              <circle cx="210" cy="118" r="6" fill="#FF9FC0"/>
+              <circle cx="292" cy="176" r="10" fill="rgba(255,201,77,.2)"/>
+              <circle cx="292" cy="176" r="5" fill="#FFCE5C"/>
+              <circle cx="268" cy="268" r="9" fill="rgba(179,157,219,.22)"/>
+              <circle cx="268" cy="268" r="4.5" fill="#C7B2F5"/>
+              <circle cx="176" cy="286" r="11" fill="rgba(255,255,255,.14)"/>
+              <circle cx="176" cy="286" r="4.5" fill="rgba(255,255,255,.85)"/>
+              <circle cx="128" cy="196" r="4" fill="rgba(255,255,255,.4)"/>
+              <circle cx="238" cy="330" r="3.4" fill="rgba(255,255,255,.32)"/>
+              <circle cx="330" cy="268" r="3" fill="rgba(255,255,255,.28)"/>
+              <circle cx="96" cy="118" r="2.6" fill="rgba(255,255,255,.22)"/>
+            </g>
+          </svg>
+          <div class="cap" data-zh="我在意什么 · 12 颗星" data-en="What I care about · 12 stars">我在意什么 · 12 颗星</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 记录页双视图 -->
+    <section class="feat rev">
+      <div class="copy reveal">
+        <span class="idx">06 / <span data-zh="记录页" data-en="Journal view">记录页</span></span>
+        <h2 data-zh="两种翻阅方式" data-en="Two ways to page through">两种翻阅方式</h2>
+        <p data-zh="白天你可以用纸面长卷，一条条往下读；夜里想换一种心情，右上角一按，整页变成深蓝黑的霓虹玻璃，横向一张张翻过去。翻页有齿轮声，翻到底会「叮叮叮」。"
+           data-en="By day, page down a paper-like scroll. At night, one tap in the corner turns it into deep-blue neon glass you flip through sideways. Pages click like gears; hitting the end goes ding-ding-ding.">白天你可以用纸面长卷，一条条往下读；夜里想换一种心情，右上角一按，整页变成深蓝黑的霓虹玻璃，横向一张张翻过去。翻页有齿轮声，翻到底会「叮叮叮」。</p>
+        <ul class="points">
+          <li><b>·</b><span data-zh="两种视图共用同一份数据，不写假数据、不新建表。" data-en="Both views share one dataset — no fake data, no second table.">两种视图共用同一份数据，不写假数据、不新建表。</span></li>
+          <li><b>·</b><span data-zh="你选的那一种会被记住，下次打开还是它。" data-en="Your choice is remembered next time you open it.">你选的那一种会被记住，下次打开还是它。</span></li>
+          <li><b>·</b><span data-zh="开启系统的「减弱动效」后，所有卡片直接落到终态。" data-en="With Reduce Motion on, every card lands straight in its final state.">开启系统的「减弱动效」后，所有卡片直接落到终态。</span></li>
+        </ul>
+      </div>
+      <div class="visual reveal d1">
+        <div class="neon">
+          <div class="ncard a"><span class="k" data-zh="记录" data-en="Entry">记录</span><b>11/17</b><span class="l" data-zh="今天什么都没做，也很好。" data-en="Did nothing today. That was fine too.">今天什么都没做，也很好。</span></div>
+          <div class="ncard b"><span class="k" data-zh="连续" data-en="Streak">连续</span><b>87</b><span class="l" data-zh="天 · 这一次没有断。" data-en="days · unbroken this time.">天 · 这一次没有断。</span></div>
+          <div class="ncard c"><span class="k" data-zh="心愿" data-en="Wish">心愿</span><b>62%</b><span class="l" data-zh="去看一次海，快了。" data-en="See the sea. Almost.">去看一次海，快了。</span></div>
+          <div class="glowline"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 设计原则 -->
+  <section class="blk" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-zh="写进代码里的原则" data-en="Principles baked into the code">写进代码里的原则</span>
+        <h2 data-zh="温柔不是语气，是规则" data-en="Gentleness isn’t a tone. It’s a rule.">温柔不是语气，是规则</h2>
+      </div>
+      <div class="principles">
+        <div class="prin reveal"><b>01</b><h3 data-zh="永不归零" data-en="Never reset to zero">永不归零</h3><p data-zh="中断之后显示累计，而不是 0 天。" data-en="After a break it shows your total, never “0 days”.">中断之后显示累计，而不是 0 天。</p></div>
+        <div class="prin reveal d1"><b>02</b><h3 data-zh="不用感叹号" data-en="No exclamation marks">不用感叹号</h3><p data-zh="提醒一天最多一条，句号结尾。" data-en="One reminder per day at most, ending with a period.">提醒一天最多一条，句号结尾。</p></div>
+        <div class="prin reveal d2"><b>03</b><h3 data-zh="放弃有台阶" data-en="Quitting has steps">放弃有台阶</h3><p data-zh="先「放一放」，再「放下」，随时能回来。" data-en="Set it down first, then let it go — and come back any time.">先「放一放」，再「放下」，随时能回来。</p></div>
+        <div class="prin reveal d3"><b>04</b><h3 data-zh="一张卡一个主按钮" data-en="One main button per card">一张卡一个主按钮</h3><p data-zh="不给你二选一的焦虑，也不替你宣布结果。" data-en="No either-or anxiety, and no announcing your outcome for you.">不给你二选一的焦虑，也不替你宣布结果。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="blk" style="padding-top:10px">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <div>
+          <h2 data-zh="看完这些，试试真的用它" data-en="Now try it for real">看完这些，试试真的用它</h2>
+          <p data-zh="iOS 17 起 · 数据全部留在本地 · 无账号" data-en="iOS 17+ · all data local · no account">iOS 17 起 · 数据全部留在本地 · 无账号</p>
+        </div>
+        <div class="acts">
+          <button class="btn btn-primary" data-open-dl data-zh="App Store 下载" data-en="Download on App Store">App Store 下载</button>
+          <a class="btn-line btn" href="#/story" data-zh="它为什么存在" data-en="Why it exists">它为什么存在</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ==================== 视图：故事（二级） ==================== -->
+<main id="view-story" class="view">
+  <section class="page-hero" style="padding-bottom:10px">
+    <div class="wrap" style="position:relative">
+      <div class="deco"></div>
+      <div class="crumb"><a href="#/" data-zh="首页" data-en="Home">首页</a><i>/</i><span data-zh="故事" data-en="Story">故事</span></div>
+      <span class="eyebrow" data-zh="lobus · RiverDriven" data-en="lobus · RiverDriven">lobus · RiverDriven</span>
+      <h1 data-zh="一个人，和一个不想再催你的 App" data-en="One person, and an app that stopped nagging">一个人，和一个不想再催你的 App</h1>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="story-hero">
+      <div class="pic reveal"><img src="assets/clay-objects.jpg" alt="黏土风格的存钱罐、日历、打卡牌与相册" loading="lazy"></div>
+      <div class="prose reveal d1">
+        <p class="big" data-zh="DearMe 是从一张纸上的三个问题开始的：" data-en="DearMe started with three questions on a piece of paper:">DearMe 是从一张纸上的三个问题开始的：</p>
+        <p data-zh="我到底想要什么？<br>我为它做过什么？<br>我有没有对自己好一点？"
+           data-en="What do I actually want?<br>What have I done about it?<br>Have I been kind to myself?" data-html="1">我到底想要什么？<br>我为它做过什么？<br>我有没有对自己好一点？</p>
+        <p class="small muted" data-zh="我试过很多清单类 App，它们都很厉害，也很擅长让我感到自己又欠了点什么。" data-en="I tried many list apps. They were powerful, and very good at making me feel I owed something again.">我试过很多清单类 App，它们都很厉害，也很擅长让我感到自己又欠了点什么。</p>
+      </div>
+    </div>
+
+    <section class="blk" style="padding-top:64px">
+      <div class="prose reveal">
+        <p data-zh="所以我决定反过来做：不是把生活塞进一个系统，而是做一个能陪着你的东西。它记得你许过的愿，也记得你没做到的那些天——并且从不因此给你打分。"
+           data-en="So I built it the other way round: not squeezing life into a system, but making something that stays with you. It remembers the wishes you made, and the days you didn’t manage — and never grades you for them.">所以我决定反过来做：不是把生活塞进一个系统，而是做一个能陪着你的东西。它记得你许过的愿，也记得你没做到的那些天——并且从不因此给你打分。</p>
+        <p data-zh="于是有了心愿和计划这条主线：想要的，拆成做着的；做着的，一天一天留下痕迹；做到的，值得一页只属于它的纪念。中间那些断掉的日子、想放弃的瞬间，也被认真对待——先「放一放」，而不是「删除」。"
+           data-en="That became the spine of wishes and plans: what you want gets split into what you do; what you do leaves a trace, day by day; what you finish earns a page of its own. The broken stretches and the moments you wanted to quit are treated seriously too — set it down for now, never delete.">于是有了心愿和计划这条主线：想要的，拆成做着的；做着的，一天一天留下痕迹；做到的，值得一页只属于它的纪念。中间那些断掉的日子、想放弃的瞬间，也被认真对待——先「放一放」，而不是「删除」。</p>
+        <p data-zh="再后来，记录长出了自己的样子：一句今天想说的话，最多三张照片，几个小胶囊标出当时的人、物、地方；还有一张会变亮的星图，把你真正在意的那些连起来。"
+           data-en="Later the journal grew its own shape: one line about today, up to three photos, little capsules marking who and what and where; plus a star map that brightens, connecting the things you truly care about.">再后来，记录长出了自己的样子：一句今天想说的话，最多三张照片，几个小胶囊标出当时的人、物、地方；还有一张会变亮的星图，把你真正在意的那些连起来。</p>
+        <p data-zh="这中间没有团队，没有排期会议，没有增长指标。只有一个开发者、一份写得很细的产品文档，和一条一条被真机验证过的规则。"
+           data-en="No team, no planning meetings, no growth targets. One developer, one very detailed product spec, and rules verified one by one on a real device.">这中间没有团队，没有排期会议，没有增长指标。只有一个开发者、一份写得很细的产品文档，和一条一条被真机验证过的规则。</p>
+        <div class="sig">— RiverDriven</div>
+      </div>
+    </section>
+
+    <section class="blk" style="padding-top:20px">
+      <div class="sec-head reveal">
+        <span class="eyebrow" data-zh="时间线" data-en="Timeline">时间线</span>
+        <h2 data-zh="它是怎么长出来的" data-en="How it grew">它是怎么长出来的</h2>
+      </div>
+      <div class="tl">
+        <div class="item reveal">
+          <div class="when" data-zh="2026 · 秋天" data-en="Autumn 2026">2026 · 秋天</div>
+          <h3 data-zh="从三个问题开始" data-en="Three questions">从三个问题开始</h3>
+          <p data-zh="先写下产品定位：从「记录型」走向「陪伴型」。这句话后来成了所有取舍的尺子。" data-en="First the positioning: from recording to accompanying. That sentence became the ruler for every trade-off.">先写下产品定位：从「记录型」走向「陪伴型」。这句话后来成了所有取舍的尺子。</p>
+        </div>
+        <div class="item reveal d1">
+          <div class="when" data-zh="2026 · 10 月" data-en="October 2026">2026 · 10 月</div>
+          <h3 data-zh="心愿与计划跑通闭环" data-en="Wishes and plans close the loop">心愿与计划跑通闭环</h3>
+          <p data-zh="六类心愿、五类计划、五档频次、双向回写、达成纪念页——一个心愿能完整走完从许下到纪念的全流程。" data-en="Six wish types, five plan types, five rhythms, two-way write-back, memorial pages — a wish can now go from made to remembered.">六类心愿、五类计划、五档频次、双向回写、达成纪念页——一个心愿能完整走完从许下到纪念的全流程。</p>
+        </div>
+        <div class="item reveal d2">
+          <div class="when" data-zh="2026 · 11 月" data-en="November 2026">2026 · 11 月</div>
+          <h3 data-zh="记录页与星图成形" data-en="Journal and star map take shape">记录页与星图成形</h3>
+          <p data-zh="霓虹横滑卡、一天的记录卡、人货场锚点、会变亮的星图、正文里的胶囊——App 从「打卡工具」变成了一个可以存放生活的地方。"
+             data-en="Neon card carousel, day cards, people/things/places anchors, a star map that brightens, capsules inside sentences — the app stopped being a check-in tool and became a place to keep a life.">霓虹横滑卡、一天的记录卡、人货场锚点、会变亮的星图、正文里的胶囊——App 从「打卡工具」变成了一个可以存放生活的地方。</p>
+        </div>
+        <div class="item now reveal d3">
+          <div class="when" data-zh="现在" data-en="Now">现在</div>
+          <h3 data-zh="打磨、内测、等待上架" data-en="Polishing, testing, waiting">打磨、内测、等待上架</h3>
+          <p data-zh="全量单元测试跑通，真机走查一条条过，文案逐句收口。上架之后，这里会换成真正的下载链接。" data-en="Full test suite green, device walkthroughs one by one, copy tightened sentence by sentence. Once live, this becomes a real download link.">全量单元测试跑通，真机走查一条条过，文案逐句收口。上架之后，这里会换成真正的下载链接。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="blk" style="padding-top:20px">
+      <div class="lobus-card reveal">
+        <div class="mark">lobus · studio</div>
+        <h2 data-zh="lobus 是什么" data-en="What lobus is">lobus 是什么</h2>
+        <p data-zh="lobus 是我给自己做的这些小东西留的一块地方。一个球、一条轨道、一个小小的场域——它装不下宏大的野心，但装得下那些不太实用、又真的很重要的念头。"
+           data-en="lobus is the small place I keep for the things I make. A sphere, an orbit, a little field — too small for grand ambitions, just big enough for the impractical thoughts that actually matter.">lobus 是我给自己做的这些小东西留的一块地方。一个球、一条轨道、一个小小的场域——它装不下宏大的野心，但装得下那些不太实用、又真的很重要的念头。</p>
+        <p data-zh="DearMe 是 lobus 的第一件：关于怎么对自己好一点。后面还会有别的。"
+           data-en="DearMe is lobus No.01: about being kinder to yourself. There will be more.">DearMe 是 lobus 的第一件：关于怎么对自己好一点。后面还会有别的。</p>
+      </div>
+
+      <div class="contact">
+        <div class="c reveal"><div class="k" data-zh="开发者" data-en="Developer">开发者</div><div class="v">RiverDriven</div></div>
+        <div class="c reveal d1"><div class="k" data-zh="品牌" data-en="Brand">品牌</div><div class="v">lobus</div></div>
+        <div class="c reveal d2"><div class="k" data-zh="联系" data-en="Contact">联系</div><div class="v">hello@lobus.studio</div></div>
+      </div>
+      <p class="small muted reveal" style="margin-top:16px" data-zh="联系邮箱为占位地址，替换成你的真实邮箱即可。" data-en="The contact email is a placeholder — swap in your real address.">联系邮箱为占位地址，替换成你的真实邮箱即可。</p>
+    </section>
+
+    <section class="blk" style="padding-top:0">
+      <div class="cta-band reveal">
+        <div>
+          <h2 data-zh="如果这听起来像你需要的" data-en="If this sounds like what you need">如果这听起来像你需要的</h2>
+          <p data-zh="给自己一个开始，就从写下第一个心愿起。" data-en="Start by writing down your first wish.">给自己一个开始，就从写下第一个心愿起。</p>
+        </div>
+        <div class="acts">
+          <button class="btn btn-primary" data-open-dl data-zh="App Store 下载" data-en="Download on App Store">App Store 下载</button>
+          <a class="btn-line btn" href="#/features" data-zh="回到功能" data-en="Back to features">回到功能</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ==================== 页脚 ==================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="fb">
+          <img src="assets/dearme-icon-256.png" alt="DearMe">
+          <b>DearMe</b>
+        </div>
+        <p data-zh="一个把「想要的生活」变成心愿、计划和一天天记录的 App。由 RiverDriven 一个人做出来，lobus 出品。"
+           data-en="An app that turns the life you want into wishes, plans and daily traces. Made by one person, RiverDriven. A lobus work.">一个把「想要的生活」变成心愿、计划和一天天记录的 App。由 RiverDriven 一个人做出来，lobus 出品。</p>
+      </div>
+      <div class="foot-col">
+        <div class="t" data-zh="浏览" data-en="Browse">浏览</div>
+        <a href="#/" data-zh="首页" data-en="Home">首页</a>
+        <a href="#/features" data-zh="功能" data-en="Features">功能</a>
+        <a href="#/story" data-zh="故事" data-en="Story">故事</a>
+      </div>
+      <div class="foot-col">
+        <div class="t" data-zh="关于" data-en="About">关于</div>
+        <a href="#/story" data-zh="lobus 品牌" data-en="lobus">lobus 品牌</a>
+        <a href="#/story" data-zh="开发者 RiverDriven" data-en="RiverDriven">开发者 RiverDriven</a>
+        <a href="mailto:hello@lobus.studio" data-zh="hello@lobus.studio" data-en="hello@lobus.studio">hello@lobus.studio</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 lobus<span class="dot"> · </span><span data-zh="保留所有权利" data-en="All rights reserved">保留所有权利</span></span>
+      <span data-zh="本站为演示站点：下载链接与邮箱订阅为占位，上架后替换。" data-en="Demo site: download link and email signup are placeholders, to be replaced at launch.">本站为演示站点：下载链接与邮箱订阅为占位，上架后替换。</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== 下载弹层 ==================== -->
+<div class="modal" id="dlModal" role="dialog" aria-modal="true" aria-labelledby="dlTitle">
+  <div class="box">
+    <button class="x" id="dlClose" aria-label="Close">×</button>
+    <img src="assets/dearme-icon-256.png" alt="DearMe">
+    <h3 id="dlTitle" data-zh="DearMe 正在最后打磨" data-en="DearMe is in final polish">DearMe 正在最后打磨</h3>
+    <p data-zh="还在 App Store 审核的路上。留个邮箱，上线那天第一个告诉你。" data-en="Still on its way through App Store review. Leave an email and you’ll be the first to know.">还在 App Store 审核的路上。留个邮箱，上线那天第一个告诉你。</p>
+    <form id="dlForm">
+      <input type="email" required placeholder="you@example.com" aria-label="Email">
+      <button class="btn btn-primary" type="submit" data-zh="留个邮箱" data-en="Notify me">留个邮箱</button>
+    </form>
+    <div class="done" id="dlDone" data-zh="记下了。上线那天见。" data-en="Noted. See you at launch.">记下了。上线那天见。</div>
+    <p class="tiny" data-zh="演示站点：邮箱不会被保存，也不会真的发送。" data-en="Demo site: the email is not stored or sent.">演示站点：邮箱不会被保存，也不会真的发送。</p>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   1. 语言切换（zh / en）
+   ============================================================ */
+var currentLang = 'zh';
+function setLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.querySelectorAll('[data-zh]').forEach(function(el){
+    var t = el.getAttribute('data-' + lang);
+    if(t === null) return;
+    if(el.hasAttribute('data-html')) el.innerHTML = t;
+    else el.textContent = t;
+  });
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('data-lang') === lang);
+  });
+  try{ localStorage.setItem('dearme-lang', lang); }catch(e){}
+}
+document.querySelectorAll('.lang button').forEach(function(b){
+  b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
+});
+
+/* ============================================================
+   2. hash 路由：/ → 首页，/features，/story
+   ============================================================ */
+var menuBtn = document.getElementById('menuBtn');
+var mobileMenu = document.getElementById('mobileMenu');
+function closeMenu(){
+  if(!menuBtn) return;
+  menuBtn.classList.remove('open');
+  mobileMenu.classList.remove('on');
+  menuBtn.setAttribute('aria-expanded','false');
+}
+if(menuBtn){
+  menuBtn.addEventListener('click', function(){
+    var open = !mobileMenu.classList.contains('on');
+    menuBtn.classList.toggle('open', open);
+    mobileMenu.classList.toggle('on', open);
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileMenu.addEventListener('click', function(e){
+    if(e.target.closest('a')) closeMenu();
+  });
+}
+
+var views = { home:'view-home', features:'view-features', story:'view-story' };
+function route(){
+  var path = (location.hash.replace('#','') || '/').replace(/\/+/g,'/').replace(/^\//,'');
+  var name = path === '' ? 'home' : (views[path] ? path : 'home');
+  Object.keys(views).forEach(function(k){
+    document.getElementById(views[k]).classList.toggle('on', k === name);
+  });
+  document.querySelectorAll('#navLinks a, #mobileMenu a').forEach(function(a){
+    a.classList.toggle('on', a.getAttribute('data-route') === name);
+  });
+  closeMenu();
+  document.title = name === 'features' ? '功能 · DearMe'
+               : name === 'story' ? '故事 · DearMe'
+               : 'DearMe · 对自己，好一点';
+  window.scrollTo({ top:0, behavior:'auto' });
+  requestAnimationFrame(revealAll);
+}
+window.addEventListener('hashchange', route);
+
+/* ============================================================
+   3. 滚动显现
+   ============================================================ */
+var io = null;
+if('IntersectionObserver' in window){
+  io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+    });
+  }, { rootMargin:'0px 0px -8% 0px', threshold:0.06 });
+}
+function heroReady(){
+  var hi = document.querySelector('.hero-inner');
+  if(hi) requestAnimationFrame(function(){ requestAnimationFrame(function(){ hi.classList.add('ready'); }); });
+}
+function revealAll(){
+  document.querySelectorAll('.reveal').forEach(function(el){
+    if(el.classList.contains('in')) return;
+    if(io) io.observe(el); else el.classList.add('in');
+  });
+}
+
+/* ============================================================
+   4. 导航收缩 + Hero 视差
+   ============================================================ */
+var nav = document.getElementById('nav');
+window.addEventListener('scroll', function(){
+  nav.classList.toggle('shrink', window.scrollY > 40);
+}, { passive:true });
+
+var stage = document.getElementById('stage');
+var spot = document.getElementById('spot');
+var heroEl = document.querySelector('.hero');
+if(heroEl){
+  heroEl.addEventListener('mousemove', function(e){
+    var r = heroEl.getBoundingClientRect();
+    var rx = (e.clientX - r.left) / r.width - 0.5;
+    var ry = (e.clientY - r.top) / r.height - 0.5;
+    if(stage){
+      stage.style.transform = 'perspective(900px) rotateY(' + (rx*9).toFixed(2) + 'deg) rotateX(' + (-ry*7).toFixed(2) + 'deg)';
+    }
+    if(spot){
+      spot.style.transform = 'translate(' + (rx*60 - 50).toFixed(1) + '%, ' + (ry*50).toFixed(1) + '%)';
+    }
+  });
+  heroEl.addEventListener('mouseleave', function(){
+    if(stage) stage.style.transform = '';
+    if(spot) spot.style.transform = '';
+  });
+}
+
+/* ============================================================
+   5. 下载弹层
+   ============================================================ */
+var modal = document.getElementById('dlModal');
+function openModal(){ modal.classList.add('on'); }
+function closeModal(){ modal.classList.remove('on'); }
+document.querySelectorAll('[data-open-dl]').forEach(function(b){
+  b.addEventListener('click', openModal);
+});
+document.getElementById('dlClose').addEventListener('click', closeModal);
+modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeModal(); });
+document.getElementById('dlForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  this.style.display = 'none';
+  document.getElementById('dlDone').style.display = 'block';
+});
+
+/* ============================================================
+   6. 热力图格子（示意）
+   ============================================================ */
+(function(){
+  var grid = document.getElementById('heatGrid');
+  if(!grid) return;
+  var levels = [0,1,2,3,4,0,2,1,3,4,0,0,1,2];
+  for(var i=0;i<98;i++){
+    var b = document.createElement('b');
+    var v = (i < 84) ? (Math.abs(Math.sin(i*1.7)*4.4) | 0) : 0;
+    if(v > 4) v = 4;
+    if(v > 0) b.className = 'l' + v;
+    grid.appendChild(b);
+  }
+})();
+
+/* ============================================================
+   7. 初始化
+   ============================================================ */
+try{
+  var saved = localStorage.getItem('dearme-lang');
+  if(saved === 'en') setLang('en'); else setLang('zh');
+}catch(e){ setLang('zh'); }
+route();
+revealAll();
+heroReady();
+/* 兜底：字体加载等造成布局位移时，首屏内容不允许一直藏着 */
+[1200, 2600].forEach(function(t){
+  setTimeout(function(){
+    document.querySelectorAll('.reveal:not(.in)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight * 1.4) el.classList.add('in');
+    });
+  }, t);
+});
+</script>
+</body>
+</html>

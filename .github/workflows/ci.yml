@@ -2,33 +2,38 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v5
 
-      - uses: pnpm/action-setup@v6
+      - name: Required files
+        run: |
+          set -e
+          test -f index.html
+          test -f assets/dearme-icon-256.png
+          test -f assets/dearme-icon-512.png
+          echo "index.html + assets ok"
 
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: pnpm
+      - name: Every referenced asset exists
+        run: |
+          set -e
+          grep -oE 'assets/[A-Za-z0-9._-]+\.(png|jpg)' index.html | sort -u | while read -r f; do
+            if [ ! -f "$f" ]; then echo "missing: $f"; exit 1; fi
+            echo "ok: $f"
+          done
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Format check
-        run: pnpm format:check
-
-      - name: Typecheck and build
-        run: pnpm build
-
-      - name: Smoke tests
-        run: pnpm test:smoke
+      - name: Three views present
+        run: |
+          set -e
+          for v in view-home view-features view-story; do
+            grep -q "id=\"$v\"" index.html || { echo "missing view: $v"; exit 1; }
+          done
+          echo "views ok"

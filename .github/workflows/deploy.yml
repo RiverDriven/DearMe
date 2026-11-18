@@ -2,13 +2,17 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -17,10 +21,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Install, build, and upload
-        uses: withastro/action@v5
+      # 站点是纯静态的：index.html + assets/，不需要构建，直接打包这两个。
+      - name: Stage static site
+        run: |
+          set -e
+          mkdir -p _site
+          cp index.html _site/
+          cp -R assets _site/
+          test -f _site/index.html
+          test -f _site/assets/dearme-icon-512.png
+          echo "staged:" && ls -1 _site _site/assets
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          node-version: 22
+          path: _site
 
   deploy:
     needs: build

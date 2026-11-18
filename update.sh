@@ -19,6 +19,6 @@ git commit -m "$MSG"
 git push origin main
 
 echo ""
-echo "推送完成，GitHub Actions 正在自动构建部署（约 1 分钟）。"
+echo "推送完成，GitHub Actions 正在发布（约 1 分钟）。"
 echo "页面地址：https://RiverDriven.github.io/DearMe/"
 echo "查看部署状态：gh run list --repo RiverDriven/DearMe"
