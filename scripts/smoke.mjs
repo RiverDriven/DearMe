@@ -28,9 +28,9 @@ const EXPECTATIONS = {
   '/fr/': [
     '<html lang="fr"',
     '<meta property="og:locale" content="fr_FR"',
-    'hreflang="en" href="https://screwfast.uk"',
+    'hreflang="en" href="https://RiverDriven.github.io"',
   ],
-  '/': ['<html lang="en"', 'hreflang="fr" href="https://screwfast.uk/fr"'],
+  '/': ['<html lang="en"', 'hreflang="fr" href="https://RiverDriven.github.io/fr"'],
   '/fr/404/': ['<html lang="fr"'],
   '/contact/': ['data-demo-form', 'data-demo-status'],
   '/fr/contact/': ['data-demo-form', 'data-demo-status'],

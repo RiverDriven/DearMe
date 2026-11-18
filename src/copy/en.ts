@@ -14,13 +14,13 @@ export const en = {
   site: {
     /** Default `<meta name="description">` when a page sets none. */
     description:
-      'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs. Start exploring and contact our sales team for superior quality and reliability.',
+      'AppPage offers top-tier hardware tools and expert construction services to meet all your project needs. Start exploring and contact our sales team for superior quality and reliability.',
     /** schema.org `WebSite.description` in every page's `isPartOf`. */
     descriptionShort:
-      'ScrewFast offers top-tier hardware tools and expert construction services to meet all your project needs.',
-    ogTitle: 'ScrewFast: Hardware Tools & Construction Services',
+      'AppPage offers top-tier hardware tools and expert construction services to meet all your project needs.',
+    ogTitle: 'AppPage: Hardware Tools & Construction Services',
     ogDescription:
-      "Equip your projects with ScrewFast's top-quality hardware tools and expert construction services. Trusted by industry leaders, ScrewFast offers simplicity, affordability, and reliability. Experience the difference with user-centric design and cutting-edge tools. Start exploring now!",
+      "Equip your projects with AppPage's top-quality hardware tools and expert construction services. Trusted by industry leaders, AppPage offers simplicity, affordability, and reliability. Experience the difference with user-centric design and cutting-edge tools. Start exploring now!",
   },
 
   layout: {
@@ -70,7 +70,7 @@ export const en = {
         guides: {
           title: 'Explore Advice and Explanations',
           description:
-            "Dive deep into helpful guides and explanations for all of ScrewFast's features",
+            "Dive deep into helpful guides and explanations for all of AppPage's features",
         },
         integrations: {
           title: 'Discover Integrations',
@@ -79,27 +79,27 @@ export const en = {
         },
         experts: {
           title: 'Expert Services',
-          description: "Go beyond tools with ScrewFast's expert services",
+          description: "Go beyond tools with AppPage's expert services",
         },
         tools: {
           title: 'Cutting-Edge Tools',
           description:
-            "Build Smarter, Faster. Experience next-level efficiency with ScrewFast's cutting-edge construction tools",
+            "Build Smarter, Faster. Experience next-level efficiency with AppPage's cutting-edge construction tools",
         },
         plans: {
           title: 'Simple Plans',
           description:
-            "Boost your efficiency with ScrewFast's straightforward, value-driven plans",
+            "Boost your efficiency with AppPage's straightforward, value-driven plans",
         },
         community: {
           title: 'Community Forum',
-          description: 'Learn, share, and connect with other ScrewFast users',
+          description: 'Learn, share, and connect with other AppPage users',
         },
       },
       successStories: 'Success Stories',
       successStory: {
         description:
-          'See how ScrewFast has empowered businesses of all sizes to achieve outstanding results.',
+          'See how AppPage has empowered businesses of all sizes to achieve outstanding results.',
         imageAlt: 'Portrait of a smiling person',
       },
       learnMore: 'Learn more',
@@ -193,10 +193,10 @@ export const en = {
   },
 
   home: {
-    banner: 'Explore ScrewFast on GitHub',
+    banner: 'Explore AppPage on GitHub',
     hero: {
       title:
-        'Equip Your Projects with <span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>',
+        'Equip Your Projects with <span class="text-yellow-500 dark:text-yellow-400">AppPage</span>',
       subTitle:
         'Top-quality hardware tools and expert construction services for every project need.',
       primaryBtn: 'Start Exploring',
@@ -204,7 +204,7 @@ export const en = {
       rating: '<span class="font-bold">4.8</span> / 5',
       reviews: 'From Over <span class="font-bold">12.8k</span> Reviews',
       imageAlt:
-        'Stack of ScrewFast product boxes containing assorted hardware tools',
+        'Stack of AppPage product boxes containing assorted hardware tools',
     },
     clients: {
       title: 'Trusted by Industry Leaders',
@@ -213,29 +213,29 @@ export const en = {
     featuresGeneral: {
       title: 'Meeting Industry Demands',
       subTitle:
-        "At ScrewFast, we tackle the unique challenges encountered in the hardware and construction sectors. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals.",
-      imageAlt: 'ScrewFast products in floating boxes',
+        "At AppPage, we tackle the unique challenges encountered in the hardware and construction sectors. From cutting-edge tools to expert services, we're dedicated to helping you overcome obstacles and achieve your goals.",
+      imageAlt: 'AppPage products in floating boxes',
     },
     featuresNavs: {
       title:
-        'Customize <span class="text-yellow-500 dark:text-yellow-400">ScrewFast</span>\'s offerings to perfectly suit your hardware and construction needs.',
+        'Customize <span class="text-yellow-500 dark:text-yellow-400">AppPage</span>\'s offerings to perfectly suit your hardware and construction needs.',
       tabs: {
         tools: {
           heading: 'Cutting-Edge Tools',
           content:
-            "Empower your projects with ScrewFast's cutting-edge tools. Experience enhanced efficiency in construction management with our sophisticated automated solutions.",
+            "Empower your projects with AppPage's cutting-edge tools. Experience enhanced efficiency in construction management with our sophisticated automated solutions.",
           alt: 'Yellow and black heavy equipment on brown grass field',
         },
         dashboard: {
           heading: 'Intuitive Dashboards',
           content:
-            "Navigate with ease using ScrewFast's intuitive dashboards. Set up and oversee your projects seamlessly, with user-friendly interfaces designed for quick and effective workflow management.",
+            "Navigate with ease using AppPage's intuitive dashboards. Set up and oversee your projects seamlessly, with user-friendly interfaces designed for quick and effective workflow management.",
           alt: 'A screenshot or graphic representation of the intuitive dashboard',
         },
         features: {
           heading: 'Robust Features',
           content:
-            "Minimize complexity, maximize productivity. ScrewFast's robust features are engineered to streamline your construction process, delivering results that stand out for their excellence.",
+            "Minimize complexity, maximize productivity. AppPage's robust features are engineered to streamline your construction process, delivering results that stand out for their excellence.",
           alt: 'Gray metal building frame near tower crane during daytime',
         },
       },
@@ -243,11 +243,11 @@ export const en = {
     testimonials: {
       title: 'Fast-Track Your Projects',
       subTitle:
-        'At ScrewFast, we ensure a swift start with instant account setup. Experience the speed of construction redefined.',
+        'At AppPage, we ensure a swift start with instant account setup. Experience the speed of construction redefined.',
       quotes: [
         {
           content:
-            'ScrewFast dramatically boosted our project efficiency. Setup was instant, and their rapid response times are phenomenal. Truly a game-changer in hardware and construction support!',
+            'AppPage dramatically boosted our project efficiency. Setup was instant, and their rapid response times are phenomenal. Truly a game-changer in hardware and construction support!',
           author: 'Samantha Ruiz',
           role: 'Chief Operating Officer | ConstructIt Inc.',
         },
@@ -261,7 +261,7 @@ export const en = {
         {
           count: '35%',
           description:
-            'uptick in project efficiency with ScrewFast tools and services',
+            'uptick in project efficiency with AppPage tools and services',
         },
         {
           count: '15.3%',
@@ -278,7 +278,7 @@ export const en = {
     heroAlt: {
       title: "Let's Build Together",
       subTitle:
-        'ScrewFast is an open-source template, meticulously crafted with Astro, Tailwind CSS, and Preline UI frameworks.',
+        'AppPage is an open-source template, meticulously crafted with Astro, Tailwind CSS, and Preline UI frameworks.',
       btn: 'Continue with Github',
     },
   },
@@ -286,12 +286,12 @@ export const en = {
   services: {
     title: 'Services',
     metaDescription:
-      'Uniting expertise with your vision, ScrewFast provides exceptional service and comprehensive solutions in the hardware and construction industry, from consultation to project completion.',
-    ogTitle: 'Expert Consultation Services | ScrewFast',
+      'Uniting expertise with your vision, AppPage provides exceptional service and comprehensive solutions in the hardware and construction industry, from consultation to project completion.',
+    ogTitle: 'Expert Consultation Services | AppPage',
     intro: {
       title: 'Uniting Expertise with Your Vision',
       subTitle:
-        'At ScrewFast, we take pride in providing comprehensive solutions and exceptional service in the hardware and construction industry. Our experienced team is dedicated to supporting your project from inception to completion with a range of specialized services.',
+        'At AppPage, we take pride in providing comprehensive solutions and exceptional service in the hardware and construction industry. Our experienced team is dedicated to supporting your project from inception to completion with a range of specialized services.',
       cta: 'Schedule a Consultation',
     },
     articles: {
@@ -307,14 +307,14 @@ export const en = {
       craftsmanship: {
         title: 'Transforming Designs into Reality',
         subTitle:
-          'Our skilled craftsmen bring precision and excellence to every construction project. From minor installations to substantial structural work, ScrewFast offers reliable construction services to turn your plans into tangible outcomes. We ensure the highest standards of safety and workmanship, utilizing top-quality tools and materials from our extensive inventory.',
+          'Our skilled craftsmen bring precision and excellence to every construction project. From minor installations to substantial structural work, AppPage offers reliable construction services to turn your plans into tangible outcomes. We ensure the highest standards of safety and workmanship, utilizing top-quality tools and materials from our extensive inventory.',
         imageAlts: ['Construction site before and after'],
         cta: 'Learn More',
       },
       oversight: {
         title: 'Navigating Projects with Professional Oversight',
         subTitle:
-          'Effective project management is at the heart of any successful build. ScrewFast provides thorough planning and robust management services that keep your project on time and within budget. Let us handle the complexities of workflow coordination, resource allocation, and stakeholder communication while you focus on your vision.',
+          'Effective project management is at the heart of any successful build. AppPage provides thorough planning and robust management services that keep your project on time and within budget. Let us handle the complexities of workflow coordination, resource allocation, and stakeholder communication while you focus on your vision.',
         imageAlts: [
           'Construction workers orchestrating a project',
           'Aerial view of managed construction',
@@ -323,7 +323,7 @@ export const en = {
       maintenance: {
         title: 'Ensuring Long-lasting Performance',
         subTitle:
-          "Our commitment to your project doesn't end at completion. ScrewFast offers ongoing maintenance and support services to ensure your construction's longevity and performance. From regular check-ups to emergency assistance, our responsive team is there to provide seamless support.",
+          "Our commitment to your project doesn't end at completion. AppPage offers ongoing maintenance and support services to ensure your construction's longevity and performance. From regular check-ups to emergency assistance, our responsive team is there to provide seamless support.",
         imageAlts: [
           'Man in orange and black vest wearing white helmet holding yellow and black power tool',
         ],
@@ -331,7 +331,7 @@ export const en = {
       bespoke: {
         title: 'Crafting Bespoke Strategies for Unique Challenges',
         subTitle:
-          'For our larger enterprise clients, ScrewFast offers custom solutions designed to meet specific industry challenges. By understanding your unique needs, we engineer tailored strategies aimed at optimizing your operations, enhancing efficiency, and driving your business forward.',
+          'For our larger enterprise clients, AppPage offers custom solutions designed to meet specific industry challenges. By understanding your unique needs, we engineer tailored strategies aimed at optimizing your operations, enhancing efficiency, and driving your business forward.',
         imageAlts: [
           'In progress building structure',
           'Brown and gray building under construction',
@@ -342,10 +342,10 @@ export const en = {
     stats: {
       title: 'By the Numbers',
       subTitle:
-        'Our commitment to quality and reliability is evident in every project we undertake. At ScrewFast, we are dedicated to delivering industry-leading services that ensure your construction projects are built to last.',
+        'Our commitment to quality and reliability is evident in every project we undertake. At AppPage, we are dedicated to delivering industry-leading services that ensure your construction projects are built to last.',
       mainStatTitle: '96%',
       mainStatSubTitle:
-        'of our clients rate their experience with ScrewFast as exceptional',
+        'of our clients rate their experience with AppPage as exceptional',
       stats: [
         { stat: '99.8%', description: 'project completion rate' },
         { stat: '5,000+', description: 'successful installations' },
@@ -358,7 +358,7 @@ export const en = {
     title: 'Contact',
     metaDescription:
       "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.",
-    ogTitle: 'Contact Us | ScrewFast',
+    ogTitle: 'Contact Us | AppPage',
     heading: 'Contact us',
     subTitle:
       "Have questions or want to discuss a project? Reach out, and let's craft the perfect solution with our tools and services.",
@@ -377,7 +377,7 @@ export const en = {
     faqContent: 'Explore our FAQ for quick, clear answers to common queries.',
     faqLink: 'Visit FAQ',
     officeHeading: 'Visit our office',
-    officeContent: 'UK ScrewFast',
+    officeContent: 'UK AppPage',
     emailHeading: 'Contact us by email',
     emailContent: 'Prefer the written word? Drop us an email at',
   },
@@ -385,14 +385,14 @@ export const en = {
   blogIndex: {
     title: 'Blog',
     metaDescription:
-      "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts.",
-    ogTitle: 'Construction Industry Blog | ScrewFast',
+      "Stay up-to-date with the latest trends and developments in the construction industry with insights from AppPage's team of industry experts.",
+    ogTitle: 'Construction Industry Blog | AppPage',
     heading: 'Your Gateway to Construction Excellence',
     subTitle:
-      'Explore the latest news, tips, and insights from ScrewFast to enhance your construction projects. From product spotlights to project management strategies, our blog is your go-to resource for all things hardware and construction.',
+      'Explore the latest news, tips, and insights from AppPage to enhance your construction projects. From product spotlights to project management strategies, our blog is your go-to resource for all things hardware and construction.',
     insightsHeading: 'Insights',
     insightsSubTitle:
-      "Stay up-to-date with the latest trends and developments in the construction industry with insights from ScrewFast's team of industry experts. ",
+      "Stay up-to-date with the latest trends and developments in the construction industry with insights from AppPage's team of industry experts. ",
     noPosts: 'No blog posts yet. Check back soon.',
     noInsights: 'No insights yet. Check back soon.',
   },
@@ -400,32 +400,32 @@ export const en = {
   productsIndex: {
     title: 'Products',
     metaDescription:
-      'Explore the durability and precision of ScrewFast tools, designed for both professionals and enthusiasts.',
-    ogTitle: 'Hardware Tools | ScrewFast',
+      'Explore the durability and precision of AppPage tools, designed for both professionals and enthusiasts.',
+    ogTitle: 'Hardware Tools | AppPage',
     heading: 'Products',
     subTitle:
-      'Explore the durability and precision of ScrewFast tools, designed for both professionals and enthusiasts. Each of our products is crafted with precision and built to last, ensuring you have the right tool for every job.',
+      'Explore the durability and precision of AppPage tools, designed for both professionals and enthusiasts. Each of our products is crafted with precision and built to last, ensuring you have the right tool for every job.',
     customerStories: 'Customer Stories',
     testimonials: {
       title: 'What Our Customers Say',
       quotes: [
         {
           content:
-            ' "Since switching to ScrewFast\'s hardware tools, the efficiency on our construction sites has skyrocketed. The durability of the hex bolts and precision of the machine screws are simply unmatched. It\'s refreshing to work with a company that truly understands the daily demands of the industry." ',
+            ' "Since switching to AppPage\'s hardware tools, the efficiency on our construction sites has skyrocketed. The durability of the hex bolts and precision of the machine screws are simply unmatched. It\'s refreshing to work with a company that truly understands the daily demands of the industry." ',
           author: 'Jason Clark',
           role: 'Site Foreman | TopBuild',
           avatarAlt: 'Image Description',
         },
         {
           content:
-            ' "As an interior designer, I\'m always looking for high-quality materials and tools that help bring my visions to life. ScrewFast\'s mixed screws assortment has been a game-changer for my projects, providing the perfect blend of quality and variety. The outstanding customer support was just the cherry on top!" ',
+            ' "As an interior designer, I\'m always looking for high-quality materials and tools that help bring my visions to life. AppPage\'s mixed screws assortment has been a game-changer for my projects, providing the perfect blend of quality and variety. The outstanding customer support was just the cherry on top!" ',
           author: 'Maria Gonzalez',
           role: 'Interior Designer | Creative Spaces',
           avatarAlt: 'Image Description',
         },
         {
           content:
-            " \"I've been a professional carpenter for over 15 years, and I can sincerely say that ScrewFast's tap bolts and nuts are some of the best I've used. They grip like no other, and I have full confidence in every joint and fixture. Plus, the service is impeccable – they truly care about my project's success.\" ",
+            " \"I've been a professional carpenter for over 15 years, and I can sincerely say that AppPage's tap bolts and nuts are some of the best I've used. They grip like no other, and I have full confidence in every joint and fixture. Plus, the service is impeccable – they truly care about my project's success.\" ",
           author: 'Richard Kim',
           role: 'Master Carpenter | WoodWright',
           avatarAlt: 'Image Description',
@@ -433,9 +433,9 @@ export const en = {
       ],
     },
     stats: {
-      title: 'Why Choose ScrewFast?',
+      title: 'Why Choose AppPage?',
       subTitle:
-        "Transform your ideas into tangible results with ScrewFast tools. Whether you're starting with a sketch on a napkin or diving into a comprehensive construction project, our tools are engineered to help you build with confidence.",
+        "Transform your ideas into tangible results with AppPage tools. Whether you're starting with a sketch on a napkin or diving into a comprehensive construction project, our tools are engineered to help you build with confidence.",
       benefits: [
         'Robust and reliable tools for long-lasting performance.',
         'Innovative solutions tailored to modern construction needs.',

@@ -1,10 +1,10 @@
-# ScrewFast AI Guide
+# AppPage AI Guide
 
 For AI assistants (Cursor, Copilot, Claude, ChatGPT): this file describes project structure, conventions, and where to find or add code. See [README.md](README.md) for human-facing setup and features, and [CONTEXT.md](CONTEXT.md) for the names of the main modules.
 
 ## Project Overview
 
-ScrewFast is an Astro + Tailwind CSS + Preline UI template for landing pages, blogs, documentation, and product/content pages. Stack: Astro 7, Tailwind v4 (via `@tailwindcss/vite`), Preline (modals, accordions), Starlight (docs), Lenis (smooth scroll), GSAP (animations).
+AppPage is an Astro + Tailwind CSS + Preline UI template for landing pages, blogs, documentation, and product/content pages. Stack: Astro 7, Tailwind v4 (via `@tailwindcss/vite`), Preline (modals, accordions), Starlight (docs), Lenis (smooth scroll), GSAP (animations).
 
 Marketing site locales: **en** and **fr**. Routes live under `src/pages/` and `src/pages/fr/`, but each route file is a one-line shell around a shared view in `src/views/` that takes the locale as a prop. Everything locale-related lives in [`src/utils/locale.ts`](src/utils/locale.ts); the current locale and its copy table are on `Astro.locals.locale` / `Astro.locals.copy` (set by [`src/middleware.ts`](src/middleware.ts)). Never parse `/fr` out of a pathname or hard-code a locale prefix elsewhere.
 

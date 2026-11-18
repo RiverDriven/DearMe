@@ -1,4 +1,4 @@
-# ScrewFast domain glossary
+# AppPage domain glossary
 
 Names for the concepts this codebase is built around. Use these terms in code, docs and reviews.
 

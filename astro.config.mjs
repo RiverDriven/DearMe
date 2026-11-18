@@ -35,7 +35,7 @@ export default defineConfig({
       },
     }),
     starlight({
-      title: 'ScrewFast Docs',
+      title: 'AppPage Docs',
       // https://github.com/withastro/starlight/blob/main/packages/starlight/CHANGELOG.md
       // If no Astro and Starlight i18n configurations are provided, the built-in default locale is used in Starlight and a matching Astro i18n configuration is generated/used.
       // If only a Starlight i18n configuration is provided, an equivalent Astro i18n configuration is generated/used.
@@ -104,7 +104,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/mearashadowfax/ScrewFast',
+          href: 'https://github.com/mearashadowfax/AppPage',
         },
       ],
       disable404Route: true,
@@ -122,14 +122,14 @@ export default defineConfig({
           tag: 'meta',
           attrs: {
             property: 'og:image',
-            content: 'https://screwfast.uk' + '/social.webp',
+            content: 'https://RiverDriven.github.io' + '/social.webp',
           },
         },
         {
           tag: 'meta',
           attrs: {
             property: 'twitter:image',
-            content: 'https://screwfast.uk' + '/social.webp',
+            content: 'https://RiverDriven.github.io' + '/social.webp',
           },
         },
       ],

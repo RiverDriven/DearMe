@@ -1,14 +1,14 @@
-# ScrewFast
+# AppPage
 
-![ScrewFast landing page](https://github.com/mearashadowfax/ScrewFast/assets/125820963/cdf299bd-414a-4a2d-baf0-d188bb4709c7)
+![AppPage landing page](https://github.com/mearashadowfax/AppPage/assets/125820963/cdf299bd-414a-4a2d-baf0-d188bb4709c7)
 
-ScrewFast is an open-source website template built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and [Preline UI](https://preline.co/). You get a landing page, blog, product pages, and a full documentation site in one repo, so you can launch a complete web presence by editing content and props instead of building pages from scratch. Unlike single-purpose landing or blog themes, it ships with SEO metadata, i18n, security headers, and CI already wired up.
+AppPage is an open-source website template built with [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/), and [Preline UI](https://preline.co/). You get a landing page, blog, product pages, and a full documentation site in one repo, so you can launch a complete web presence by editing content and props instead of building pages from scratch. Unlike single-purpose landing or blog themes, it ships with SEO metadata, i18n, security headers, and CI already wired up.
 
-Live demo: [screwfast.uk](https://screwfast.uk)
+Live demo: [apppage.uk](https://RiverDriven.github.io)
 
 - **Four site types in one.** Landing page, blog, product catalog, and [Starlight](https://starlight.astro.build/) docs, all sharing one layout, navbar, and footer.
 - **Ready-made components.** Page sections (hero, features, pricing, testimonials, FAQ, mega menu) and UI pieces (cards, forms, modals, buttons, icons).
-- **Multilingual out of the box.** English and French marketing pages; docs in 7 languages (en, de, es, fa, fr, ja, zh-CN) with RTL support. Only need one language? Use the [`monolingual-site`](https://github.com/mearashadowfax/ScrewFast/tree/monolingual-site) branch.
+- **Multilingual out of the box.** English and French marketing pages; docs in 7 languages (en, de, es, fa, fr, ja, zh-CN) with RTL support. Only need one language? Use the [`monolingual-site`](https://github.com/mearashadowfax/AppPage/tree/monolingual-site) branch.
 - **SEO handled.** Centralized title/description/Open Graph config, JSON-LD structured data, generated sitemap and `robots.txt`.
 - **Production-hardened.** Content Security Policy and other security headers via `vercel.json`, post-build HTML minification, and a CI pipeline that type-checks, builds, and smoke-tests every push.
 - **Current stack.** Astro 7, Tailwind CSS 4, Preline 5, TypeScript 6. Dependabot keeps it that way.
@@ -70,10 +70,10 @@ import HeroSection from '@components/sections/landing/HeroSection.astro';
 
 You need **Node.js 22** and **pnpm 9 or newer** (the versions CI uses).
 
-**1. Create your repo.** Click **Use this template** at the top of the [GitHub page](https://github.com/mearashadowfax/ScrewFast), or clone directly:
+**1. Create your repo.** Click **Use this template** at the top of the [GitHub page](https://github.com/mearashadowfax/AppPage), or clone directly:
 
 ```bash
-git clone https://github.com/mearashadowfax/ScrewFast.git my-site
+git clone https://github.com/mearashadowfax/AppPage.git my-site
 cd my-site
 ```
 
@@ -100,7 +100,7 @@ pnpm build
 This runs `astro check` (type-checking), builds the site into `dist/`, and minifies the HTML. Preview the result with `pnpm preview`, or run `pnpm test:smoke` to serve `dist/` and verify the key routes respond.
 
 > [!TIP]
-> Only need one language? The [`monolingual-site`](https://github.com/mearashadowfax/ScrewFast/tree/monolingual-site) branch has the French pages and i18n plumbing removed.
+> Only need one language? The [`monolingual-site`](https://github.com/mearashadowfax/AppPage/tree/monolingual-site) branch has the French pages and i18n plumbing removed.
 
 ---
 
@@ -112,10 +112,10 @@ Everything site-wide lives in [`src/data_files/constants.ts`](src/data_files/con
 
 ```ts
 export const SITE = {
-  title: 'ScrewFast',
+  title: 'AppPage',
   tagline: 'Top-quality Hardware Tools',
   description: '...',
-  url: 'https://screwfast.uk',
+  url: 'https://RiverDriven.github.io',
   author: 'Emil Gulamov',
 };
 
@@ -148,7 +148,7 @@ nav: {
 
 Two navbars are included in `src/components/sections/navbar&footer/`: `Navbar.astro` (standard) and `NavbarMegaMenu.astro` (mega menu on the Services link, links in `src/data_files/mega_link.ts`). Swap them in [`src/layouts/MainLayout.astro`](src/layouts/MainLayout.astro).
 
-![ScrewFast mega menu](https://github.com/user-attachments/assets/690482af-f1a4-4ebf-be58-eca0b5862973)
+![AppPage mega menu](https://github.com/user-attachments/assets/690482af-f1a4-4ebf-be58-eca0b5862973)
 
 ### Pages and sections
 
@@ -162,7 +162,7 @@ Content is Markdown/MDX in `src/content/{blog,products,insights}/{en,fr}/`. Sche
 
 ```md
 ---
-title: "Maximizing Efficiency with ScrewFast's Cutting-Edge Tools"
+title: "Maximizing Efficiency with AppPage's Cutting-Edge Tools"
 description: 'Innovating Construction Efficiency with Precision Tools & Support'
 author: 'Jacob'
 authorImage: '@/images/blog/jacob.avif'
@@ -206,8 +206,8 @@ Entries hold geometry only; size and colour come from the `class` you pass (ever
 
 `pnpm build` produces a static site in `dist/` that any static host can serve.
 
-- **Vercel:** [Deploy with Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmearashadowfax%2FScrewFast). The included [`vercel.json`](vercel.json) adds security headers and caching rules.
-- **Netlify:** [Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/mearashadowfax/ScrewFast).
+- **Vercel:** [Deploy with Vercel](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmearashadowfax%2FAppPage). The included [`vercel.json`](vercel.json) adds security headers and caching rules.
+- **Netlify:** [Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/mearashadowfax/AppPage).
 
 ---
 
@@ -322,12 +322,12 @@ Other things I've built with Astro:
 
 - **[Stukko](https://stukko.app/)**: free renovation calculators for tile, paint, wallpaper, flooring, plaster, and concrete.
 - **[OpenStove](https://openstove.org/)**: a community recipe platform with no ads, contributed through GitHub.
-- **[DataNova](https://data-nova.vercel.app/)**: a follow-up to ScrewFast with Keystatic CMS and database support.
+- **[DataNova](https://data-nova.vercel.app/)**: a follow-up to AppPage with Keystatic CMS and database support.
 - **[Domus Picturae](https://domus-picturae.vercel.app/)**: a multilingual template for art galleries.
 
 ## Contributing
 
-- **Bugs and ideas:** open an [issue](https://github.com/mearashadowfax/ScrewFast/issues) or start a [discussion](https://github.com/mearashadowfax/ScrewFast/discussions/new/choose).
+- **Bugs and ideas:** open an [issue](https://github.com/mearashadowfax/AppPage/issues) or start a [discussion](https://github.com/mearashadowfax/AppPage/discussions/new/choose).
 - **Pull requests:** welcome. Run `pnpm format:fix` and `pnpm build` before submitting.
 
 See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md).
