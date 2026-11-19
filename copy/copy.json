@@ -1000,19 +1000,19 @@
     "story.hero.05": {
       "zh": "DearMe 是从一张纸上的三个问题开始的：",
       "en": "DearMe started with three questions on a piece of paper:",
-      "block": "story.hero",
+      "block": "story.intro1",
       "html": false
     },
     "story.hero.06": {
       "zh": "我到底想要什么？<br>我为它做过什么？<br>我有没有对自己好一点？",
       "en": "What do I actually want?<br>What have I done about it?<br>Have I been kind to myself?",
-      "block": "story.hero",
+      "block": "story.intro1",
       "html": true
     },
     "story.hero.07": {
       "zh": "我试过很多清单类 App，它们都很厉害，也很擅长让我感到自己又欠了点什么。",
       "en": "I tried many list apps. They were powerful, and very good at making me feel I owed something again.",
-      "block": "story.hero",
+      "block": "story.intro1",
       "html": false
     },
     "story.blk1.01": {
@@ -1258,31 +1258,31 @@
     "site.footer.12": {
       "zh": "DearMe 正在最后打磨",
       "en": "DearMe is in final polish",
-      "block": "site.footer",
+      "block": "site.modal",
       "html": false
     },
     "site.footer.13": {
       "zh": "还在 App Store 审核的路上。留个邮箱，上线那天第一个告诉你。",
       "en": "Still on its way through App Store review. Leave an email and you’ll be the first to know.",
-      "block": "site.footer",
+      "block": "site.modal",
       "html": false
     },
     "site.footer.14": {
       "zh": "留个邮箱",
       "en": "Notify me",
-      "block": "site.footer",
+      "block": "site.modal",
       "html": false
     },
     "site.footer.15": {
       "zh": "记下了。上线那天见。",
       "en": "Noted. See you at launch.",
-      "block": "site.footer",
+      "block": "site.modal",
       "html": false
     },
     "site.footer.16": {
       "zh": "演示站点：邮箱不会被保存，也不会真的发送。",
       "en": "Demo site: the email is not stored or sent.",
-      "block": "site.footer",
+      "block": "site.modal",
       "html": false
     }
   }

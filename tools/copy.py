@@ -6,6 +6,8 @@ DearMe 官网文案表工具（零依赖，Python 3 标准库）。
     python3 tools/copy.py extract    # 从 index.html 抽文案 → copy/copy.json，并补 data-key
     python3 tools/copy.py verify     # 校验 html 与 copy.json 是否一致（CI 用）
     python3 tools/copy.py report     # 生成 docs/copy-review.html（中英对照 + 搜索 + 版本记录）
+    python3 tools/copy.py apply      # 把 copy.json 写回 index.html（属性 + 正文）
+    python3 tools/copy.py apply --from ~/Downloads/copy.json   # 先导入再写回
     python3 tools/copy.py diff "改了什么"   # 与上次快照比对，写版本记录，并刷新 report
     python3 tools/copy.py all "改了什么"    # extract → diff → report 一条龙
 
@@ -31,7 +33,7 @@ REPORT = os.path.join(DOCS, "copy-review.html")
 CHANGELOG = os.path.join(DOCS, "copy-changelog.md")
 
 # 属性值里的引号一律是 &quot;，所以 `>` / `"` 都不会截断标签匹配
-TAG_RE = re.compile(r'<([A-Za-z][\w:-]*)((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>')
+TAG_RE = re.compile(r'<(/)?([A-Za-z][\w:-]*)((?:[^>"\']|"[^"]*"|\'[^\']*\')*)>')
 ZH_RE = re.compile(r'\bdata-zh="([^"]*)"')
 EN_RE = re.compile(r'\bdata-en="([^"]*)"')
 KEY_RE = re.compile(r'\bdata-key="([^"]*)"')
@@ -49,6 +51,7 @@ BLOCK_CLASSES = {
     "quote": "quote",
     "feat": "feat",
     "blk": "blk",
+    "story-hero": "intro",
     "cta-band": "cta",
 }
 VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input",
@@ -103,13 +106,17 @@ def scan(html):
     for m in TAG_RE.finditer(html):
         if any(s <= m.start() < e for s, e in protected):
             continue
-        tag = m.group(1).lower()
-        attrs = m.group(2)
+        tag = m.group(2).lower()
+        attrs = m.group(3)
 
-        if attrs.startswith("/"):
+        if m.group(1):
             while stack:
                 top = stack.pop()
                 label = top["prev_label"]
+                if top["entry"]:
+                    inner = html[top["open_end"]:m.start()]
+                    top["entry"]["content"] = (top["open_end"], m.start())
+                    top["entry"]["nested"] = "<" in inner
                 if top["tag"] == tag:
                     break
             continue
@@ -122,6 +129,8 @@ def scan(html):
 
         if tag == "header":
             label = ("site", "nav")
+        elif "modal" in " ".join(CLASS_RE.findall(attrs)).split():
+            label = ("site", "modal")
         elif tag == "footer":
             label = ("site", "footer")
         for c in " ".join(CLASS_RE.findall(attrs)).split():
@@ -157,7 +166,8 @@ def scan(html):
             })
 
         if tag not in VOID:
-            stack.append({"tag": tag, "prev_label": prev_label})
+            stack.append({"tag": tag, "prev_label": prev_label, "open_end": m.end(),
+                          "entry": (entries[-1] if zh else None)})
             if attrs.rstrip().endswith("/"):
                 stack.pop()
                 label = prev_label
@@ -202,6 +212,52 @@ def cmd_extract():
     dump_json(COPY, {"version": 1, "strings": strings})
     print(f"extract: {len(strings)} 条文案，补 data-key {added} 个 → copy/copy.json")
     return strings
+
+
+def cmd_apply(front=""):
+    """把 copy/copy.json 写回 index.html（属性 + 正文）。--from 可先导入外部 json。"""
+    if front:
+        src = os.path.expanduser(front)
+        if not os.path.exists(src):
+            print(f"apply: 找不到 {src}")
+            return 1
+        data = load_json(src, None)
+        if not isinstance(data, dict) or "strings" not in data:
+            print("apply: 不是 copy.json 格式")
+            return 1
+        dump_json(COPY, data)
+        print(f"apply: 导入 {os.path.basename(src)} → copy/copy.json")
+
+    strings = load_json(COPY, {"strings": {}})["strings"]
+    html = read_html()
+    entries = scan(html)
+    edits, nested = [], []
+    for e in entries:
+        ref = strings.get(e["key"])
+        if not ref:
+            continue
+        s, t = e["span"]
+        mz, me = ZH_RE.search(html, s, t), EN_RE.search(html, s, t)
+        if mz and mz.group(1) != ref["zh"]:
+            edits.append((mz.start(1), mz.end(1), ref["zh"]))
+        if me and me.group(1) != ref["en"]:
+            edits.append((me.start(1), me.end(1), ref["en"]))
+        if e.get("nested"):
+            nested.append(e["key"])
+        elif "content" in e and html[e["content"][0]:e["content"][1]] != ref["zh"]:
+            edits.append((e["content"][0], e["content"][1], ref["zh"]))
+
+    for start, end, text in sorted(edits, reverse=True):
+        html = html[:start] + text + html[end:]
+    changed = len(edits)
+    if changed:
+        write_html(html)
+        print(f"apply: 写回 {changed} 处")
+    else:
+        print("apply: 页面与文案表已一致，无需写回")
+    if nested:
+        print(f"apply: {len(nested)} 条含内嵌标签，只更新属性不动正文：{', '.join(nested)}")
+    return cmd_verify()
 
 
 def cmd_verify():
@@ -344,9 +400,15 @@ def write_report(strings, history):
         rows.append(f'<h2 data-block="{esc(b)}">{esc(b)} <small>{len(items)} 条</small></h2>')
         rows.append('<table><thead><tr><th class="k">key</th><th>中文</th><th>English</th></tr></thead><tbody>')
         for k, v in items:
+            lock = ' class="zh locked"' if v.get("html") else ' class="zh"'
+            lock_en = ' class="en locked"' if v.get("html") else ' class="en"'
+            tip = ' title="这条含 HTML 标签，请在 index.html 里改"' if v.get("html") else ""
             rows.append(
-                '<tr><td class="k">%s</td><td class="zh">%s</td><td class="en">%s</td></tr>'
-                % (esc(k), esc(v["zh"]), esc(v["en"]) or '<span class="miss">（缺）</span>')
+                '<tr><td class="k">%s</td>'
+                '<td%s data-k="%s" data-f="zh" contenteditable="true"%s>%s</td>'
+                '<td%s data-k="%s" data-f="en" contenteditable="true"%s>%s</td></tr>'
+                % (esc(k), lock, esc(k), tip, esc(v["zh"]),
+                   lock_en, esc(k), tip, esc(v["en"]) or '<span class="miss">（缺）</span>')
             )
         rows.append("</tbody></table>")
 
@@ -433,6 +495,16 @@ h2{scroll-margin-top:110px}
 details{margin:0 0 12px 8px}
 summary{cursor:pointer;font-size:12px;color:#8A7FB0}
 details[open] summary{margin-bottom:6px}
+.bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:14px 0 0}
+button{font:inherit;font-size:12px;padding:7px 14px;border:1px solid #E4D8F2;background:#fff;color:#6E5F8C;border-radius:9px;cursor:pointer}
+button:hover{background:#FBF6FF}
+button.primary{background:#F7C6DE;border-color:#F7C6DE;color:#6B3550}
+#stat{font-size:12px;color:#8A8095}
+.how{font-size:11.5px;color:#A79DB2;font-family:ui-monospace,Menlo,monospace}
+td[contenteditable="true"]{cursor:text}
+td[contenteditable="true"]:focus{outline:2px solid #F3B6D2;outline-offset:-2px;background:#FFFDF9}
+td.edited{background:#FFF6E4}
+td.locked{color:#9C93A8;cursor:not-allowed}
 body.zh-only td.en{opacity:.35}
 </style></head><body>
 <header>
@@ -442,13 +514,65 @@ body.zh-only td.en{opacity:.35}
 </header>
 <div class="wrap">
   <div class="toc"><a href="#copy">文案表</a><a href="#dups">重复文案</a><a href="#history">版本记录</a></div>
+  <div class="bar">
+    <button class="primary" id="exp">导出 copy.json</button>
+    <button id="reset">重置修改</button>
+    <span id="stat">未修改</span>
+    <span class="how">导出后：python3 tools/copy.py apply --from ~/Downloads/copy.json</span>
+  </div>
   <div id="copy"></div>
   __ROWS__
   __DUPS__
   <h2 id="history">版本记录 <small>__HCOUNT__ 次改动</small></h2>
   <div class="hist">__HIST__</div>
 </div>
+<script id="copy-data" type="application/json">__DATA__</script>
 <script>
+const DATA = JSON.parse(document.getElementById('copy-data').textContent);
+const orig = {};
+Object.entries(DATA.strings).forEach(([k, v]) => { orig[k] = { zh: v.zh, en: v.en }; });
+const stat = document.getElementById('stat');
+const dirty = new Set();
+const cells = [...document.querySelectorAll('td[data-k]')];
+const syncStat = () => { stat.textContent = dirty.size ? '已修改 ' + dirty.size + ' 条 · 未导出' : '未修改'; };
+
+cells.forEach(td => {
+  if (td.classList.contains('locked')) { td.setAttribute('contenteditable', 'false'); return; }
+  td.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); td.blur(); } });
+  td.addEventListener('paste', e => {
+    e.preventDefault();
+    const t = (e.clipboardData || window.clipboardData).getData('text');
+    document.execCommand('insertText', false, t.replace(/\n/g, ' '));
+  });
+  td.addEventListener('input', () => {
+    const k = td.dataset.k, f = td.dataset.f;
+    if (td.textContent !== orig[k][f]) { dirty.add(k); td.classList.add('edited'); }
+    else {
+      td.classList.remove('edited');
+      if (!cells.some(x => x.dataset.k === k && x.classList.contains('edited'))) dirty.delete(k);
+    }
+    syncStat();
+  });
+});
+
+const escHtml = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+document.getElementById('exp').addEventListener('click', () => {
+  const out = JSON.parse(JSON.stringify(DATA));
+  cells.filter(td => !td.classList.contains('locked')).forEach(td => {
+    const k = td.dataset.k, f = td.dataset.f, raw = td.textContent;
+    if (raw !== orig[k][f]) out.strings[k][f] = escHtml(raw);
+  });
+  const blob = new Blob([JSON.stringify(out, null, 2) + '\n'], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'copy.json';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  stat.textContent = dirty.size ? '已导出（' + dirty.size + ' 条改动）' : '已导出（无改动）';
+});
+document.getElementById('reset').addEventListener('click', () => location.reload());
+
 const q = document.getElementById('q');
 q.addEventListener('input', () => {
   const v = q.value.trim().toLowerCase();
@@ -473,6 +597,7 @@ q.addEventListener('input', () => {
               .replace("__HCOUNT__", str(len(history)))
               .replace("__HIST__", "".join(hist_rows) or "<p>还没有记录。</p>")
               .replace("__DUPS__", dup_html)
+              .replace("__DATA__", json.dumps(strings, ensure_ascii=False))
               .replace("__ROWS__", "".join(rows)))
     os.makedirs(DOCS, exist_ok=True)
     with open(REPORT, "w", encoding="utf-8", newline="\n") as f:
@@ -492,6 +617,10 @@ def main():
         return 0
     if cmd == "verify":
         return cmd_verify()
+    if cmd == "apply":
+        rest = sys.argv[2:]
+        front = rest[rest.index("--from") + 1] if "--from" in rest and rest.index("--from") + 1 < len(rest) else ""
+        return cmd_apply(front)
     if cmd == "diff":
         return cmd_diff(msg)
     if cmd == "report":

@@ -53,12 +53,22 @@ _archive-astro/       原 Astro 模板工程（本地保留，已在 .gitignore 
 文案仍然只写在 `index.html` 的 `data-zh` / `data-en` 上，`data-key` 是它的身份证（形如 `home.hero.05`、`features.feat2.03`）。`copy/copy.json` 是从页面导出的镜像，用来汇总、比对、留痕。
 
 ```bash
-python3 tools/copy.py all "改了首屏主标题"   # 抽文案 → 算 diff → 刷新对照页
-python3 tools/copy.py verify                # 校验页面与文案表是否同步（CI 也跑这个）
-python3 tools/copy.py report                # 只重新生成 docs/copy-review.html
+python3 tools/copy.py apply --from ~/Downloads/copy.json   # 把表格里改的写回 index.html
+python3 tools/copy.py all "改了首屏主标题"                  # 抽文案 → 算 diff → 刷新对照页
+python3 tools/copy.py verify                               # 校验页面与文案表是否同步（CI 也跑这个）
+python3 tools/copy.py report                               # 只重新生成 docs/copy-review.html
 ```
 
-改完文案后的标准动作：`all` → 打开 `docs/copy-review.html` 看一眼 → `./update.sh`。
+日常改文案走表格，不用在 HTML 里找：
+
+1. 打开 `docs/copy-review.html`，双击中文或英文格子直接改（`Enter` 确认，`Esc` 不保存）
+2. 点「导出 copy.json」，得到下载的 `copy.json`
+3. 终端跑上面第一条 `apply --from`，改动会写回 `index.html` 的属性和正文
+4. `all "改了什么"` 记一条版本 → `./update.sh` 发布
+
+含 HTML 标签的 2 条（`features.feat4.08`、`story.hero.06`）在表格里是只读的，要改去 `index.html`，避免把内嵌标签写坏。
+
+`copy/copy.json` 是导出物，别手工改——改了不会回流页面，`verify` 会报不一致。
 
 `docs/copy-review.html` 里能看三样东西：全站 214 条中英对照（带搜索）、**重复文案**（同一句话出现在几个 key 上，双语站最容易只改一处）、**版本记录**（每次改了哪条、前后原文、对应 commit）。`docs/copy-changelog.md` 是同一份记录的 Markdown 版。
 
