@@ -14,7 +14,15 @@ assets/
   clay-clouds.jpg       首屏云海背景
   clay-door.jpg         故事区配图
   clay-objects.jpg      故事页配图
-_preview 相关：preview.sh / update.sh
+copy/
+  copy.json           214 条双语文案的汇总表（从 index.html 导出）
+  snapshots/latest.json  上一次的快照，用来算 diff
+  history.json        每次改动记录（新增/修改/删除 + 前后文）
+docs/
+  copy-review.html    可浏览的文案对照页（中英左右对照 + 搜索 + 版本记录）
+  copy-changelog.md   版本记录（Markdown，便于直接看 diff）
+tools/copy.py         文案表工具（extract / verify / diff / report）
+preview.sh / update.sh
 _archive-astro/       原 Astro 模板工程（本地保留，已在 .gitignore 中忽略）
 ```
 
@@ -39,6 +47,20 @@ _archive-astro/       原 Astro 模板工程（本地保留，已在 .gitignore 
 1. **下载链接**：现在点「App Store 下载」会弹出「正在审核 + 留邮箱」弹层。上架后把按钮改成直链即可——把 `data-open-dl` 属性换成 `onclick="location.href='https://apps.apple.com/...'"`，或直接在弹层里放链接。
 2. **邮箱订阅**：弹层表单只做前端提示，不保存、不发送（页面底部有说明）。要真订阅就接一个表单服务，改 `#dlForm` 的 submit 逻辑。
 3. **联系邮箱**：故事页与页脚的 `hello@lobus.studio` 是占位，换成你的真实邮箱。
+
+## 文案表与版本记录
+
+文案仍然只写在 `index.html` 的 `data-zh` / `data-en` 上，`data-key` 是它的身份证（形如 `home.hero.05`、`features.feat2.03`）。`copy/copy.json` 是从页面导出的镜像，用来汇总、比对、留痕。
+
+```bash
+python3 tools/copy.py all "改了首屏主标题"   # 抽文案 → 算 diff → 刷新对照页
+python3 tools/copy.py verify                # 校验页面与文案表是否同步（CI 也跑这个）
+python3 tools/copy.py report                # 只重新生成 docs/copy-review.html
+```
+
+改完文案后的标准动作：`all` → 打开 `docs/copy-review.html` 看一眼 → `./update.sh`。
+
+`docs/copy-review.html` 里能看三样东西：全站 214 条中英对照（带搜索）、**重复文案**（同一句话出现在几个 key 上，双语站最容易只改一处）、**版本记录**（每次改了哪条、前后原文、对应 commit）。`docs/copy-changelog.md` 是同一份记录的 Markdown 版。
 
 ## 部署
 

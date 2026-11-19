@@ -37,3 +37,7 @@ jobs:
             grep -q "id=\"$v\"" index.html || { echo "missing view: $v"; exit 1; }
           done
           echo "views ok"
+
+      # 文案表是 index.html 的镜像，改了页面忘了同步就红
+      - name: Copy table in sync
+        run: python3 tools/copy.py verify
