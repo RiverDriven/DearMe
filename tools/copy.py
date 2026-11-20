@@ -542,7 +542,7 @@ cells.forEach(td => {
   td.addEventListener('paste', e => {
     e.preventDefault();
     const t = (e.clipboardData || window.clipboardData).getData('text');
-    document.execCommand('insertText', false, t.replace(/\n/g, ' '));
+    document.execCommand('insertText', false, t.split(String.fromCharCode(10)).join(' ').split(String.fromCharCode(13)).join(' '));
   });
   td.addEventListener('input', () => {
     const k = td.dataset.k, f = td.dataset.f;
@@ -563,7 +563,7 @@ document.getElementById('exp').addEventListener('click', () => {
     const k = td.dataset.k, f = td.dataset.f, raw = td.textContent;
     if (raw !== orig[k][f]) out.strings[k][f] = escHtml(raw);
   });
-  const blob = new Blob([JSON.stringify(out, null, 2) + '\n'], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(out, null, 2) + String.fromCharCode(10)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   a.download = 'copy.json';
@@ -597,7 +597,7 @@ q.addEventListener('input', () => {
               .replace("__HCOUNT__", str(len(history)))
               .replace("__HIST__", "".join(hist_rows) or "<p>还没有记录。</p>")
               .replace("__DUPS__", dup_html)
-              .replace("__DATA__", json.dumps(strings, ensure_ascii=False))
+              .replace("__DATA__", json.dumps({"version": 1, "strings": strings}, ensure_ascii=False))
               .replace("__ROWS__", "".join(rows)))
     os.makedirs(DOCS, exist_ok=True)
     with open(REPORT, "w", encoding="utf-8", newline="\n") as f:
