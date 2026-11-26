@@ -175,6 +175,34 @@ ITEM_APP_TYPE = {
 }
 
 
+# v1.3.0：卡片小图。刻意复用一套语义 emoji，不给 100 条各做一张图。
+ICONS = {
+    "W-M01": "💰", "W-M02": "💻", "W-M03": "🛏️", "W-M04": "📷", "W-M05": "🚲",
+    "W-M06": "🧥", "W-M07": "🪑", "W-M08": "🏠", "W-M09": "☕", "W-M10": "🧊",
+    "W-E01": "🌊", "W-E02": "🚂", "W-E03": "🎤", "W-E04": "🎬", "W-E05": "🏙️",
+    "W-E06": "🧳", "W-E07": "🍳", "W-E08": "🌅", "W-E09": "🖼️", "W-E10": "🍽️",
+    "W-G01": "🛠️", "W-G02": "📜", "W-G03": "📚", "W-G04": "🗣️", "W-G05": "🎞️",
+    "W-G06": "🎨", "W-G07": "🎹", "W-G08": "🤖", "W-G09": "⏳", "W-G10": "🎤",
+    "W-R01": "👨‍👩‍👧", "W-R02": "🩺", "W-R03": "👨‍👦", "W-R04": "🧑‍🤝‍🧑",
+    "W-R05": "💌", "W-R06": "🎂", "W-R07": "❤️", "W-R08": "🧒", "W-R09": "🏘️",
+    "W-R10": "📞",
+    "W-S01": "😴", "W-S02": "🌙", "W-S03": "📝", "W-S04": "🚶", "W-S05": "📝",
+    "W-S06": "📵", "W-S07": "🥣", "W-S08": "💐", "W-S09": "🩺", "W-S10": "🧘",
+    "W-V01": "🎨", "W-V02": "💰", "W-V03": "🏡", "W-V04": "🧳", "W-V05": "🛋️",
+    "W-V06": "🏃", "W-V07": "🤝", "W-V08": "🌟", "W-V09": "🕊️", "W-V10": "📖",
+    "P-ON01": "📄", "P-ON02": "🧳", "P-ON03": "🩺", "P-ON04": "🪑", "P-ON05": "🌟",
+    "P-ON06": "🌊", "P-ON07": "📷", "P-ON08": "🍽️",
+    "P-D01": "💧", "P-D02": "📝", "P-D03": "🚶", "P-D04": "🧘", "P-D05": "📚",
+    "P-D06": "💰", "P-D07": "💬", "P-D08": "🌙",
+    "P-W01": "🏃", "P-W02": "🌙", "P-W03": "📞", "P-W04": "📝", "P-W05": "🍳",
+    "P-W06": "🏠", "P-W07": "💰", "P-W08": "🧑‍🤝‍🧑",
+    "P-M01": "💰", "P-M02": "📚", "P-M03": "🏙️", "P-M04": "📦", "P-M05": "🧾",
+    "P-M06": "🎨", "P-M07": "🩺", "P-M08": "🍽️",
+    "P-Y01": "🧳", "P-Y02": "🩺", "P-Y03": "🛠️", "P-Y04": "📷", "P-Y05": "💌",
+    "P-Y06": "👨‍👩‍👧", "P-Y07": "🎨", "P-Y08": "🏠",
+}
+
+
 def app_type(item):
     if item["id"] in ITEM_APP_TYPE:
         return ITEM_APP_TYPE[item["id"]]
@@ -190,6 +218,9 @@ def main():
             "appType": app_type(w),
             "zh": w["zh"],
             "en": w["en"],
+            "basis": w["basis"],
+            "hook": w["basis"],
+            "icon": ICONS[w["id"]],
         }
         for w in d["wishes"]
     ]
@@ -201,13 +232,16 @@ def main():
             "appKind": KIND_MAP.get(p["kind"], "task"),
             "zh": p["zh"],
             "en": p["en"],
+            "basis": p["basis"],
+            "hook": p["basis"],
+            "icon": ICONS[p["id"]],
             **({"defaults": PLAN_DEFAULTS[p["id"]]} if p["id"] in PLAN_DEFAULTS else {}),
         }
         for p in d["plans"]
     ]
     payload = {
         "schema": 1,
-        "version": "1.2.0",
+        "version": "1.3.0",
         "updated": datetime.date.today().isoformat(),
         "source": "https://riverdriven.github.io/DearMe/#/library",
         "license": "文案由 DearMe / lobus 改写整理，供 DearMe App 内展示使用。",
