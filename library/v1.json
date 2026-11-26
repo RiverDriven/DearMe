@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "version": "1.1.0",
+ "version": "1.2.0",
  "updated": "2026-11-26",
  "source": "https://riverdriven.github.io/DearMe/#/library",
  "license": "文案由 DearMe / lobus 改写整理，供 DearMe App 内展示使用。",
@@ -437,7 +437,18 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "今晚把简历改完。",
-   "en": "Finish the resume tonight."
+   "en": "Finish the resume tonight.",
+   "defaults": {
+    "time": "21:00",
+    "startOffsetDays": 0,
+    "endOffsetDays": 2,
+    "onceOffsetDays": 0,
+    "stages": [
+     "先列出这三年做过的事",
+     "按岗位改一版",
+     "找人读一遍给意见"
+    ]
+   }
   },
   {
    "id": "P-ON02",
@@ -445,7 +456,18 @@
    "kind": "清单",
    "appKind": "checklist",
    "zh": "出门前把行李清单勾完。",
-   "en": "Tick the packing list before leaving."
+   "en": "Tick the packing list before leaving.",
+   "defaults": {
+    "time": "20:00",
+    "startOffsetDays": 0,
+    "endOffsetDays": 2,
+    "onceOffsetDays": 2,
+    "stages": [
+     "按行程列清单",
+     "把证件和充电线装好",
+     "出门前逐项勾掉"
+    ]
+   }
   },
   {
    "id": "P-ON03",
@@ -453,7 +475,18 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "这周约一次体检。",
-   "en": "Book one checkup this week."
+   "en": "Book one checkup this week.",
+   "defaults": {
+    "time": "09:30",
+    "startOffsetDays": 0,
+    "endOffsetDays": 7,
+    "onceOffsetDays": 3,
+    "stages": [
+     "查好能约的医院",
+     "约一个上午的号",
+     "把体检报告存起来"
+    ]
+   }
   },
   {
    "id": "P-ON04",
@@ -461,7 +494,18 @@
    "kind": "清单",
    "appKind": "checklist",
    "zh": "一次把书桌清空。",
-   "en": "Clear the desk in one go."
+   "en": "Clear the desk in one go.",
+   "defaults": {
+    "time": "10:00",
+    "startOffsetDays": 0,
+    "endOffsetDays": 1,
+    "onceOffsetDays": 1,
+    "stages": [
+     "先清空桌面",
+     "按常用 / 偶尔 / 不留分三堆",
+     "把留下的归位"
+    ]
+   }
   },
   {
    "id": "P-ON05",
@@ -469,7 +513,18 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "今晚写下三个愿望。",
-   "en": "Write down three wishes tonight."
+   "en": "Write down three wishes tonight.",
+   "defaults": {
+    "time": "21:30",
+    "startOffsetDays": 0,
+    "endOffsetDays": 1,
+    "onceOffsetDays": 0,
+    "stages": [
+     "关掉手机十分钟",
+     "写下三个最想要的",
+     "给每个补一句为什么"
+    ]
+   }
   },
   {
    "id": "P-ON06",
@@ -477,7 +532,18 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "这个月去一次海边。",
-   "en": "Get to the sea this month."
+   "en": "Get to the sea this month.",
+   "defaults": {
+    "time": "09:00",
+    "startOffsetDays": 0,
+    "endOffsetDays": 30,
+    "onceOffsetDays": 15,
+    "stages": [
+     "挑一个周末",
+     "查好车次和天气",
+     "到了就走到海边"
+    ]
+   }
   },
   {
    "id": "P-ON07",
@@ -485,7 +551,18 @@
    "kind": "项目",
    "appKind": "project",
    "zh": "把手机相册按年份整理成三本。",
-   "en": "Sort my camera roll into three year albums."
+   "en": "Sort my camera roll into three year albums.",
+   "defaults": {
+    "time": "20:30",
+    "startOffsetDays": 0,
+    "endOffsetDays": 90,
+    "onceOffsetDays": 30,
+    "stages": [
+     "按年份建三个相册",
+     "先删重复和模糊的",
+     "每本挑一张做封面"
+    ]
+   }
   },
   {
    "id": "P-ON08",
@@ -493,7 +570,18 @@
    "kind": "陪伴",
    "appKind": "companion",
    "zh": "约一次老朋友的饭。",
-   "en": "Have one dinner with an old friend."
+   "en": "Have one dinner with an old friend.",
+   "defaults": {
+    "time": "18:30",
+    "startOffsetDays": 0,
+    "endOffsetDays": 7,
+    "onceOffsetDays": 5,
+    "stages": [
+     "挑一个都空的日子",
+     "定一家好坐的店",
+     "见面时把近况说完"
+    ]
+   }
   },
   {
    "id": "P-D01",
@@ -501,7 +589,19 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每天喝够八杯水。",
-   "en": "Eight glasses of water a day."
+   "en": "Eight glasses of water a day.",
+   "defaults": {
+    "time": "08:00",
+    "startOffsetDays": 0,
+    "targetCount": 21,
+    "unit": "杯",
+    "unitTarget": 8,
+    "stages": [
+     "早上先喝一杯",
+     "每两小时补一杯",
+     "睡前两小时停下"
+    ]
+   }
   },
   {
    "id": "P-D02",
@@ -509,7 +609,19 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每天睡前写一行。",
-   "en": "One line before sleep."
+   "en": "One line before sleep.",
+   "defaults": {
+    "time": "22:00",
+    "startOffsetDays": 0,
+    "targetCount": 21,
+    "unit": "行",
+    "unitTarget": 1,
+    "stages": [
+     "把手机放到床外",
+     "写今天最想记住的一句",
+     "写完就关灯"
+    ]
+   }
   },
   {
    "id": "P-D03",
@@ -517,7 +629,19 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每天走六千步。",
-   "en": "Six thousand steps a day."
+   "en": "Six thousand steps a day.",
+   "defaults": {
+    "time": "12:30",
+    "startOffsetDays": 0,
+    "targetCount": 21,
+    "unit": "步",
+    "unitTarget": 6000,
+    "stages": [
+     "午饭后走十分钟",
+     "下班提前一站下车",
+     "睡前看一次步数"
+    ]
+   }
   },
   {
    "id": "P-D04",
@@ -525,7 +649,19 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每天拉伸十分钟。",
-   "en": "Ten minutes of stretching daily."
+   "en": "Ten minutes of stretching daily.",
+   "defaults": {
+    "time": "20:30",
+    "startOffsetDays": 0,
+    "targetCount": 21,
+    "unit": "分钟",
+    "unitTarget": 10,
+    "stages": [
+     "先拉肩颈两分钟",
+     "再做腿后侧",
+     "最后深呼吸三次"
+    ]
+   }
   },
   {
    "id": "P-D05",
@@ -533,7 +669,19 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每天读十页。",
-   "en": "Ten pages a day."
+   "en": "Ten pages a day.",
+   "defaults": {
+    "time": "21:30",
+    "startOffsetDays": 0,
+    "targetCount": 21,
+    "unit": "页",
+    "unitTarget": 10,
+    "stages": [
+     "把书放在床头",
+     "睡前读十页",
+     "读到一句就划一下"
+    ]
+   }
   },
   {
    "id": "P-D06",
@@ -541,7 +689,19 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每天记一笔账。",
-   "en": "Log one expense a day."
+   "en": "Log one expense a day.",
+   "defaults": {
+    "time": "21:45",
+    "startOffsetDays": 0,
+    "targetCount": 21,
+    "unit": "笔",
+    "unitTarget": 1,
+    "stages": [
+     "睡前打开记账",
+     "只记金额和类别",
+     "周末看一眼总数"
+    ]
+   }
   },
   {
    "id": "P-D07",
@@ -549,7 +709,19 @@
    "kind": "陪伴",
    "appKind": "companion",
    "zh": "每天和一个人说句话。",
-   "en": "Say one sentence to someone daily."
+   "en": "Say one sentence to someone daily.",
+   "defaults": {
+    "time": "20:00",
+    "startOffsetDays": 0,
+    "targetCount": 30,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "挑一个久没联系的人",
+     "发一句具体的问候",
+     "聊完记一笔"
+    ]
+   }
   },
   {
    "id": "P-D08",
@@ -557,7 +729,19 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每天二十二点半关灯。",
-   "en": "Lights off at half past ten."
+   "en": "Lights off at half past ten.",
+   "defaults": {
+    "time": "22:00",
+    "startOffsetDays": 0,
+    "targetCount": 21,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "二十二点把灯调暗",
+     "二十二点半放下手机",
+     "关灯后不再看屏幕"
+    ]
+   }
   },
   {
    "id": "P-W01",
@@ -565,7 +749,24 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每周运动三次。",
-   "en": "Work out three times a week."
+   "en": "Work out three times a week.",
+   "defaults": {
+    "time": "19:30",
+    "startOffsetDays": 0,
+    "weekdays": [
+     1,
+     3,
+     5
+    ],
+    "targetCount": 36,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "先定三天固定时段",
+     "每次至少二十分钟",
+     "月底看一次完成次数"
+    ]
+   }
   },
   {
    "id": "P-W02",
@@ -573,7 +774,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每周留一个独处的晚上。",
-   "en": "One solo evening each week."
+   "en": "One solo evening each week.",
+   "defaults": {
+    "time": "20:30",
+    "startOffsetDays": 0,
+    "weekdays": [
+     3
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "把这一晚空出来",
+     "关掉消息提醒",
+     "做一件只取悦自己的事"
+    ]
+   }
   },
   {
    "id": "P-W03",
@@ -581,7 +797,22 @@
    "kind": "陪伴",
    "appKind": "companion",
    "zh": "每周给爸妈打一次电话。",
-   "en": "Call my parents once a week."
+   "en": "Call my parents once a week.",
+   "defaults": {
+    "time": "19:30",
+    "startOffsetDays": 0,
+    "weekdays": [
+     7
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "固定周日晚上",
+     "先问这一周过得怎样",
+     "挂之前约下一次"
+    ]
+   }
   },
   {
    "id": "P-W04",
@@ -589,7 +820,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每周复盘十五分钟。",
-   "en": "Fifteen minutes of review each week."
+   "en": "Fifteen minutes of review each week.",
+   "defaults": {
+    "time": "21:00",
+    "startOffsetDays": 0,
+    "weekdays": [
+     7
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "翻一遍这周的照片",
+     "写三行：做完 / 没做 / 下周",
+     "只留一件下周要做的"
+    ]
+   }
   },
   {
    "id": "P-W05",
@@ -597,7 +843,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每周做一道没做过的菜。",
-   "en": "Cook one new dish each week."
+   "en": "Cook one new dish each week.",
+   "defaults": {
+    "time": "18:00",
+    "startOffsetDays": 0,
+    "weekdays": [
+     6
+    ],
+    "targetCount": 12,
+    "unit": "道",
+    "unitTarget": 1,
+    "stages": [
+     "挑一道想吃的",
+     "买齐材料",
+     "做完拍一张"
+    ]
+   }
   },
   {
    "id": "P-W06",
@@ -605,7 +866,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每周清理一次房间。",
-   "en": "Tidy the room once a week."
+   "en": "Tidy the room once a week.",
+   "defaults": {
+    "time": "10:00",
+    "startOffsetDays": 0,
+    "weekdays": [
+     6
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "先收桌面",
+     "再处理地面",
+     "最后倒垃圾"
+    ]
+   }
   },
   {
    "id": "P-W07",
@@ -613,7 +889,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每周存一笔钱。",
-   "en": "Put money aside once a week."
+   "en": "Put money aside once a week.",
+   "defaults": {
+    "time": "20:00",
+    "startOffsetDays": 0,
+    "weekdays": [
+     5
+    ],
+    "targetCount": 12,
+    "unit": "笔",
+    "unitTarget": 1,
+    "stages": [
+     "定一个固定金额",
+     "发工资先转出去",
+     "月底看累计"
+    ]
+   }
   },
   {
    "id": "P-W08",
@@ -621,7 +912,22 @@
    "kind": "陪伴",
    "appKind": "companion",
    "zh": "每周和朋友见一次面。",
-   "en": "Meet a friend once a week."
+   "en": "Meet a friend once a week.",
+   "defaults": {
+    "time": "18:30",
+    "startOffsetDays": 0,
+    "weekdays": [
+     6
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "约一个固定周末",
+     "定低负担的地点",
+     "见面时不聊工作"
+    ]
+   }
   },
   {
    "id": "P-M01",
@@ -629,7 +935,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每月存下收入的百分之二十。",
-   "en": "Save twenty percent of income monthly."
+   "en": "Save twenty percent of income monthly.",
+   "defaults": {
+    "time": "20:00",
+    "startOffsetDays": 0,
+    "monthDays": [
+     10
+    ],
+    "targetCount": 12,
+    "unit": "笔",
+    "unitTarget": 1,
+    "stages": [
+     "工资到账先转 20%",
+     "把转出设成自动",
+     "年底看总数"
+    ]
+   }
   },
   {
    "id": "P-M02",
@@ -637,7 +958,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每月读完一本书。",
-   "en": "Finish one book a month."
+   "en": "Finish one book a month.",
+   "defaults": {
+    "time": "21:00",
+    "startOffsetDays": 0,
+    "monthDays": [
+     28
+    ],
+    "targetCount": 12,
+    "unit": "本",
+    "unitTarget": 1,
+    "stages": [
+     "月初选一本",
+     "每天读十页",
+     "月末写三行感受"
+    ]
+   }
   },
   {
    "id": "P-M03",
@@ -645,7 +981,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每月出门一次，离开熟悉的城区。",
-   "en": "Go somewhere outside my district once a month."
+   "en": "Go somewhere outside my district once a month.",
+   "defaults": {
+    "time": "09:00",
+    "startOffsetDays": 0,
+    "monthDays": [
+     15
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "挑一个近的城",
+     "定好来回车次",
+     "只带一个小包"
+    ]
+   }
   },
   {
    "id": "P-M04",
@@ -653,7 +1004,22 @@
    "kind": "陪伴",
    "appKind": "companion",
    "zh": "每月给爸妈寄一次东西。",
-   "en": "Send my parents something every month."
+   "en": "Send my parents something every month.",
+   "defaults": {
+    "time": "18:00",
+    "startOffsetDays": 0,
+    "monthDays": [
+     20
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "stages": [
+     "提前买好",
+     "写一张短句",
+     "寄出后告诉一声"
+    ]
+   }
   },
   {
    "id": "P-M05",
@@ -661,7 +1027,23 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "每月对一次账。",
-   "en": "Reconcile the accounts each month."
+   "en": "Reconcile the accounts each month.",
+   "defaults": {
+    "time": "20:00",
+    "startOffsetDays": 0,
+    "monthDays": [
+     1
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "导出这个月账单",
+     "核对固定支出",
+     "把异常记一笔"
+    ]
+   }
   },
   {
    "id": "P-M06",
@@ -669,7 +1051,23 @@
    "kind": "项目",
    "appKind": "project",
    "zh": "每月交一个小作品。",
-   "en": "Ship one small piece a month."
+   "en": "Ship one small piece a month.",
+   "defaults": {
+    "time": "20:30",
+    "startOffsetDays": 0,
+    "monthDays": [
+     25
+    ],
+    "targetCount": 12,
+    "unit": "件",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "月初定题",
+     "月中做完一半",
+     "月底收尾并发布"
+    ]
+   }
   },
   {
    "id": "P-M07",
@@ -677,7 +1075,23 @@
    "kind": "清单",
    "appKind": "checklist",
    "zh": "每月盘点一次身体信号。",
-   "en": "Check in on my body once a month."
+   "en": "Check in on my body once a month.",
+   "defaults": {
+    "time": "21:00",
+    "startOffsetDays": 0,
+    "monthDays": [
+     28
+    ],
+    "targetCount": 12,
+    "unit": "次",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "记睡眠和精力",
+     "记一次不舒服",
+     "写下下个月要改的一件"
+    ]
+   }
   },
   {
    "id": "P-M08",
@@ -685,7 +1099,22 @@
    "kind": "习惯",
    "appKind": "habit",
    "zh": "每月请自己吃一顿好的。",
-   "en": "Treat myself to one good meal a month."
+   "en": "Treat myself to one good meal a month.",
+   "defaults": {
+    "time": "19:00",
+    "startOffsetDays": 0,
+    "monthDays": [
+     15
+    ],
+    "targetCount": 12,
+    "unit": "顿",
+    "unitTarget": 1,
+    "stages": [
+     "挑一家想吃的",
+     "不带上任何人",
+     "点一道没吃过的"
+    ]
+   }
   },
   {
    "id": "P-Y01",
@@ -693,7 +1122,24 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "每年一次远行。",
-   "en": "One long trip a year."
+   "en": "One long trip a year.",
+   "defaults": {
+    "time": "08:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     10,
+     1
+    ],
+    "targetCount": 3,
+    "unit": "次",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "定一个想去的地方",
+     "存够一趟的钱",
+     "把年假请下来"
+    ]
+   }
   },
   {
    "id": "P-Y02",
@@ -701,7 +1147,24 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "每年一次完整体检。",
-   "en": "One full checkup a year."
+   "en": "One full checkup a year.",
+   "defaults": {
+    "time": "08:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     3,
+     15
+    ],
+    "targetCount": 3,
+    "unit": "次",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "年初约一次",
+     "把旧报告带上",
+     "看完把指标记下来"
+    ]
+   }
   },
   {
    "id": "P-Y03",
@@ -709,7 +1172,24 @@
    "kind": "项目",
    "appKind": "project",
    "zh": "每年学一个新技能。",
-   "en": "Learn one new skill a year."
+   "en": "Learn one new skill a year.",
+   "defaults": {
+    "time": "20:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     1,
+     1
+    ],
+    "targetCount": 3,
+    "unit": "个",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "选一个能上手的",
+     "每周固定两次",
+     "做出一个能看的东西"
+    ]
+   }
   },
   {
    "id": "P-Y04",
@@ -717,7 +1197,24 @@
    "kind": "项目",
    "appKind": "project",
    "zh": "每年整理一次照片。",
-   "en": "Sort the year's photos once."
+   "en": "Sort the year's photos once.",
+   "defaults": {
+    "time": "20:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     12,
+     31
+    ],
+    "targetCount": 3,
+    "unit": "次",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "按年份建相册",
+     "删重复和模糊",
+     "挑十二张做年度封面"
+    ]
+   }
   },
   {
    "id": "P-Y05",
@@ -725,7 +1222,24 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "每年给未来写一封信。",
-   "en": "Write a letter to my future self each year."
+   "en": "Write a letter to my future self each year.",
+   "defaults": {
+    "time": "21:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     12,
+     31
+    ],
+    "targetCount": 3,
+    "unit": "封",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "写今年最要紧的三件事",
+     "写一句给明年的自己",
+     "封好放在固定位置"
+    ]
+   }
   },
   {
    "id": "P-Y06",
@@ -733,7 +1247,24 @@
    "kind": "陪伴",
    "appKind": "companion",
    "zh": "每年陪家人过一个完整的节日。",
-   "en": "Spend one full holiday with my family."
+   "en": "Spend one full holiday with my family.",
+   "defaults": {
+    "time": "10:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     1,
+     1
+    ],
+    "targetCount": 3,
+    "unit": "次",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "提前定下哪天",
+     "把该请的人请上",
+     "当天不看工作消息"
+    ]
+   }
   },
   {
    "id": "P-Y07",
@@ -741,7 +1272,24 @@
    "kind": "项目",
    "appKind": "project",
    "zh": "每年完成一件作品。",
-   "en": "Finish one piece each year."
+   "en": "Finish one piece each year.",
+   "defaults": {
+    "time": "18:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     12,
+     31
+    ],
+    "targetCount": 3,
+    "unit": "件",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "年初定一个题",
+     "每月推进一次",
+     "年底完成并留下记录"
+    ]
+   }
   },
   {
    "id": "P-Y08",
@@ -749,7 +1297,24 @@
    "kind": "任务",
    "appKind": "task",
    "zh": "每年回一次老家，看一次旧友。",
-   "en": "Go back home once a year, see an old friend."
+   "en": "Go back home once a year, see an old friend.",
+   "defaults": {
+    "time": "08:00",
+    "startOffsetDays": 0,
+    "yearMonthDay": [
+     1,
+     20
+    ],
+    "targetCount": 3,
+    "unit": "次",
+    "unitTarget": 1,
+    "endOffsetDays": 365,
+    "stages": [
+     "提前订票",
+     "留一天给旧友",
+     "回去走一遍老路"
+    ]
+   }
   }
  ]
 }
