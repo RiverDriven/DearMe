@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """把 docs/wish-library.json 发布成对外只读接口 library/v1.json。
 
-- 只输出 App 需要的字段，且**只出心愿**（计划留到 v1.1）
+- 输出 App 需要的字段：心愿 v1.0 + 计划 v1.1（2026-11-26 计划板块开工）
 - 每条带上 App 六类 `appType`（tangible / experience / skill / health / finance / event），
   App 端不再自己猜类型
 - 生成后由 deploy.yml 一起发布到 GitHub Pages
@@ -17,6 +17,14 @@ OUT_DIR = os.path.join(ROOT, "library")
 OUT = os.path.join(OUT_DIR, "v1.json")
 
 # 网站六类 → App 六类（GoodsCategory）
+KIND_MAP = {
+    "习惯": "habit",
+    "任务": "task",
+    "项目": "project",
+    "清单": "checklist",
+    "陪伴": "companion",
+}
+
 TYPE_MAP = {
     "material": "tangible",
     "experience": "experience",
@@ -71,14 +79,26 @@ def main():
         }
         for w in d["wishes"]
     ]
+    plans = [
+        {
+            "id": p["id"],
+            "frequency": p["frequency"],
+            "kind": p["kind"],
+            "appKind": KIND_MAP.get(p["kind"], "task"),
+            "zh": p["zh"],
+            "en": p["en"],
+        }
+        for p in d["plans"]
+    ]
     payload = {
         "schema": 1,
-        "version": "1.0.0",
+        "version": "1.1.0",
         "updated": d.get("generated", ""),
         "source": "https://riverdriven.github.io/DearMe/#/library",
         "license": "文案由 DearMe / lobus 改写整理，供 DearMe App 内展示使用。",
-        "counts": {"wishes": len(items), "plans": 0},
+        "counts": {"wishes": len(items), "plans": len(plans)},
         "items": items,
+        "plans": plans,
     }
     os.makedirs(OUT_DIR, exist_ok=True)
     with open(OUT, "w", encoding="utf-8") as f:
@@ -87,7 +107,7 @@ def main():
     dist = {}
     for it in items:
         dist[it["appType"]] = dist.get(it["appType"], 0) + 1
-    print("published", len(items), "wishes →", OUT)
+    print("published", len(items), "wishes,", len(plans), "plans →", OUT)
     print("appType 分布:", dist)
 
 
