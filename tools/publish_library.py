@@ -9,7 +9,7 @@
 
     python3 tools/publish_library.py
 """
-import json, os
+import json, os, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "docs", "wish-library.json")
@@ -93,7 +93,7 @@ def main():
     payload = {
         "schema": 1,
         "version": "1.1.0",
-        "updated": d.get("generated", ""),
+        "updated": datetime.date.today().isoformat(),
         "source": "https://riverdriven.github.io/DearMe/#/library",
         "license": "文案由 DearMe / lobus 改写整理，供 DearMe App 内展示使用。",
         "counts": {"wishes": len(items), "plans": len(plans)},
