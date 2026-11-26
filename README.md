@@ -8,6 +8,9 @@ DearMe 的单页静态宣传站：一个 `index.html` + `assets/`，没有构建
 
 ```
 index.html            整站（四个视图 + 样式 + 脚本，全部内联；含内联的 #libData 数据块）
+library/
+  v1.json             对外只读接口：60 条心愿（含 appType），App 用
+tools/publish_library.py  由 wish-library.json 生成 library/v1.json
 assets/
   dearme-icon-256.png   导航与页脚图标
   dearme-icon-512.png   首屏大图标（圆形透明底）
@@ -52,6 +55,19 @@ python3 tools/build_library.py    # 重新内联 #libData
 ```
 
 导航第 4 项、页脚入口、首页的预告条（`home.lib.01`–`05`）仍走 `data-zh / data-en`，所以 `python3 tools/copy.py verify` 需要保持通过。
+
+## 对外接口 `library/v1.json`
+
+给 DearMe App 的只读文案接口，随 GitHub Pages 一起发布：
+
+```
+GET https://riverdriven.github.io/DearMe/library/v1.json
+```
+
+- 只有心愿（60 条），计划留到 v1.1；字段：`id / category / appType / zh / en`
+- `appType` 已映射到 App 的六类：`tangible / experience / skill / health / finance / event`
+- 更新方式：改 `docs/wish-library.json` → `python3 tools/publish_library.py` → 提交推送（Pages 缓存约 10 分钟）
+- 不放 `basis`、依据原帖、任何用户数据；`docs/` 内部文件（对照表、变更记录）不发布
 
 ## 本地预览
 

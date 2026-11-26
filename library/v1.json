@@ -1,0 +1,433 @@
+{
+ "schema": 1,
+ "version": "1.0.0",
+ "updated": "2026-11-20",
+ "source": "https://riverdriven.github.io/DearMe/#/library",
+ "license": "文案由 DearMe / lobus 改写整理，供 DearMe App 内展示使用。",
+ "counts": {
+  "wishes": 60,
+  "plans": 0
+ },
+ "items": [
+  {
+   "id": "W-M01",
+   "category": "material",
+   "appType": "finance",
+   "zh": "存下第一笔一万元。",
+   "en": "Save the first ten thousand."
+  },
+  {
+   "id": "W-M02",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "换一台跟得上我的电脑。",
+   "en": "A laptop that keeps up with me."
+  },
+  {
+   "id": "W-M03",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "给家里换一张睡得好的床。",
+   "en": "A bed the whole family can sleep well in."
+  },
+  {
+   "id": "W-M04",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "把那台一直想买的相机带回家。",
+   "en": "Bring home the camera I keep borrowing."
+  },
+  {
+   "id": "W-M05",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "修好小时候那辆自行车。",
+   "en": "Fix the bike from my childhood."
+  },
+  {
+   "id": "W-M06",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "买一件能穿十年的大衣。",
+   "en": "A coat I will still wear in ten years."
+  },
+  {
+   "id": "W-M07",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "有一张只放自己东西的书桌。",
+   "en": "A desk that holds only my things."
+  },
+  {
+   "id": "W-M08",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "把租来的房间住成家。",
+   "en": "Turn a rented room into a home."
+  },
+  {
+   "id": "W-M09",
+   "category": "material",
+   "appType": "finance",
+   "zh": "存够一台咖啡机的钱。",
+   "en": "Save up for the coffee machine."
+  },
+  {
+   "id": "W-M10",
+   "category": "material",
+   "appType": "tangible",
+   "zh": "给爸妈换一台新冰箱。",
+   "en": "A new fridge for my parents."
+  },
+  {
+   "id": "W-E01",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "去看一次海，不拍照也可以。",
+   "en": "See the sea, even without photos."
+  },
+  {
+   "id": "W-E02",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "坐一次通宵的火车。",
+   "en": "Take one overnight train."
+  },
+  {
+   "id": "W-E03",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "在演唱会里跟着唱一整首。",
+   "en": "Sing a whole song at a concert."
+  },
+  {
+   "id": "W-E04",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "一个人去看一场电影。",
+   "en": "Go to a film alone."
+  },
+  {
+   "id": "W-E05",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "去一座没去过的城市住两天。",
+   "en": "Two days in a city I have never seen."
+  },
+  {
+   "id": "W-E06",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "在陌生的地方待满一个月。",
+   "en": "Live somewhere unfamiliar for a month."
+  },
+  {
+   "id": "W-E07",
+   "category": "experience",
+   "appType": "skill",
+   "zh": "学做一道能端上桌的菜。",
+   "en": "Cook one dish worth putting on the table."
+  },
+  {
+   "id": "W-E08",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "看一次日出，从黑等到亮。",
+   "en": "Wait for one sunrise, from dark to light."
+  },
+  {
+   "id": "W-E09",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "在美术馆待一整个下午。",
+   "en": "Spend a whole afternoon in a museum."
+  },
+  {
+   "id": "W-E10",
+   "category": "experience",
+   "appType": "experience",
+   "zh": "带自己去吃一顿贵的。",
+   "en": "Take myself to one expensive dinner."
+  },
+  {
+   "id": "W-G01",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "学一门能换钱的手艺。",
+   "en": "Learn a craft someone will pay for."
+  },
+  {
+   "id": "W-G02",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "考下那张一直拖着的证。",
+   "en": "Pass the certificate I keep postponing."
+  },
+  {
+   "id": "W-G03",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "读完十二本书。",
+   "en": "Read twelve books."
+  },
+  {
+   "id": "W-G04",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "把英语捡回来。",
+   "en": "Pick my English back up."
+  },
+  {
+   "id": "W-G05",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "学会剪一条自己的视频。",
+   "en": "Learn to edit one video of my own."
+  },
+  {
+   "id": "W-G06",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "做完一件能拿出手的作品。",
+   "en": "Finish one piece I can show people."
+  },
+  {
+   "id": "W-G07",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "练到能完整弹一首曲子。",
+   "en": "Play one song all the way through."
+  },
+  {
+   "id": "W-G08",
+   "category": "growth",
+   "appType": "skill",
+   "zh": "学会用 AI 把工作快一半。",
+   "en": "Use AI to cut my work time in half."
+  },
+  {
+   "id": "W-G09",
+   "category": "growth",
+   "appType": "health",
+   "zh": "戒掉一个偷走时间的习惯。",
+   "en": "Drop one habit that steals my time."
+  },
+  {
+   "id": "W-G10",
+   "category": "growth",
+   "appType": "event",
+   "zh": "在别人面前讲一次。",
+   "en": "Speak in front of people once."
+  },
+  {
+   "id": "W-R01",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "陪爸妈吃三十顿饭。",
+   "en": "Thirty dinners with my parents."
+  },
+  {
+   "id": "W-R02",
+   "category": "relationship",
+   "appType": "health",
+   "zh": "带妈妈去做一次体检。",
+   "en": "Take my mother for a checkup."
+  },
+  {
+   "id": "W-R03",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "和爸爸单独出去一次。",
+   "en": "One outing with just my father."
+  },
+  {
+   "id": "W-R04",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "见一个很久没见的朋友。",
+   "en": "See a friend I have not seen in years."
+  },
+  {
+   "id": "W-R05",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "给朋友写一封手写的信。",
+   "en": "Write a friend a letter by hand."
+  },
+  {
+   "id": "W-R06",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "记住家里每个人的生日。",
+   "en": "Remember every birthday in the family."
+  },
+  {
+   "id": "W-R07",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "和伴侣过一个不谈工作的周末。",
+   "en": "One weekend with my partner, no work talk."
+  },
+  {
+   "id": "W-R08",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "陪孩子做一件他想做的事。",
+   "en": "Do one thing my child wants to do."
+  },
+  {
+   "id": "W-R09",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "和邻居说一次话。",
+   "en": "Say a few words to a neighbour."
+  },
+  {
+   "id": "W-R10",
+   "category": "relationship",
+   "appType": "event",
+   "zh": "给很久没联系的人打一次电话。",
+   "en": "Call someone I have not called in a long time."
+  },
+  {
+   "id": "W-S01",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "连续七天在十一点前睡。",
+   "en": "Seven nights asleep before eleven."
+  },
+  {
+   "id": "W-S02",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "每周留一个晚上只给自己。",
+   "en": "One evening a week that is only mine."
+  },
+  {
+   "id": "W-S03",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "给情绪留一个出口。",
+   "en": "Give my feelings somewhere to go."
+  },
+  {
+   "id": "W-S04",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "一周散步三次。",
+   "en": "Walk three times a week."
+  },
+  {
+   "id": "W-S05",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "每天写三件小事。",
+   "en": "Three small things, written down daily."
+  },
+  {
+   "id": "W-S06",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "把手机放在另一个房间一小时。",
+   "en": "Leave the phone in another room for an hour."
+  },
+  {
+   "id": "W-S07",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "认真吃一顿早饭。",
+   "en": "Eat one proper breakfast."
+  },
+  {
+   "id": "W-S08",
+   "category": "selfcare",
+   "appType": "tangible",
+   "zh": "给自己买一束花。",
+   "en": "Buy myself flowers."
+  },
+  {
+   "id": "W-S09",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "做一次完整体检。",
+   "en": "Get one full checkup."
+  },
+  {
+   "id": "W-S10",
+   "category": "selfcare",
+   "appType": "health",
+   "zh": "允许自己什么都不做一天。",
+   "en": "Allow one day of doing nothing."
+  },
+  {
+   "id": "W-V01",
+   "category": "vision",
+   "appType": "skill",
+   "zh": "三十岁前做一件完全属于自己的作品。",
+   "en": "One piece entirely mine before thirty."
+  },
+  {
+   "id": "W-V02",
+   "category": "vision",
+   "appType": "finance",
+   "zh": "有一个能养活自己的副业。",
+   "en": "A side income that can carry me."
+  },
+  {
+   "id": "W-V03",
+   "category": "vision",
+   "appType": "experience",
+   "zh": "搬到一个有阳台的城市。",
+   "en": "Move to a city with a balcony."
+  },
+  {
+   "id": "W-V04",
+   "category": "vision",
+   "appType": "experience",
+   "zh": "用一年时间换一种活法。",
+   "en": "One year to live differently."
+  },
+  {
+   "id": "W-V05",
+   "category": "vision",
+   "appType": "tangible",
+   "zh": "有一间自己的小工作室。",
+   "en": "A small studio of my own."
+  },
+  {
+   "id": "W-V06",
+   "category": "vision",
+   "appType": "health",
+   "zh": "把身体练到能跑完十公里。",
+   "en": "Train until I can run ten kilometres."
+  },
+  {
+   "id": "W-V07",
+   "category": "vision",
+   "appType": "event",
+   "zh": "有几个能互相托底的朋友。",
+   "en": "A few friends who will catch me."
+  },
+  {
+   "id": "W-V08",
+   "category": "vision",
+   "appType": "event",
+   "zh": "做一件让爸妈骄傲的事。",
+   "en": "One thing my parents can be proud of."
+  },
+  {
+   "id": "W-V09",
+   "category": "vision",
+   "appType": "finance",
+   "zh": "五年后不再为钱做不想做的事。",
+   "en": "In five years, no more work I do only for money."
+  },
+  {
+   "id": "W-V10",
+   "category": "vision",
+   "appType": "skill",
+   "zh": "留下一本写给自己的记录。",
+   "en": "Leave behind a record written to myself."
+  }
+ ]
+}
