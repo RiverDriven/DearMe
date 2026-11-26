@@ -7,7 +7,7 @@ DearMe 的单页静态宣传站：一个 `index.html` + `assets/`，没有构建
 ## 结构
 
 ```
-index.html            整站（三个视图 + 样式 + 脚本，全部内联）
+index.html            整站（四个视图 + 样式 + 脚本，全部内联；含内联的 #libData 数据块）
 assets/
   dearme-icon-256.png   导航与页脚图标
   dearme-icon-512.png   首屏大图标（圆形透明底）
@@ -19,9 +19,14 @@ copy/
   snapshots/latest.json  上一次的快照，用来算 diff
   history.json        每次改动记录（新增/修改/删除 + 前后文）
 docs/
+  wish-library.md      心愿 / 计划文案库真源（60 + 40，中英对照，22 条依据）
+  wish-library.json    由 md 生成的镜像，供站内 #/library 读取
+  wish-library-01-wishes.html / -02-plans.html  固定画布 900 的两页展示版
   copy-review.html    可浏览的文案对照页（中英左右对照 + 搜索 + 版本记录）
   copy-changelog.md   版本记录（Markdown，便于直接看 diff）
 tools/copy.py         文案表工具（extract / verify / diff / report）
+tools/build_library.py  把 wish-library.json 内联进 index.html 的 #libData
+tools/make_wish_library_html.py  生成 docs 下两页 900 画布 HTML
 preview.sh / update.sh
 _archive-astro/       原 Astro 模板工程（本地保留，已在 .gitignore 中忽略）
 ```
@@ -30,11 +35,23 @@ _archive-astro/       原 Astro 模板工程（本地保留，已在 .gitignore 
 
 | 路径 | 内容 |
 |---|---|
-| `/` | 首页：首屏 + 三条价值 + 功能预览 + 四步闭环 + 引言 + 故事预告 + 下载 |
+| `/` | 首页：首屏 + 三条价值 + 功能预览 + 四步闭环 + 引言 + 故事预告 + 灵感库预告条 + 下载 |
 | `/#/features` | 功能：六个模块（心愿 / 计划 / 记录 / 关怀日志 / 星图 / 记录页双视图）+ 设计原则 |
 | `/#/story` | 故事：lobus 与 RiverDriven、产品由来、时间线、联系 |
+| `/#/library` | 灵感库：60 条心愿 / 40 条计划（两个 tab + 分类筛选）+ 22 条可点开的依据 |
 
 右上角「中 / EN」切换语言，选择记在 `localStorage`。
+
+## 灵感库（#/library）
+
+100 条文案**不进** `copy/copy.json`：它们由 `tools/build_library.py` 从 `docs/wish-library.json` 内联成 `#libData` 的 JSON 块，页面用脚本渲染（中 / EN 跟随站内切换，中文模式中文为主、英文小字副之；英文模式隐藏中文「依据」行）。
+改了文案库之后跑一次：
+
+```bash
+python3 tools/build_library.py    # 重新内联 #libData
+```
+
+导航第 4 项、页脚入口、首页的预告条（`home.lib.01`–`05`）仍走 `data-zh / data-en`，所以 `python3 tools/copy.py verify` 需要保持通过。
 
 ## 本地预览
 

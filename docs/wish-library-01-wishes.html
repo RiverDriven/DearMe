@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas-width="900" data-canvas-height="5254" style="width:900px;height:5254px;">
+<head>
+<meta charset="UTF-8">
+<title>心愿与计划文案库 · DearMe</title>
+<style>
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:#FFFBF8;color:#2A2433;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;
+ -webkit-font-smoothing:antialiased;}
+[data-canvas-root]{background:#FFFBF8;position:relative;overflow:hidden;}
+[data-canvas-root]::before{content:"";position:absolute;inset:0 0 auto 0;height:520px;
+ background:
+  radial-gradient(680px 320px at 88% -60px, rgba(255,128,171,.28), rgba(255,128,171,0) 70%),
+  radial-gradient(520px 300px at 4% 40px, rgba(179,157,219,.28), rgba(179,157,219,0) 72%);
+ pointer-events:none;}
+.wrap{position:relative;padding:0 56px;}
+.topbar{height:78px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #F0E7F1;}
+.mark{width:40px;height:40px;border-radius:12px;object-fit:cover;box-shadow:0 6px 16px rgba(179,157,219,.28);}
+.brand{font-family:Georgia,"Songti SC",serif;font-size:16px;letter-spacing:.16em;color:#2A2433;}
+.brand-sub{font-size:11px;letter-spacing:.14em;color:#9A90A6;text-transform:uppercase;margin-left:2px;}
+.topbar .spacer{flex:1;}
+.pill{font-size:10.5px;letter-spacing:.1em;color:#8C6F8F;border:1px solid #F0D9E6;background:#FFF6FA;
+ border-radius:999px;padding:6px 12px;text-transform:uppercase;}
+.hero{padding-top:34px;}
+.kicker{font-size:10.5px;letter-spacing:.22em;color:#B08BC7;text-transform:uppercase;}
+h1{font-family:"Songti SC","Source Han Serif CN",Georgia,serif;font-weight:600;font-size:42px;
+ line-height:54px;margin:10px 0 0;letter-spacing:.01em;color:#241E2D;}
+.lead{font-size:15px;line-height:26px;color:#6F6579;margin:12px 0 0;max-width:612px;}
+.stats{display:flex;gap:0;margin-top:22px;}
+.stat{padding-right:26px;margin-right:26px;border-right:1px solid #EFE4F0;}
+.stat:last-child{border-right:0;margin-right:0;padding-right:0;}
+.stat b{display:block;font-family:Georgia,serif;font-size:22px;line-height:26px;color:#2A2433;font-weight:600;}
+.stat span{display:block;font-size:10.5px;letter-spacing:.08em;color:#9A90A6;margin-top:4px;}
+.usage{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 28px;margin-top:28px;padding-bottom:26px;}
+.ucard{border-left:2px solid #FFB3CB;padding:2px 0 2px 14px;}
+.un{font-family:Georgia,serif;font-size:11px;letter-spacing:.16em;color:#C79BD4;}
+.ut{font-size:13.5px;line-height:21px;font-weight:600;margin:6px 0 0;}
+.ud{font-size:11.5px;line-height:18px;color:#7C7188;margin:5px 0 0;}
+.sect-head{display:flex;align-items:flex-end;justify-content:space-between;
+ padding-bottom:10px;border-bottom:2px solid #2A2433;margin-top:12px;}
+.sect-head h2{font-family:"Songti SC",Georgia,serif;font-size:24px;line-height:30px;margin:0;font-weight:600;}
+.sect-head .en{font-size:10.5px;letter-spacing:.2em;color:#A296AC;margin-left:10px;text-transform:uppercase;}
+.sect-head .count{font-size:11px;letter-spacing:.08em;color:#8C8197;}
+.block{margin-top:30px;}
+.bhead{height:62px;display:flex;align-items:center;gap:14px;}
+.bnum{font-family:Georgia,serif;font-size:30px;line-height:1;color:#E3C9E8;width:44px;}
+.bname{font-size:19px;line-height:24px;font-weight:600;}
+.ben{font-size:10px;letter-spacing:.18em;color:#A296AC;text-transform:uppercase;margin-top:3px;}
+.bdesc{font-size:11.5px;color:#7C7188;margin-left:14px;padding-left:14px;border-left:1px solid #EADFEE;}
+.bhead .spacer{flex:1;}
+.bcount{font-family:Georgia,serif;font-size:13px;color:#8C8197;}
+ul.entries{margin:0;padding:0;list-style:none;}
+.entry{display:grid;grid-template-columns:46px 1fr 236px;column-gap:18px;height:68px;
+ padding:9px 0;border-top:1px solid #EFE7F2;align-items:start;}
+.eid{font-family:"SF Mono",Menlo,monospace;font-size:10px;letter-spacing:.06em;color:#B08BC7;padding-top:4px;}
+.zh{font-size:15.5px;line-height:22px;font-weight:500;margin:0;color:#241E2D;}
+.en{font-family:Georgia,serif;font-style:italic;font-size:12.5px;line-height:17px;color:#7C7188;margin:1px 0 0;}
+.kind{display:inline-block;font-size:9.5px;letter-spacing:.06em;color:#8C6F8F;border:1px solid #EEDCE7;
+ background:#FFF8FA;border-radius:4px;padding:2px 6px;margin-right:7px;vertical-align:2px;}
+.basis{font-size:11.5px;line-height:15.5px;color:#6F6579;margin:0;padding:2px 0 0 12px;border-left:1px solid #F6DCE9;}
+.freq{display:grid;grid-template-columns:repeat(5,1fr);gap:0 1px;margin-top:22px;background:#EFE4F0;border:1px solid #EFE4F0;}
+.fitem{background:#FFFDFB;padding:12px 14px;}
+.fname{font-size:13px;font-weight:600;}
+.fgloss{font-size:10.5px;line-height:16px;color:#7C7188;margin-top:4px;}
+table.heat{width:100%;border-collapse:collapse;margin-top:4px;}
+.heat th{font-size:10px;letter-spacing:.12em;color:#A296AC;font-weight:500;text-align:left;padding:9px 0;border-bottom:1px solid #EADFEE;text-transform:uppercase;}
+.heat td{font-size:12.5px;padding:11px 0;border-bottom:1px solid #F1E9F3;color:#3A3242;vertical-align:top;}
+.heat .aid{width:46px;font-family:"SF Mono",Menlo,monospace;font-size:10px;color:#B08BC7;}
+.heat .atitle{width:auto;padding-right:18px;line-height:18px;}
+.heat .auth{width:112px;color:#7C7188;font-size:11.5px;}
+.heat .alk{width:64px;text-align:right;font-family:Georgia,serif;color:#B08BC7;}
+.heat .alink{width:26px;text-align:right;}
+.heat a{color:#B06A8E;text-decoration:none;font-size:13px;}
+.note{font-size:11px;line-height:18px;color:#8C8197;margin-top:14px;}
+.tips{margin-top:8px;}
+.tip{display:grid;grid-template-columns:40px 1fr;column-gap:14px;padding:10px 0;border-top:1px solid #F1E9F3;}
+.tipn{font-family:Georgia,serif;font-size:12px;color:#C79BD4;letter-spacing:.08em;}
+.tipt{font-size:13px;line-height:20px;color:#3A3242;}
+.footer{margin-top:34px;padding:18px 0 22px;border-top:1px solid #EFE4F0;display:flex;justify-content:space-between;
+ font-size:10.5px;letter-spacing:.06em;color:#A296AC;}
+</style>
+</head>
+<body style="width:900px;height:5254px;">
+<main data-canvas-root id="canvas-root" style="width:900px;height:5254px;">
+
+<div class="wrap">
+<header class="topbar"><img class="mark" src="https://aka.doubaocdn.com/s/bXfmRbKhMO" alt="DearMe"><div><div class="brand">LOBUS</div><div class="brand-sub">DearMe · iOS</div></div><div class="spacer"></div><div class="pill">Copy Library · v1.0</div></header>
+<section class="hero">
+  <div class="kicker">Wish &amp; Plan · Copy Library</div>
+  <h1>心愿与计划文案库</h1>
+  <p class="lead">60 条心愿，六类各 10 条；中英对照，每条带一句「为什么这句能立住」。素材来自小红书公开搜索页，只做主题归纳，不复述原帖。</p>
+  <div class="stats">
+    <div class="stat"><b>60</b><span>心愿文案</span></div>
+    <div class="stat"><b>6</b><span>心愿类型</span></div>
+    <div class="stat"><b>22</b><span>热度依据</span></div>
+    <div class="stat"><b>2026.11.20</b><span>检索日期</span></div>
+  </div>
+</section>
+<section class="usage">
+  <div class="ucard"><div class="un">01</div><p class="ut">只当种子，不当任务。</p>
+    <p class="ud">用户点开后才填金额与时间，不要把它做成一份必须完成的清单。</p></div>
+  <div class="ucard"><div class="un">02</div><p class="ut">不承诺结果。</p>
+    <p class="ud">写的是「这件事值得」，不是「你一定能做到」。做到与放下都算走完一段。</p></div>
+  <div class="ucard"><div class="un">03</div><p class="ut">不要一次全放。</p>
+    <p class="ud">官网每类 2&nbsp;条、App 空态 5&nbsp;条，按时间轮换，其余收进「换一批」。</p></div>
+</section>
+<section>
+  <div class="sect-head"><div><h2>心愿库</h2><span class="en">Wish Library</span></div>
+    <div class="count">六类 · 60 条 · 中英对照</div></div>
+  <section class="block" id="material"><div class="bhead"><div class="bnum">01</div><div><div class="bname">物质</div><div class="ben">MATERIAL</div></div><div class="bdesc">让「想要」落到每天用的东西上</div><div class="spacer"></div><div class="bcount">10 条</div></div><ul class="entries"><li class="entry"><span class="eid">W-M01</span><div class="ecopy"><p class="zh">存下第一笔一万元。</p><p class="en">Save the first ten thousand.</p></div><p class="basis">钱一旦被画成看得见的进度，攒钱就从&quot;忍&quot;变成&quot;靠近&quot;（E01·3417）</p></li>
+<li class="entry"><span class="eid">W-M02</span><div class="ecopy"><p class="zh">换一台跟得上我的电脑。</p><p class="en">A laptop that keeps up with me.</p></div><p class="basis">工具顺手，事情才做得久；把&quot;想要&quot;落到每天用的东西上</p></li>
+<li class="entry"><span class="eid">W-M03</span><div class="ecopy"><p class="zh">给家里换一张睡得好的床。</p><p class="en">A bed the whole family can sleep well in.</p></div><p class="basis">从睡眠这件最基础的事开始对家里好</p></li>
+<li class="entry"><span class="eid">W-M04</span><div class="ecopy"><p class="zh">把那台一直想买的相机带回家。</p><p class="en">Bring home the camera I keep borrowing.</p></div><p class="basis">想记录生活的人，先给自己一件记录的工具</p></li>
+<li class="entry"><span class="eid">W-M05</span><div class="ecopy"><p class="zh">修好小时候那辆自行车。</p><p class="en">Fix the bike from my childhood.</p></div><p class="basis">修东西比买东西更接近&quot;把日子过好&quot;（E03·4086）</p></li>
+<li class="entry"><span class="eid">W-M06</span><div class="ecopy"><p class="zh">买一件能穿十年的大衣。</p><p class="en">A coat I will still wear in ten years.</p></div><p class="basis">少买几件，换一件真的喜欢，消费就变成选择</p></li>
+<li class="entry"><span class="eid">W-M07</span><div class="ecopy"><p class="zh">有一张只放自己东西的书桌。</p><p class="en">A desk that holds only my things.</p></div><p class="basis">一小块只属于自己的地方，是最低成本的自我照顾</p></li>
+<li class="entry"><span class="eid">W-M08</span><div class="ecopy"><p class="zh">把租来的房间住成家。</p><p class="en">Turn a rented room into a home.</p></div><p class="basis">家不是买来的，是摆出来的（E22·6568）</p></li>
+<li class="entry"><span class="eid">W-M09</span><div class="ecopy"><p class="zh">存够一台咖啡机的钱。</p><p class="en">Save up for the coffee machine.</p></div><p class="basis">把大目标拆成一件具体的小物，进度才有着落</p></li>
+<li class="entry"><span class="eid">W-M10</span><div class="ecopy"><p class="zh">给爸妈换一台新冰箱。</p><p class="en">A new fridge for my parents.</p></div><p class="basis">物质心愿也可以指向别人，爱有具体的形状（E17·616）</p></li></ul></section><section class="block" id="experience"><div class="bhead"><div class="bnum">02</div><div><div class="bname">体验</div><div class="ben">EXPERIENCE</div></div><div class="bdesc">允许自己只是在场，不必有产出</div><div class="spacer"></div><div class="bcount">10 条</div></div><ul class="entries"><li class="entry"><span class="eid">W-E01</span><div class="ecopy"><p class="zh">去看一次海，不拍照也可以。</p><p class="en">See the sea, even without photos.</p></div><p class="basis">体验的价值不在产出，先允许自己只是在场</p></li>
+<li class="entry"><span class="eid">W-E02</span><div class="ecopy"><p class="zh">坐一次通宵的火车。</p><p class="en">Take one overnight train.</p></div><p class="basis">慢一点的移动，本身就是一次出走（E11·885）</p></li>
+<li class="entry"><span class="eid">W-E03</span><div class="ecopy"><p class="zh">在演唱会里跟着唱一整首。</p><p class="en">Sing a whole song at a concert.</p></div><p class="basis">允许自己在人群里不体面一次</p></li>
+<li class="entry"><span class="eid">W-E04</span><div class="ecopy"><p class="zh">一个人去看一场电影。</p><p class="en">Go to a film alone.</p></div><p class="basis">独处不是孤单，是给自己腾出空间（E22·6568）</p></li>
+<li class="entry"><span class="eid">W-E05</span><div class="ecopy"><p class="zh">去一座没去过的城市住两天。</p><p class="en">Two days in a city I have never seen.</p></div><p class="basis">换一个地方，旧问题会显得小一点</p></li>
+<li class="entry"><span class="eid">W-E06</span><div class="ecopy"><p class="zh">在陌生的地方待满一个月。</p><p class="en">Live somewhere unfamiliar for a month.</p></div><p class="basis">长一点的离开，才叫体验而不是打卡</p></li>
+<li class="entry"><span class="eid">W-E07</span><div class="ecopy"><p class="zh">学做一道能端上桌的菜。</p><p class="en">Cook one dish worth putting on the table.</p></div><p class="basis">有具体的成品，才看得见自己学会了什么</p></li>
+<li class="entry"><span class="eid">W-E08</span><div class="ecopy"><p class="zh">看一次日出，从黑等到亮。</p><p class="en">Wait for one sunrise, from dark to light.</p></div><p class="basis">等待本身也是体验，不必有结果</p></li>
+<li class="entry"><span class="eid">W-E09</span><div class="ecopy"><p class="zh">在美术馆待一整个下午。</p><p class="en">Spend a whole afternoon in a museum.</p></div><p class="basis">把时间整块交出去，是奢侈也是照顾</p></li>
+<li class="entry"><span class="eid">W-E10</span><div class="ecopy"><p class="zh">带自己去吃一顿贵的。</p><p class="en">Take myself to one expensive dinner.</p></div><p class="basis">请自己一次，比等别人请更可靠（E22·6568）</p></li></ul></section><section class="block" id="growth"><div class="bhead"><div class="bnum">03</div><div><div class="bname">成长</div><div class="ben">GROWTH</div></div><div class="bdesc">完成一件，胜过同时开始五件</div><div class="spacer"></div><div class="bcount">10 条</div></div><ul class="entries"><li class="entry"><span class="eid">W-G01</span><div class="ecopy"><p class="zh">学一门能换钱的手艺。</p><p class="en">Learn a craft someone will pay for.</p></div><p class="basis">技能要能落地，才有底气（E22·6568 的&quot;搞钱篇&quot;）</p></li>
+<li class="entry"><span class="eid">W-G02</span><div class="ecopy"><p class="zh">考下那张一直拖着的证。</p><p class="en">Pass the certificate I keep postponing.</p></div><p class="basis">拖着的事写下来，就有了第一次推进的机会</p></li>
+<li class="entry"><span class="eid">W-G03</span><div class="ecopy"><p class="zh">读完十二本书。</p><p class="en">Read twelve books.</p></div><p class="basis">用数量给模糊的愿望一个边界</p></li>
+<li class="entry"><span class="eid">W-G04</span><div class="ecopy"><p class="zh">把英语捡回来。</p><p class="en">Pick my English back up.</p></div><p class="basis">&quot;捡回来&quot;比&quot;从零开始&quot;轻，不需要重新做人</p></li>
+<li class="entry"><span class="eid">W-G05</span><div class="ecopy"><p class="zh">学会剪一条自己的视频。</p><p class="en">Learn to edit one video of my own.</p></div><p class="basis">作品比课程更能证明学过</p></li>
+<li class="entry"><span class="eid">W-G06</span><div class="ecopy"><p class="zh">做完一件能拿出手的作品。</p><p class="en">Finish one piece I can show people.</p></div><p class="basis">完成一件，胜过同时开始五件</p></li>
+<li class="entry"><span class="eid">W-G07</span><div class="ecopy"><p class="zh">练到能完整弹一首曲子。</p><p class="en">Play one song all the way through.</p></div><p class="basis">把标准定在&quot;完整&quot;，而不是&quot;专业&quot;</p></li>
+<li class="entry"><span class="eid">W-G08</span><div class="ecopy"><p class="zh">学会用 AI 把工作快一半。</p><p class="en">Use AI to cut my work time in half.</p></div><p class="basis">工具类心愿要有可比较的收益</p></li>
+<li class="entry"><span class="eid">W-G09</span><div class="ecopy"><p class="zh">戒掉一个偷走时间的习惯。</p><p class="en">Drop one habit that steals my time.</p></div><p class="basis">减法也算成长，不必总是增加（E15·816）</p></li>
+<li class="entry"><span class="eid">W-G10</span><div class="ecopy"><p class="zh">在别人面前讲一次。</p><p class="en">Speak in front of people once.</p></div><p class="basis">一次就够，不必先变成擅长表达的人</p></li></ul></section><section class="block" id="relationship"><div class="bhead"><div class="bnum">04</div><div><div class="bname">关系</div><div class="ben">RELATIONSHIP</div></div><div class="bdesc">关心要具体到一件事、一个日期</div><div class="spacer"></div><div class="bcount">10 条</div></div><ul class="entries"><li class="entry"><span class="eid">W-R01</span><div class="ecopy"><p class="zh">陪爸妈吃三十顿饭。</p><p class="en">Thirty dinners with my parents.</p></div><p class="basis">用&quot;顿&quot;计数，比&quot;多陪陪&quot;更能落地（E14·819）</p></li>
+<li class="entry"><span class="eid">W-R02</span><div class="ecopy"><p class="zh">带妈妈去做一次体检。</p><p class="en">Take my mother for a checkup.</p></div><p class="basis">关心要具体到一件事、一个日期（E18·424）</p></li>
+<li class="entry"><span class="eid">W-R03</span><div class="ecopy"><p class="zh">和爸爸单独出去一次。</p><p class="en">One outing with just my father.</p></div><p class="basis">拆掉&quot;一家人&quot;的笼统，才有单独相处的可能</p></li>
+<li class="entry"><span class="eid">W-R04</span><div class="ecopy"><p class="zh">见一个很久没见的朋友。</p><p class="en">See a friend I have not seen in years.</p></div><p class="basis">关系不是靠想起，是靠见一面</p></li>
+<li class="entry"><span class="eid">W-R05</span><div class="ecopy"><p class="zh">给朋友写一封手写的信。</p><p class="en">Write a friend a letter by hand.</p></div><p class="basis">慢的方式，才装得下真话</p></li>
+<li class="entry"><span class="eid">W-R06</span><div class="ecopy"><p class="zh">记住家里每个人的生日。</p><p class="en">Remember every birthday in the family.</p></div><p class="basis">小事做到位，比大动作更稳（E17·616）</p></li>
+<li class="entry"><span class="eid">W-R07</span><div class="ecopy"><p class="zh">和伴侣过一个不谈工作的周末。</p><p class="en">One weekend with my partner, no work talk.</p></div><p class="basis">给关系留一块不被工作占用的时间</p></li>
+<li class="entry"><span class="eid">W-R08</span><div class="ecopy"><p class="zh">陪孩子做一件他想做的事。</p><p class="en">Do one thing my child wants to do.</p></div><p class="basis">陪伴的主语应该是对方想要什么</p></li>
+<li class="entry"><span class="eid">W-R09</span><div class="ecopy"><p class="zh">和邻居说一次话。</p><p class="en">Say a few words to a neighbour.</p></div><p class="basis">关系也可以从最小的一格开始</p></li>
+<li class="entry"><span class="eid">W-R10</span><div class="ecopy"><p class="zh">给很久没联系的人打一次电话。</p><p class="en">Call someone I have not called in a long time.</p></div><p class="basis">想到就拨，别等一个合适的理由</p></li></ul></section><section class="block" id="selfcare"><div class="bhead"><div class="bnum">05</div><div><div class="bname">自我关怀</div><div class="ben">SELF-CARE</div></div><div class="bdesc">先修睡眠，再谈状态</div><div class="spacer"></div><div class="bcount">10 条</div></div><ul class="entries"><li class="entry"><span class="eid">W-S01</span><div class="ecopy"><p class="zh">连续七天在十一点前睡。</p><p class="en">Seven nights asleep before eleven.</p></div><p class="basis">先修睡眠，其他状态才有地基（E22·6568 身体篇）</p></li>
+<li class="entry"><span class="eid">W-S02</span><div class="ecopy"><p class="zh">每周留一个晚上只给自己。</p><p class="en">One evening a week that is only mine.</p></div><p class="basis">留白要写进日程，不然永远排不上（E22·6568 日常篇）</p></li>
+<li class="entry"><span class="eid">W-S03</span><div class="ecopy"><p class="zh">给情绪留一个出口。</p><p class="en">Give my feelings somewhere to go.</p></div><p class="basis">允许 emo，但不让它过夜（E22·6568 情绪篇）</p></li>
+<li class="entry"><span class="eid">W-S04</span><div class="ecopy"><p class="zh">一周散步三次。</p><p class="en">Walk three times a week.</p></div><p class="basis">门槛越低，越可能真的发生（E21·1.3万）</p></li>
+<li class="entry"><span class="eid">W-S05</span><div class="ecopy"><p class="zh">每天写三件小事。</p><p class="en">Three small things, written down daily.</p></div><p class="basis">记录本身就是照顾，不需要写得好</p></li>
+<li class="entry"><span class="eid">W-S06</span><div class="ecopy"><p class="zh">把手机放在另一个房间一小时。</p><p class="en">Leave the phone in another room for an hour.</p></div><p class="basis">把注意力还给自己，是最直接的休息</p></li>
+<li class="entry"><span class="eid">W-S07</span><div class="ecopy"><p class="zh">认真吃一顿早饭。</p><p class="en">Eat one proper breakfast.</p></div><p class="basis">从一天的第一顿开始对自己好</p></li>
+<li class="entry"><span class="eid">W-S08</span><div class="ecopy"><p class="zh">给自己买一束花。</p><p class="en">Buy myself flowers.</p></div><p class="basis">仪式感不必等别人给（E22·6568 情绪篇）</p></li>
+<li class="entry"><span class="eid">W-S09</span><div class="ecopy"><p class="zh">做一次完整体检。</p><p class="en">Get one full checkup.</p></div><p class="basis">身体的事，早查一次省很多事（E18·424）</p></li>
+<li class="entry"><span class="eid">W-S10</span><div class="ecopy"><p class="zh">允许自己什么都不做一天。</p><p class="en">Allow one day of doing nothing.</p></div><p class="basis">休息不需要用成果来换（E03·4086）</p></li></ul></section><section class="block" id="vision"><div class="bhead"><div class="bnum">06</div><div><div class="bname">愿景</div><div class="ben">VISION</div></div><div class="bdesc">用生活场景描述，而不是「变好」</div><div class="spacer"></div><div class="bcount">10 条</div></div><ul class="entries"><li class="entry"><span class="eid">W-V01</span><div class="ecopy"><p class="zh">三十岁前做一件完全属于自己的作品。</p><p class="en">One piece entirely mine before thirty.</p></div><p class="basis">愿景要有时间点和一个能指认的东西</p></li>
+<li class="entry"><span class="eid">W-V02</span><div class="ecopy"><p class="zh">有一个能养活自己的副业。</p><p class="en">A side income that can carry me.</p></div><p class="basis">底气来自收入结构，不只是收入数字</p></li>
+<li class="entry"><span class="eid">W-V03</span><div class="ecopy"><p class="zh">搬到一个有阳台的城市。</p><p class="en">Move to a city with a balcony.</p></div><p class="basis">用生活场景描述愿景，比&quot;更好的生活&quot;具体</p></li>
+<li class="entry"><span class="eid">W-V04</span><div class="ecopy"><p class="zh">用一年时间换一种活法。</p><p class="en">One year to live differently.</p></div><p class="basis">年限给了尝试一个尽头，失败了也能收（E16·623）</p></li>
+<li class="entry"><span class="eid">W-V05</span><div class="ecopy"><p class="zh">有一间自己的小工作室。</p><p class="en">A small studio of my own.</p></div><p class="basis">空间是最容易被低估的愿景（E08·1757）</p></li>
+<li class="entry"><span class="eid">W-V06</span><div class="ecopy"><p class="zh">把身体练到能跑完十公里。</p><p class="en">Train until I can run ten kilometres.</p></div><p class="basis">身体是所有愿景里最先能验证的一个</p></li>
+<li class="entry"><span class="eid">W-V07</span><div class="ecopy"><p class="zh">有几个能互相托底的朋友。</p><p class="en">A few friends who will catch me.</p></div><p class="basis">长期其实靠关系，不靠自律（E07·1803）</p></li>
+<li class="entry"><span class="eid">W-V08</span><div class="ecopy"><p class="zh">做一件让爸妈骄傲的事。</p><p class="en">One thing my parents can be proud of.</p></div><p class="basis">让愿景带上具体的人，动力才不空</p></li>
+<li class="entry"><span class="eid">W-V09</span><div class="ecopy"><p class="zh">五年后不再为钱做不想做的事。</p><p class="en">In five years, no more work I do only for money.</p></div><p class="basis">用&quot;不再做什么&quot;定义愿景，比&quot;要什么&quot;更清楚（E20·4328）</p></li>
+<li class="entry"><span class="eid">W-V10</span><div class="ecopy"><p class="zh">留下一本写给自己的记录。</p><p class="en">Leave behind a record written to myself.</p></div><p class="basis">记录是把日子留住的唯一办法（E12·841）</p></li></ul></section>
+</section>
+<footer class="footer"><div>DearMe · lobus ｜ 心愿与计划文案库 v1.0</div><div>第二页：计划库与热度依据</div></footer>
+</div>
+</main>
+</body>
+</html>

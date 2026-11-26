@@ -631,6 +631,79 @@ footer{padding:72px 0 46px;border-top:1px solid var(--line);margin-top:60px}
   *{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
 }
+/* ---------- 首页：灵感库预告条 ---------- */
+.lib-strip{
+  position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:center;
+  padding:36px 40px;border-radius:var(--r-l);border:1px solid rgba(255,128,171,.28);
+  background:linear-gradient(135deg,rgba(255,192,214,.42) 0%,rgba(233,225,251,.52) 58%,rgba(255,243,214,.42) 100%);
+  box-shadow:var(--shadow-m);
+}
+.lib-strip::after{
+  content:"";position:absolute;right:-60px;top:-90px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle at 40% 40%,rgba(255,255,255,.7),rgba(255,255,255,0) 68%);pointer-events:none;
+}
+.ls-copy{position:relative;z-index:1}
+.ls-copy h2{font-size:clamp(24px,3vw,34px);margin-top:12px}
+.ls-copy p{margin-top:12px;max-width:520px;font-size:14.5px;line-height:1.85;color:var(--ink-2)}
+.ls-samples{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.ls-chip{display:inline-flex;align-items:baseline;gap:8px;padding:8px 13px;border-radius:12px;
+  background:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.9);box-shadow:0 6px 16px rgba(120,80,150,.10)}
+.ls-chip b{font-size:13.5px;font-weight:600;color:var(--ink)}
+.ls-chip i{font-style:normal;font-size:9.5px;letter-spacing:.08em;color:var(--lilac-deep)}
+.ls-act{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.ls-note{font-size:11px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+@media (max-width:760px){ .lib-strip{grid-template-columns:1fr;padding:28px 24px} .ls-act{align-items:flex-start} }
+
+/* ---------- 灵感库（#/library） ---------- */
+.lib-hero{padding:56px 0 30px}
+.lib-hero h1{font-size:clamp(30px,4.4vw,52px);margin-top:14px;max-width:16em}
+.lib-hero p{margin-top:16px;max-width:640px;font-size:15.5px;color:var(--muted);line-height:1.9}
+.lib-stats{display:flex;gap:0;margin-top:26px;flex-wrap:wrap;row-gap:14px}
+.lib-stat{padding-right:26px;margin-right:26px;border-right:1px solid var(--line)}
+.lib-stat:last-child{border-right:0;margin-right:0;padding-right:0}
+.lib-stat b{display:block;font-family:var(--display);font-size:24px;font-weight:600;line-height:1.1}
+.lib-stat span{display:block;font-size:11px;letter-spacing:.1em;color:var(--muted);margin-top:6px;text-transform:uppercase}
+.lib-bar{margin:6px 0 30px}
+.lib-seg{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.66)}
+.lib-seg button{border:0;cursor:pointer;font-family:var(--sans);font-weight:600;font-size:14.5px;color:var(--ink-2);background:none;padding:9px 18px;border-radius:999px;transition:.2s}
+.lib-seg button.on{background:linear-gradient(135deg,var(--pink),var(--lilac));color:#fff;box-shadow:0 8px 20px rgba(240,110,160,.26)}
+.lib-seg button em{font-style:normal;font-size:11px;opacity:.62;margin-left:7px;letter-spacing:.04em}
+.lib-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.lib-chips button{border:1px solid var(--line);background:rgba(255,255,255,.6);border-radius:999px;padding:7px 14px;font-size:12.5px;color:var(--ink-2);cursor:pointer;font-family:var(--sans);transition:.2s}
+.lib-chips button:hover{border-color:var(--pink);color:var(--pink-deep)}
+.lib-chips button.on{background:rgba(255,128,171,.14);border-color:rgba(255,128,171,.5);color:var(--pink-deep);font-weight:600}
+.lib-group{margin-top:34px}
+.lib-group-head{display:flex;align-items:baseline;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.lib-group-head h3{font-size:18px}
+.lib-group-head .en{font-size:10.5px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase}
+.lib-group-head .n{margin-left:auto;font-size:11.5px;color:var(--muted);letter-spacing:.06em}
+.lib-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.lib-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-m);padding:18px 18px 16px;box-shadow:var(--shadow-s);transition:transform .25s,box-shadow .25s}
+.lib-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-m)}
+.lib-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.lib-id{font-size:10px;letter-spacing:.08em;color:var(--lilac-deep);font-variant-numeric:tabular-nums}
+.lib-kind{font-size:10px;padding:1px 7px;border-radius:6px;border:1px solid rgba(179,157,219,.45);color:var(--lilac-deep);background:rgba(179,157,219,.1)}
+.lib-zh{font-size:16.5px;font-weight:600;line-height:1.45;color:var(--ink);margin:0}
+.lib-alt{margin-top:5px;font-size:12.5px;line-height:1.55;color:var(--muted)}
+.lib-basis{margin:12px 0 0;padding-left:11px;border-left:2px solid var(--pink-soft);font-size:12px;line-height:1.65;color:var(--muted)}
+.lib-evidence{margin-top:46px}
+.lib-evidence details{background:var(--card);border:1px solid var(--line);border-radius:var(--r-m);padding:18px 22px;box-shadow:var(--shadow-s)}
+.lib-evidence summary{cursor:pointer;font-size:14.5px;font-weight:600;color:var(--ink);list-style:none;display:flex;align-items:center;gap:10px}
+.lib-evidence summary::-webkit-details-marker{display:none}
+.lib-evidence summary .chev{margin-left:auto;font-size:12px;color:var(--muted)}
+.lib-ev-list{margin-top:14px;border-top:1px solid var(--line)}
+.lib-ev-row{display:flex;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(70,52,96,.07)}
+.lib-ev-row .i{width:34px;font-size:10px;color:var(--lilac-deep);flex-shrink:0}
+.lib-ev-row a{font-size:13.5px;color:var(--ink-2);line-height:1.5;flex:1}
+.lib-ev-row a:hover{color:var(--pink-deep)}
+.lib-ev-row .lk{font-size:11.5px;color:var(--muted);flex-shrink:0}
+.lib-note{margin-top:10px;font-size:11.5px;line-height:1.7;color:var(--muted)}
+@media (max-width:620px){
+  .lib-grid{grid-template-columns:1fr}
+  .lib-seg{width:100%}
+  .lib-seg button{flex:1;padding:10px 8px}
+  .lib-evidence details{padding:16px}
+}
 </style>
 </head>
 <body>
@@ -649,6 +722,7 @@ footer{padding:72px 0 46px;border-top:1px solid var(--line);margin-top:60px}
       <a data-key="site.nav.02" href="#/" data-route="home" data-zh="首页" data-en="Home">首页</a>
       <a data-key="site.nav.03" href="#/features" data-route="features" data-zh="功能" data-en="Features">功能</a>
       <a data-key="site.nav.04" href="#/story" data-route="story" data-zh="故事" data-en="Story">故事</a>
+      <a data-key="site.nav.10" href="#/library" data-route="library" data-zh="灵感库" data-en="Library">灵感库</a>
     </nav>
     <div class="nav-right">
       <div class="lang" role="group" aria-label="Language">
@@ -665,6 +739,7 @@ footer{padding:72px 0 46px;border-top:1px solid var(--line);margin-top:60px}
     <a data-key="site.nav.06" href="#/" data-route="home" data-zh="首页" data-en="Home">首页</a>
     <a data-key="site.nav.07" href="#/features" data-route="features" data-zh="功能" data-en="Features">功能</a>
     <a data-key="site.nav.08" href="#/story" data-route="story" data-zh="故事" data-en="Story">故事</a>
+    <a data-key="site.nav.11" href="#/library" data-route="library" data-zh="灵感库" data-en="Library">灵感库</a>
     <button data-key="site.nav.09" class="btn btn-primary" data-open-dl data-zh="App Store 下载" data-en="Download on App Store">App Store 下载</button>
   </div>
 </header>
@@ -901,6 +976,24 @@ footer{padding:72px 0 46px;border-top:1px solid var(--line);margin-top:60px}
           <a data-key="home.blk4.04" class="btn btn-ghost" href="#/story" data-zh="读这个故事 →" data-en="Read the story →">读这个故事 →</a>
         </div>
         <div class="pic"><img src="assets/clay-door.jpg" alt="黏土风格的门与台阶" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- 灵感库预告 ---------- -->
+  <section class="blk" style="padding-top:0">
+    <div class="wrap">
+      <div class="lib-strip reveal">
+        <div class="ls-copy">
+          <span data-key="home.lib.01" class="eyebrow" data-zh="灵感库 · 100 条" data-en="Library · 100 entries">灵感库 · 100 条</span>
+          <h2 data-key="home.lib.02" data-zh="不知道许什么愿？看看这 100 条" data-en="Not sure what to wish for? Start with these 100.">不知道许什么愿？看看这 100 条</h2>
+          <p data-key="home.lib.03" data-zh="60 条心愿、40 条计划，都是能直接写进 DearMe 的那一句话。挑一条，改成你自己的。" data-en="60 wishes and 40 plans, each one written as a sentence you could type into DearMe. Pick one and make it yours.">60 条心愿、40 条计划，都是能直接写进 DearMe 的那一句话。挑一条，改成你自己的。</p>
+          <div class="ls-samples" id="homeLibSamples"></div>
+        </div>
+        <div class="ls-act">
+          <a data-key="home.lib.04" class="btn btn-primary" href="#/library" data-zh="打开灵感库 →" data-en="Open the library →">打开灵感库 →</a>
+          <span data-key="home.lib.05" class="ls-note" data-zh="60 心愿 · 40 计划 · 22 条依据" data-en="60 wishes · 40 plans · 22 sources">60 心愿 · 40 计划 · 22 条依据</span>
+        </div>
       </div>
     </div>
   </section>
@@ -1248,6 +1341,27 @@ footer{padding:72px 0 46px;border-top:1px solid var(--line);margin-top:60px}
   </div>
 </main>
 
+<!-- ==================== 视图：灵感库（二级） ==================== -->
+<main id="view-library" class="view">
+  <section class="page-hero lib-hero">
+    <div class="wrap">
+      <div class="crumb"><a id="libCrumbHome" href="#/">首页</a><i>/</i><span id="libCrumb">灵感库</span></div>
+      <div id="libHead"></div>
+    </div>
+  </section>
+  <div class="wrap">
+    <div class="lib-bar" id="libBar"></div>
+    <div id="libList"></div>
+    <section class="lib-evidence" id="libEvidence"></section>
+    <section class="blk" style="padding:56px 0 80px"><div id="libCta"></div></section>
+  </div>
+  <noscript><div class="wrap"><p class="small muted">这一页的 100 条文案由脚本渲染，请开启 JavaScript；也可直接打开 docs 下的两页 HTML 版本。</p></div></noscript>
+</main>
+
+<!-- LIB-DATA-START -->
+<script type="application/json" id="libData">{"labels":{"nav":{"zh":"灵感库","en":"Library"},"eyebrow":{"zh":"灵感库 · 100 条","en":"Library · 100 entries"},"title":{"zh":"不知道许什么愿，先看这 100 条","en":"Not sure what to wish for? Start with these 100."},"lead":{"zh":"60 条心愿、40 条计划，来自真实的人在公开清单里写下的东西。我们把它们读成一句话：一条能直接写进 DearMe 的许愿句式——不承诺结果，只把「想要」说得具体一点。","en":"60 wishes and 40 plans, collected from lists real people post in public. Each one is written as a sentence you could type into DearMe: no promises about outcomes, just a slightly more specific way of saying what you want."},"statW":{"zh":"心愿文案","en":"Wishes"},"statP":{"zh":"计划文案","en":"Plans"},"statCat":{"zh":"心愿类型","en":"Wish types"},"statFreq":{"zh":"频次档位","en":"Rhythms"},"tabW":{"zh":"心愿","en":"Wishes"},"tabP":{"zh":"计划","en":"Plans"},"all":{"zh":"全部","en":"All"},"basis":{"zh":"为什么这句能立住","en":"Why it holds"},"evTitle":{"zh":"22 条热度依据","en":"22 sources behind this"},"evNote":{"zh":"点开标题可看原帖。这里只保留标题与链接，不列作者昵称与点赞数。","en":"Each title opens the original post. Titles and links only — no author names or like counts."},"ctaTitle":{"zh":"挑一条，写进你的第一个心愿","en":"Pick one. Make it your first wish."},"ctaSub":{"zh":"打开 DearMe，六类心愿随你选；写下来之后，它自己会长出下一步。","en":"Open DearMe, pick a type, write it down — the next step grows from there."},"ctaBtn":{"zh":"下载 App","en":"Get the app"},"ctaLink":{"zh":"先看看功能","en":"See features"},"cat":{"material":{"zh":"物质","en":"Material"},"experience":{"zh":"体验","en":"Experience"},"growth":{"zh":"成长","en":"Growth"},"relationship":{"zh":"关系","en":"Relationship"},"selfcare":{"zh":"自我关怀","en":"Self-care"},"vision":{"zh":"愿景","en":"Vision"}},"freq":{"once":{"zh":"单次","en":"Once"},"daily":{"zh":"每日","en":"Daily"},"weekly":{"zh":"每周","en":"Weekly"},"monthly":{"zh":"每月","en":"Monthly"},"yearly":{"zh":"每年","en":"Yearly"}},"kind":{"习惯":{"zh":"习惯","en":"Habit"},"任务":{"zh":"任务","en":"Task"},"项目":{"zh":"项目","en":"Project"},"清单":{"zh":"清单","en":"Checklist"},"陪伴":{"zh":"陪伴","en":"Company"}}},"wishes":[{"id":"W-M01","t":"material","zh":"存下第一笔一万元。","en":"Save the first ten thousand.","b":"钱一旦被画成看得见的进度，攒钱就从\"忍\"变成\"靠近\"（E01·3417）"},{"id":"W-M02","t":"material","zh":"换一台跟得上我的电脑。","en":"A laptop that keeps up with me.","b":"工具顺手，事情才做得久；把\"想要\"落到每天用的东西上"},{"id":"W-M03","t":"material","zh":"给家里换一张睡得好的床。","en":"A bed the whole family can sleep well in.","b":"从睡眠这件最基础的事开始对家里好"},{"id":"W-M04","t":"material","zh":"把那台一直想买的相机带回家。","en":"Bring home the camera I keep borrowing.","b":"想记录生活的人，先给自己一件记录的工具"},{"id":"W-M05","t":"material","zh":"修好小时候那辆自行车。","en":"Fix the bike from my childhood.","b":"修东西比买东西更接近\"把日子过好\"（E03·4086）"},{"id":"W-M06","t":"material","zh":"买一件能穿十年的大衣。","en":"A coat I will still wear in ten years.","b":"少买几件，换一件真的喜欢，消费就变成选择"},{"id":"W-M07","t":"material","zh":"有一张只放自己东西的书桌。","en":"A desk that holds only my things.","b":"一小块只属于自己的地方，是最低成本的自我照顾"},{"id":"W-M08","t":"material","zh":"把租来的房间住成家。","en":"Turn a rented room into a home.","b":"家不是买来的，是摆出来的（E22·6568）"},{"id":"W-M09","t":"material","zh":"存够一台咖啡机的钱。","en":"Save up for the coffee machine.","b":"把大目标拆成一件具体的小物，进度才有着落"},{"id":"W-M10","t":"material","zh":"给爸妈换一台新冰箱。","en":"A new fridge for my parents.","b":"物质心愿也可以指向别人，爱有具体的形状（E17·616）"},{"id":"W-E01","t":"experience","zh":"去看一次海，不拍照也可以。","en":"See the sea, even without photos.","b":"体验的价值不在产出，先允许自己只是在场"},{"id":"W-E02","t":"experience","zh":"坐一次通宵的火车。","en":"Take one overnight train.","b":"慢一点的移动，本身就是一次出走（E11·885）"},{"id":"W-E03","t":"experience","zh":"在演唱会里跟着唱一整首。","en":"Sing a whole song at a concert.","b":"允许自己在人群里不体面一次"},{"id":"W-E04","t":"experience","zh":"一个人去看一场电影。","en":"Go to a film alone.","b":"独处不是孤单，是给自己腾出空间（E22·6568）"},{"id":"W-E05","t":"experience","zh":"去一座没去过的城市住两天。","en":"Two days in a city I have never seen.","b":"换一个地方，旧问题会显得小一点"},{"id":"W-E06","t":"experience","zh":"在陌生的地方待满一个月。","en":"Live somewhere unfamiliar for a month.","b":"长一点的离开，才叫体验而不是打卡"},{"id":"W-E07","t":"experience","zh":"学做一道能端上桌的菜。","en":"Cook one dish worth putting on the table.","b":"有具体的成品，才看得见自己学会了什么"},{"id":"W-E08","t":"experience","zh":"看一次日出，从黑等到亮。","en":"Wait for one sunrise, from dark to light.","b":"等待本身也是体验，不必有结果"},{"id":"W-E09","t":"experience","zh":"在美术馆待一整个下午。","en":"Spend a whole afternoon in a museum.","b":"把时间整块交出去，是奢侈也是照顾"},{"id":"W-E10","t":"experience","zh":"带自己去吃一顿贵的。","en":"Take myself to one expensive dinner.","b":"请自己一次，比等别人请更可靠（E22·6568）"},{"id":"W-G01","t":"growth","zh":"学一门能换钱的手艺。","en":"Learn a craft someone will pay for.","b":"技能要能落地，才有底气（E22·6568 的\"搞钱篇\"）"},{"id":"W-G02","t":"growth","zh":"考下那张一直拖着的证。","en":"Pass the certificate I keep postponing.","b":"拖着的事写下来，就有了第一次推进的机会"},{"id":"W-G03","t":"growth","zh":"读完十二本书。","en":"Read twelve books.","b":"用数量给模糊的愿望一个边界"},{"id":"W-G04","t":"growth","zh":"把英语捡回来。","en":"Pick my English back up.","b":"\"捡回来\"比\"从零开始\"轻，不需要重新做人"},{"id":"W-G05","t":"growth","zh":"学会剪一条自己的视频。","en":"Learn to edit one video of my own.","b":"作品比课程更能证明学过"},{"id":"W-G06","t":"growth","zh":"做完一件能拿出手的作品。","en":"Finish one piece I can show people.","b":"完成一件，胜过同时开始五件"},{"id":"W-G07","t":"growth","zh":"练到能完整弹一首曲子。","en":"Play one song all the way through.","b":"把标准定在\"完整\"，而不是\"专业\""},{"id":"W-G08","t":"growth","zh":"学会用 AI 把工作快一半。","en":"Use AI to cut my work time in half.","b":"工具类心愿要有可比较的收益"},{"id":"W-G09","t":"growth","zh":"戒掉一个偷走时间的习惯。","en":"Drop one habit that steals my time.","b":"减法也算成长，不必总是增加（E15·816）"},{"id":"W-G10","t":"growth","zh":"在别人面前讲一次。","en":"Speak in front of people once.","b":"一次就够，不必先变成擅长表达的人"},{"id":"W-R01","t":"relationship","zh":"陪爸妈吃三十顿饭。","en":"Thirty dinners with my parents.","b":"用\"顿\"计数，比\"多陪陪\"更能落地（E14·819）"},{"id":"W-R02","t":"relationship","zh":"带妈妈去做一次体检。","en":"Take my mother for a checkup.","b":"关心要具体到一件事、一个日期（E18·424）"},{"id":"W-R03","t":"relationship","zh":"和爸爸单独出去一次。","en":"One outing with just my father.","b":"拆掉\"一家人\"的笼统，才有单独相处的可能"},{"id":"W-R04","t":"relationship","zh":"见一个很久没见的朋友。","en":"See a friend I have not seen in years.","b":"关系不是靠想起，是靠见一面"},{"id":"W-R05","t":"relationship","zh":"给朋友写一封手写的信。","en":"Write a friend a letter by hand.","b":"慢的方式，才装得下真话"},{"id":"W-R06","t":"relationship","zh":"记住家里每个人的生日。","en":"Remember every birthday in the family.","b":"小事做到位，比大动作更稳（E17·616）"},{"id":"W-R07","t":"relationship","zh":"和伴侣过一个不谈工作的周末。","en":"One weekend with my partner, no work talk.","b":"给关系留一块不被工作占用的时间"},{"id":"W-R08","t":"relationship","zh":"陪孩子做一件他想做的事。","en":"Do one thing my child wants to do.","b":"陪伴的主语应该是对方想要什么"},{"id":"W-R09","t":"relationship","zh":"和邻居说一次话。","en":"Say a few words to a neighbour.","b":"关系也可以从最小的一格开始"},{"id":"W-R10","t":"relationship","zh":"给很久没联系的人打一次电话。","en":"Call someone I have not called in a long time.","b":"想到就拨，别等一个合适的理由"},{"id":"W-S01","t":"selfcare","zh":"连续七天在十一点前睡。","en":"Seven nights asleep before eleven.","b":"先修睡眠，其他状态才有地基（E22·6568 身体篇）"},{"id":"W-S02","t":"selfcare","zh":"每周留一个晚上只给自己。","en":"One evening a week that is only mine.","b":"留白要写进日程，不然永远排不上（E22·6568 日常篇）"},{"id":"W-S03","t":"selfcare","zh":"给情绪留一个出口。","en":"Give my feelings somewhere to go.","b":"允许 emo，但不让它过夜（E22·6568 情绪篇）"},{"id":"W-S04","t":"selfcare","zh":"一周散步三次。","en":"Walk three times a week.","b":"门槛越低，越可能真的发生（E21·1.3万）"},{"id":"W-S05","t":"selfcare","zh":"每天写三件小事。","en":"Three small things, written down daily.","b":"记录本身就是照顾，不需要写得好"},{"id":"W-S06","t":"selfcare","zh":"把手机放在另一个房间一小时。","en":"Leave the phone in another room for an hour.","b":"把注意力还给自己，是最直接的休息"},{"id":"W-S07","t":"selfcare","zh":"认真吃一顿早饭。","en":"Eat one proper breakfast.","b":"从一天的第一顿开始对自己好"},{"id":"W-S08","t":"selfcare","zh":"给自己买一束花。","en":"Buy myself flowers.","b":"仪式感不必等别人给（E22·6568 情绪篇）"},{"id":"W-S09","t":"selfcare","zh":"做一次完整体检。","en":"Get one full checkup.","b":"身体的事，早查一次省很多事（E18·424）"},{"id":"W-S10","t":"selfcare","zh":"允许自己什么都不做一天。","en":"Allow one day of doing nothing.","b":"休息不需要用成果来换（E03·4086）"},{"id":"W-V01","t":"vision","zh":"三十岁前做一件完全属于自己的作品。","en":"One piece entirely mine before thirty.","b":"愿景要有时间点和一个能指认的东西"},{"id":"W-V02","t":"vision","zh":"有一个能养活自己的副业。","en":"A side income that can carry me.","b":"底气来自收入结构，不只是收入数字"},{"id":"W-V03","t":"vision","zh":"搬到一个有阳台的城市。","en":"Move to a city with a balcony.","b":"用生活场景描述愿景，比\"更好的生活\"具体"},{"id":"W-V04","t":"vision","zh":"用一年时间换一种活法。","en":"One year to live differently.","b":"年限给了尝试一个尽头，失败了也能收（E16·623）"},{"id":"W-V05","t":"vision","zh":"有一间自己的小工作室。","en":"A small studio of my own.","b":"空间是最容易被低估的愿景（E08·1757）"},{"id":"W-V06","t":"vision","zh":"把身体练到能跑完十公里。","en":"Train until I can run ten kilometres.","b":"身体是所有愿景里最先能验证的一个"},{"id":"W-V07","t":"vision","zh":"有几个能互相托底的朋友。","en":"A few friends who will catch me.","b":"长期其实靠关系，不靠自律（E07·1803）"},{"id":"W-V08","t":"vision","zh":"做一件让爸妈骄傲的事。","en":"One thing my parents can be proud of.","b":"让愿景带上具体的人，动力才不空"},{"id":"W-V09","t":"vision","zh":"五年后不再为钱做不想做的事。","en":"In five years, no more work I do only for money.","b":"用\"不再做什么\"定义愿景，比\"要什么\"更清楚（E20·4328）"},{"id":"W-V10","t":"vision","zh":"留下一本写给自己的记录。","en":"Leave behind a record written to myself.","b":"记录是把日子留住的唯一办法（E12·841）"}],"plans":[{"id":"P-ON01","f":"once","k":"任务","zh":"今晚把简历改完。","en":"Finish the resume tonight.","b":"有日子的事才需要写下来，单次也要有截止"},{"id":"P-ON02","f":"once","k":"清单","zh":"出门前把行李清单勾完。","en":"Tick the packing list before leaving.","b":"清单型以全勾选为完成，最不容易半途（E04·3391）"},{"id":"P-ON03","f":"once","k":"任务","zh":"这周约一次体检。","en":"Book one checkup this week.","b":"一个电话就能完成的事，别放进\"以后\"（E18·424）"},{"id":"P-ON04","f":"once","k":"清单","zh":"一次把书桌清空。","en":"Clear the desk in one go.","b":"只做一次的整理，做完就结束"},{"id":"P-ON05","f":"once","k":"任务","zh":"今晚写下三个愿望。","en":"Write down three wishes tonight.","b":"先写下，再决定哪个值得投入（E11·885）"},{"id":"P-ON06","f":"once","k":"任务","zh":"这个月去一次海边。","en":"Get to the sea this month.","b":"给愿望一个具体月份，才不是空想"},{"id":"P-ON07","f":"once","k":"项目","zh":"把手机相册按年份整理成三本。","en":"Sort my camera roll into three year albums.","b":"大工程拆成三个里程碑，才有终点"},{"id":"P-ON08","f":"once","k":"陪伴","zh":"约一次老朋友的饭。","en":"Have one dinner with an old friend.","b":"陪伴型计划没有指标，只有这一顿（E14·819）"},{"id":"P-D01","f":"daily","k":"习惯","zh":"每天喝够八杯水。","en":"Eight glasses of water a day.","b":"最小的身体照顾，最容易连续（E22·6568）"},{"id":"P-D02","f":"daily","k":"习惯","zh":"每天睡前写一行。","en":"One line before sleep.","b":"一行就够，降低每天的启动成本（E21·1.3万）"},{"id":"P-D03","f":"daily","k":"习惯","zh":"每天走六千步。","en":"Six thousand steps a day.","b":"用步数把\"多动一点\"变成可数的"},{"id":"P-D04","f":"daily","k":"习惯","zh":"每天拉伸十分钟。","en":"Ten minutes of stretching daily.","b":"短时长才留得住，长了会先放弃"},{"id":"P-D05","f":"daily","k":"习惯","zh":"每天读十页。","en":"Ten pages a day.","b":"用页数替代\"多读书\"的模糊要求"},{"id":"P-D06","f":"daily","k":"习惯","zh":"每天记一笔账。","en":"Log one expense a day.","b":"记账是存钱的第一步（E10·1005）"},{"id":"P-D07","f":"daily","k":"陪伴","zh":"每天和一个人说句话。","en":"Say one sentence to someone daily.","b":"关系的最小单位是一句话"},{"id":"P-D08","f":"daily","k":"习惯","zh":"每天二十二点半关灯。","en":"Lights off at half past ten.","b":"用一个动作收住一天（E22·6568）"},{"id":"P-W01","f":"weekly","k":"习惯","zh":"每周运动三次。","en":"Work out three times a week.","b":"次数比时长更能维持节奏（E22·6568）"},{"id":"P-W02","f":"weekly","k":"习惯","zh":"每周留一个独处的晚上。","en":"One solo evening each week.","b":"独处要占位，否则会被别的事挤掉"},{"id":"P-W03","f":"weekly","k":"陪伴","zh":"每周给爸妈打一次电话。","en":"Call my parents once a week.","b":"固定一次通话，比\"想起来再说\"稳（E14·819）"},{"id":"P-W04","f":"weekly","k":"习惯","zh":"每周复盘十五分钟。","en":"Fifteen minutes of review each week.","b":"复盘短一点，才每周都做得到"},{"id":"P-W05","f":"weekly","k":"习惯","zh":"每周做一道没做过的菜。","en":"Cook one new dish each week.","b":"生活感来自新意，不来自效率"},{"id":"P-W06","f":"weekly","k":"习惯","zh":"每周清理一次房间。","en":"Tidy the room once a week.","b":"空间清爽，情绪才跟得上"},{"id":"P-W07","f":"weekly","k":"习惯","zh":"每周存一笔钱。","en":"Put money aside once a week.","b":"用频率替代金额焦虑（E01·3417）"},{"id":"P-W08","f":"weekly","k":"陪伴","zh":"每周和朋友见一次面。","en":"Meet a friend once a week.","b":"见面比点赞更能维持关系"},{"id":"P-M01","f":"monthly","k":"习惯","zh":"每月存下收入的百分之二十。","en":"Save twenty percent of income monthly.","b":"先存后花，比例比金额更可持续（E19·406）"},{"id":"P-M02","f":"monthly","k":"习惯","zh":"每月读完一本书。","en":"Finish one book a month.","b":"月度节奏适合整块的注意力"},{"id":"P-M03","f":"monthly","k":"习惯","zh":"每月出门一次，离开熟悉的城区。","en":"Go somewhere outside my district once a month.","b":"小出走比年度旅行更常发生"},{"id":"P-M04","f":"monthly","k":"陪伴","zh":"每月给爸妈寄一次东西。","en":"Send my parents something every month.","b":"关系需要可重复的动作（E17·616）"},{"id":"P-M05","f":"monthly","k":"任务","zh":"每月对一次账。","en":"Reconcile the accounts each month.","b":"数字对得上，计划才敢继续"},{"id":"P-M06","f":"monthly","k":"项目","zh":"每月交一个小作品。","en":"Ship one small piece a month.","b":"用月度交付逼出完成（E09·1327）"},{"id":"P-M07","f":"monthly","k":"清单","zh":"每月盘点一次身体信号。","en":"Check in on my body once a month.","b":"清单化自检，比感觉更可靠"},{"id":"P-M08","f":"monthly","k":"习惯","zh":"每月请自己吃一顿好的。","en":"Treat myself to one good meal a month.","b":"奖励要写进计划，不能靠心情"},{"id":"P-Y01","f":"yearly","k":"任务","zh":"每年一次远行。","en":"One long trip a year.","b":"年度目标要有一个记得住的锚点（E05·3290）"},{"id":"P-Y02","f":"yearly","k":"任务","zh":"每年一次完整体检。","en":"One full checkup a year.","b":"年度节奏最适合不可延后的事（E18·424）"},{"id":"P-Y03","f":"yearly","k":"项目","zh":"每年学一个新技能。","en":"Learn one new skill a year.","b":"一年一项，才学得完（E20·4328）"},{"id":"P-Y04","f":"yearly","k":"项目","zh":"每年整理一次照片。","en":"Sort the year's photos once.","b":"记录要回收，才留下来（E12·841）"},{"id":"P-Y05","f":"yearly","k":"任务","zh":"每年给未来写一封信。","en":"Write a letter to my future self each year.","b":"给时间一个可以被读到的落点"},{"id":"P-Y06","f":"yearly","k":"陪伴","zh":"每年陪家人过一个完整的节日。","en":"Spend one full holiday with my family.","b":"完整的节日，比礼物更像陪伴"},{"id":"P-Y07","f":"yearly","k":"项目","zh":"每年完成一件作品。","en":"Finish one piece each year.","b":"作品是最不会说谎的年度成绩"},{"id":"P-Y08","f":"yearly","k":"任务","zh":"每年回一次老家，看一次旧友。","en":"Go back home once a year, see an old friend.","b":"有些关系一年只够见一次，也要见"}],"evidence":[{"id":"E01","title":"存钱也可以可视化啦","likes":"3417","url":"https://www.xiaohongshu.com/search_result/6ae4d3ee000000000e0272c4?xsec_token=ABL-QZYxxqQJbNvDR1VFNoMyYe9dHaWCg0AX6t1sxz1Gs=&xsec_source="},{"id":"E02","title":"怎么看年轻人趁能赚钱拼命存，35岁退休","likes":"7034","url":"https://www.xiaohongshu.com/search_result/6ad43231000000002503476f?xsec_token=ABksHmnmp1LWHjoyl7EjlUFc7jhgoJuDWm0a0IMneBiiE=&xsec_source="},{"id":"E03","title":"羡慕没步入社会的人 还记得生活应有的样子","likes":"4086","url":"https://www.xiaohongshu.com/search_result/69fc5c63000000003701c4da?xsec_token=ABi5vxtS2_1F3raVZPUnyBQIaJmH6vH-nirxhKpE2ibUY=&xsec_source="},{"id":"E04","title":"出门旅游超全准备清单（文字版）","likes":"3391","url":"https://www.xiaohongshu.com/search_result/6a799d040000000021022ec6?xsec_token=ABhvbk0BS8GlA3rR6FIIrdvhRNpGNc_rxaOkvBuJHtz3k=&xsec_source="},{"id":"E05","title":"J人整理了国庆旅行必备清单","likes":"3290","url":"https://www.xiaohongshu.com/search_result/6ab9db4c00000000120394e8?xsec_token=ABZ3nfln-4lopUQ9oyEs7ALBYM8EIZUlxnpM4bOaWoi5Y=&xsec_source="},{"id":"E06","title":"超全旅行清单｜直接照着收拾","likes":"1817","url":"https://www.xiaohongshu.com/search_result/6a9f62200000000025036d65?xsec_token=AB6Ou2TFI59pEYckHE4xSWP0-P5ZU747U5O4IxpYBJn3w=&xsec_source="},{"id":"E07","title":"8个方向，布局你的2027年（附表）","likes":"1803","url":"https://www.xiaohongshu.com/search_result/6ad82a59000000002a028203?xsec_token=AB9XfsTl3aWLm14bw14SnhNf6sIYKGo4MX2fHZ0_I9SD4=&xsec_source="},{"id":"E08","title":"2026一2030个人建设规划","likes":"1757","url":"https://www.xiaohongshu.com/search_result/6a8dc0b5000000002003357b?xsec_token=ABG1nFIaCBM1KjZtpwGOanQ2VwtvR4BuknfcLCSAJzhhs=&xsec_source="},{"id":"E09","title":"26年10月-12月横版月计划表","likes":"1327","url":"https://www.xiaohongshu.com/search_result/6ac8217b000000001400065f?xsec_token=ABEKQ0ActgxZVele1Q41nF01eE6PF7tDU9cod1rt_bORk=&xsec_source="},{"id":"E10","title":"一定要大量存钱，特别是2026-2028年","likes":"1005","url":"https://www.xiaohongshu.com/search_result/6a54413c000000001102c9d8?xsec_token=ABwNiB14cppMIcCC_TIW3CJIuiyrXPms9eBsLLBcQSHxM=&xsec_source="},{"id":"E11","title":"Ye的遗愿清单","likes":"885","url":"https://www.xiaohongshu.com/search_result/6951d804000000001e015b1a?xsec_token=ABdkoc6Rj22fm-jGQYPqjTxbHhcika__KR6F8nu_GIgcg=&xsec_source="},{"id":"E12","title":"用日历规划 2026：把一年慢慢安排好","likes":"841","url":"https://www.xiaohongshu.com/search_result/694d06560000000022031563?xsec_token=ABFLJLqbAFCbu8SkzSiqXTZsPskEAsM3AQ_Yrx2hXSW9M=&xsec_source="},{"id":"E13","title":"重启人生：第一个五年计划（2026-2031）","likes":"824","url":"https://www.xiaohongshu.com/search_result/6aa393b9000000002902caf0?xsec_token=AB-yN3uRbXk80A8GNsm5jk-mpWpMblmjKABT18EPCQdBQ=&xsec_source="},{"id":"E14","title":"随手做的15件小事，把爸妈重新爱一遍","likes":"819","url":"https://www.xiaohongshu.com/search_result/69cf4a9f00000000230167b5?xsec_token=ABq8QKxj7o2cUzGoeIwwEyqToFJIVoRRTtVIf2fz6v03Q=&xsec_source="},{"id":"E15","title":"保持青春的七大习惯","likes":"816","url":"https://www.xiaohongshu.com/search_result/6ace44a4000000001b023f0b?xsec_token=ABc3FsApndty_Gv60-hnORPf75TXeFN6qkSeHf10Zy_FM=&xsec_source="},{"id":"E16","title":"布局2027｜敢不敢用一年彻底改变自己","likes":"623","url":"https://www.xiaohongshu.com/search_result/6af96d74000000002a03a8d1?xsec_token=ABskV0VJSUBwF1wawJaWwRtVQ1-T-BeZyUUjjqikRNAMQ=&xsec_source="},{"id":"E17","title":"重养爸妈｜100件小事 把爱藏在日常细节里","likes":"616","url":"https://www.xiaohongshu.com/search_result/68fdeed0000000000503307b?xsec_token=AB-4gO8CaupTzL8dAAj5i1LI8QhVZk8hq82pZdPEA_AzM=&xsec_source="},{"id":"E18","title":"10 年营养师总结住院清单","likes":"424","url":"https://www.xiaohongshu.com/search_result/694e8a7c000000001f0048dd?xsec_token=ABxCOdKlsg7oGi0jMbWOMJbG54Wddq4IYc0IVNjqROdiQ=&xsec_source="},{"id":"E19","title":"天涯神贴：存够百万","likes":"406","url":"https://www.xiaohongshu.com/search_result/6aa0fd34000000001001c76f?xsec_token=AB_RGqUXzbp0ntHPR099U99HkzvEeSA4XmpLrlwYuOQoQ=&xsec_source="},{"id":"E20","title":"2027极简规划｜删到只剩\"必做的事\"","likes":"4328","url":"https://www.xiaohongshu.com/explore/6ad5e26a000000002a02e01e?xsec_token=ABeyamt0Aa4Ud0B_JkyjahURrcY1ADXsjSC4lepmRDwVs&xsec_source=pc_search"},{"id":"E21","title":"如何拥有建模级别的精力水平（习惯清单）","likes":"1.3万","url":"https://www.xiaohongshu.com/explore/6ab64328000000001a03083e?xsec_token=ABlQD0T1jR1IZK3yXdPsZCoOG0HG46uEgnYLqv2sFZWJY&xsec_source=pc_search"},{"id":"E22","title":"全网最全把自己养的很好的小tips（附计划）","likes":"6568","url":"https://www.xiaohongshu.com/explore/6abc5548000000001402f46c?xsec_token=ABO8pYXIH8T5DvrlSDIK5-QxYtWsFf9_j9rk6134yx4WU&xsec_source=pc_search"}]}</script>
+<!-- LIB-DATA-END -->
+
 <!-- ==================== 页脚 ==================== -->
 <footer>
   <div class="wrap">
@@ -1265,6 +1379,7 @@ footer{padding:72px 0 46px;border-top:1px solid var(--line);margin-top:60px}
         <a data-key="site.footer.03" href="#/" data-zh="首页" data-en="Home">首页</a>
         <a data-key="site.footer.04" href="#/features" data-zh="功能" data-en="Features">功能</a>
         <a data-key="site.footer.05" href="#/story" data-zh="故事" data-en="Story">故事</a>
+        <a data-key="site.footer.17" href="#/library" data-zh="灵感库" data-en="Library">灵感库</a>
       </div>
       <div class="foot-col">
         <div data-key="site.footer.06" class="t" data-zh="关于" data-en="About">关于</div>
@@ -1314,6 +1429,7 @@ function setLang(lang){
     b.classList.toggle('on', b.getAttribute('data-lang') === lang);
   });
   try{ localStorage.setItem('dearme-lang', lang); }catch(e){}
+  if(window.renderLibrary) window.renderLibrary();
 }
 document.querySelectorAll('.lang button').forEach(function(b){
   b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
@@ -1342,7 +1458,7 @@ if(menuBtn){
   });
 }
 
-var views = { home:'view-home', features:'view-features', story:'view-story' };
+var views = { home:'view-home', features:'view-features', story:'view-story', library:'view-library' };
 function route(){
   var path = (location.hash.replace('#','') || '/').replace(/\/+/g,'/').replace(/^\//,'');
   var name = path === '' ? 'home' : (views[path] ? path : 'home');
@@ -1355,7 +1471,9 @@ function route(){
   closeMenu();
   document.title = name === 'features' ? '功能 · DearMe'
                : name === 'story' ? '故事 · DearMe'
+               : name === 'library' ? (currentLang === 'en' ? 'Library · DearMe' : '灵感库 · DearMe')
                : 'DearMe · 对自己，好一点';
+  if(name === 'library' && window.renderLibrary) window.renderLibrary();
   window.scrollTo({ top:0, behavior:'auto' });
   requestAnimationFrame(revealAll);
 }
@@ -1465,6 +1583,159 @@ heroReady();
     });
   }, t);
 });
+</script>
+<script>
+/* ============================================================
+   8. 灵感库 #/library：数据来自 #libData（内联，不进 copy.json）
+   ============================================================ */
+(function(){
+  var node = document.getElementById('libData');
+  var rootList = document.getElementById('libList');
+  if(!node || !rootList) return;
+  var D = null;
+  try{ D = JSON.parse(node.textContent); }catch(e){ D = null; }
+  if(!D || !D.wishes) return;
+
+  var L = D.labels;
+  var CAT = ['material','experience','growth','relationship','selfcare','vision'];
+  var FREQ = ['once','daily','weekly','monthly','yearly'];
+  var state = { tab:'wish', cat:'all' };
+
+  function tr(o){ return o && (o[currentLang] || o.zh); }
+  function esc(s){
+    return String(s == null ? '' : s)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+  function byGroup(rows, keyName){
+    var order = state.tab === 'wish' ? CAT : FREQ;
+    var names = state.tab === 'wish' ? L.cat : L.freq;
+    var out = [];
+    order.forEach(function(k){
+      if(state.cat !== 'all' && state.cat !== k) return;
+      var sub = rows.filter(function(r){ return r[keyName] === k; });
+      if(sub.length) out.push({ name: tr(names[k]), items: sub });
+    });
+    return out;
+  }
+  function card(r){
+    var primary = currentLang === 'en' ? r.en : r.zh;
+    var second = currentLang === 'en' ? r.zh : r.en;
+    var kind = (state.tab === 'plan' && r.k)
+      ? '<span class="lib-kind">' + esc(tr(L.kind[r.k] || { zh:r.k })) + '</span>' : '';
+    return '<article class="lib-card">'
+      + '<div class="lib-meta"><span class="lib-id">' + esc(r.id) + '</span>' + kind + '</div>'
+      + '<p class="lib-zh">' + esc(primary) + '</p>'
+      + '<p class="lib-alt">' + esc(second) + '</p>'
+      + (currentLang === 'en' ? '' : '<p class="lib-basis">' + esc(r.b) + '</p>')
+      + '</article>';
+  }
+
+  function renderHead(){
+    var home = document.getElementById('libCrumbHome');
+    if(home) home.textContent = currentLang === 'en' ? 'Home' : '首页';
+    var crumb = document.getElementById('libCrumb');
+    if(crumb) crumb.textContent = tr(L.nav);
+    var head = document.getElementById('libHead');
+    head.innerHTML =
+      '<span class="eyebrow">' + esc(tr(L.eyebrow)) + '</span>'
+      + '<h1>' + esc(tr(L.title)) + '</h1>'
+      + '<p>' + esc(tr(L.lead)) + '</p>'
+      + '<div class="lib-stats">'
+      + [[D.wishes.length, tr(L.statW)], [D.plans.length, tr(L.statP)], [CAT.length, tr(L.statCat)], [FREQ.length, tr(L.statFreq)]]
+        .map(function(s){ return '<div class="lib-stat"><b>' + s[0] + '</b><span>' + esc(s[1]) + '</span></div>'; }).join('')
+      + '</div>';
+  }
+
+  function renderBar(){
+    var bar = document.getElementById('libBar');
+    var tabs = [['wish', tr(L.tabW), D.wishes.length], ['plan', tr(L.tabP), D.plans.length]];
+    var seg = '<div class="lib-seg">' + tabs.map(function(t){
+      return '<button data-tab="' + t[0] + '" class="' + (state.tab === t[0] ? 'on' : '') + '">'
+        + esc(t[1]) + '<em>' + t[2] + '</em></button>';
+    }).join('') + '</div>';
+    var keys = state.tab === 'wish' ? CAT : FREQ;
+    var names = state.tab === 'wish' ? L.cat : L.freq;
+    var chips = ['all'].concat(keys).map(function(k){
+      var label = k === 'all' ? tr(L.all) : tr(names[k]);
+      return '<button data-cat="' + k + '" class="' + (state.cat === k ? 'on' : '') + '">' + esc(label) + '</button>';
+    }).join('');
+    bar.innerHTML = seg + '<div class="lib-chips">' + chips + '</div>';
+  }
+
+  function renderList(){
+    var rows = state.tab === 'wish' ? D.wishes : D.plans;
+    var gs = byGroup(rows, state.tab === 'wish' ? 't' : 'f');
+    rootList.innerHTML = gs.map(function(g){
+      return '<section class="lib-group"><div class="lib-group-head"><h3>' + esc(g.name) + '</h3>'
+        + '<span class="n">' + g.items.length + (currentLang === 'en' ? ' entries' : ' 条') + '</span></div>'
+        + '<div class="lib-grid">' + g.items.map(card).join('') + '</div></section>';
+    }).join('');
+    if(!gs.length) rootList.innerHTML = '<p class="small muted">' + (currentLang === 'en' ? 'Nothing here yet.' : '这一组暂时没有文案。') + '</p>';
+  }
+
+  function renderEvidence(){
+    var box = document.getElementById('libEvidence');
+    if(!box) return;
+    box.innerHTML = '<details><summary>' + esc(tr(L.evTitle))
+      + '<span class="chev">' + (currentLang === 'en' ? 'open' : '展开') + '</span></summary>'
+      + '<div class="lib-ev-list">' + D.evidence.map(function(e){
+          return '<div class="lib-ev-row"><span class="i">' + esc(e.id) + '</span>'
+            + '<a href="' + esc(e.url) + '" target="_blank" rel="noopener">' + esc(e.title) + '</a></div>';
+        }).join('') + '</div>'
+      + '<p class="lib-note">' + esc(tr(L.evNote)) + '</p></details>';
+  }
+
+  function renderCta(){
+    var box = document.getElementById('libCta');
+    if(!box) return;
+    box.innerHTML = '<div class="cta-band"><div><h2>' + esc(tr(L.ctaTitle)) + '</h2>'
+      + '<p>' + esc(tr(L.ctaSub)) + '</p></div><div class="acts">'
+      + '<button class="btn btn-primary" onclick="openModal()">' + esc(tr(L.ctaBtn)) + '</button>'
+      + '<a class="btn-line btn" href="#/features">' + esc(tr(L.ctaLink)) + '</a></div></div>';
+  }
+
+  function renderHomeSamples(){
+    var box = document.getElementById('homeLibSamples');
+    if(!box) return;
+    var picks = [];
+    D.wishes.forEach(function(w){ if(w.id === 'W-M01' || w.id === 'W-E04') picks.push(w); });
+    D.plans.forEach(function(p){ if(p.id === 'P-D02') picks.push(p); });
+    box.innerHTML = picks.map(function(r){
+      return '<span class="ls-chip"><i>' + esc(r.id) + '</i><b>' + esc(currentLang === 'en' ? r.en : r.zh) + '</b></span>';
+    }).join('');
+  }
+
+  function render(){
+    renderHead(); renderBar(); renderList(); renderEvidence(); renderCta(); renderHomeSamples();
+  }
+  window.renderLibrary = render;
+
+  var evBox = document.getElementById('libEvidence');
+  if(evBox){
+    evBox.addEventListener('toggle', function(e){
+      var d = e.target;
+      if(!d || d.tagName !== 'DETAILS') return;
+      var chev = d.querySelector('.chev');
+      if(chev) chev.textContent = d.open ? (currentLang === 'en' ? 'close' : '收起') : (currentLang === 'en' ? 'open' : '展开');
+    }, true);
+  }
+
+  var bar = document.getElementById('libBar');
+  bar.addEventListener('click', function(e){
+    var b = e.target.closest('button');
+    if(!b) return;
+    if(b.hasAttribute('data-tab')){
+      state.tab = b.getAttribute('data-tab');
+      state.cat = 'all';
+      render();
+    } else if(b.hasAttribute('data-cat')){
+      state.cat = b.getAttribute('data-cat');
+      render();
+    }
+  });
+
+  render();
+})();
 </script>
 </body>
 </html>

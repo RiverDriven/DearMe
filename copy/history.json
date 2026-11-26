@@ -2150,5 +2150,109 @@
         }
       }
     ]
+  },
+  {
+    "date": "2026-11-23 23:52",
+    "commit": "22c77e8",
+    "message": "接入灵感库：导航第 4 项 + 页脚入口 + #/library 路由页（100 条文案内联，不进文案表）",
+    "counts": {
+      "added": 3,
+      "changed": 0,
+      "removed": 0
+    },
+    "changes": [
+      {
+        "key": "site.nav.10",
+        "type": "added",
+        "after": {
+          "zh": "灵感库",
+          "en": "Library",
+          "block": "site.nav",
+          "html": false
+        }
+      },
+      {
+        "key": "site.nav.11",
+        "type": "added",
+        "after": {
+          "zh": "灵感库",
+          "en": "Library",
+          "block": "site.nav",
+          "html": false
+        }
+      },
+      {
+        "key": "site.footer.17",
+        "type": "added",
+        "after": {
+          "zh": "灵感库",
+          "en": "Library",
+          "block": "site.footer",
+          "html": false
+        }
+      }
+    ]
+  },
+  {
+    "date": "2026-11-24 00:07",
+    "commit": "22c77e8",
+    "message": "首页新增灵感库预告条（5 条文案）",
+    "counts": {
+      "added": 5,
+      "changed": 0,
+      "removed": 0
+    },
+    "changes": [
+      {
+        "key": "home.lib.01",
+        "type": "added",
+        "after": {
+          "zh": "灵感库 · 100 条",
+          "en": "Library · 100 entries",
+          "block": "home.blk5",
+          "html": false
+        }
+      },
+      {
+        "key": "home.lib.02",
+        "type": "added",
+        "after": {
+          "zh": "不知道许什么愿？看看这 100 条",
+          "en": "Not sure what to wish for? Start with these 100.",
+          "block": "home.blk5",
+          "html": false
+        }
+      },
+      {
+        "key": "home.lib.03",
+        "type": "added",
+        "after": {
+          "zh": "60 条心愿、40 条计划，都是能直接写进 DearMe 的那一句话。挑一条，改成你自己的。",
+          "en": "60 wishes and 40 plans, each one written as a sentence you could type into DearMe. Pick one and make it yours.",
+          "block": "home.blk5",
+          "html": false
+        }
+      },
+      {
+        "key": "home.lib.04",
+        "type": "added",
+        "after": {
+          "zh": "打开灵感库 →",
+          "en": "Open the library →",
+          "block": "home.blk5",
+          "html": false
+        }
+      },
+      {
+        "key": "home.lib.05",
+        "type": "added",
+        "after": {
+          "zh": "60 心愿 · 40 计划 · 22 条依据",
+          "en": "60 wishes · 40 plans · 22 sources",
+          "block": "home.blk5",
+          "html": false
+        }
+      }
+    ]
   }
 ]

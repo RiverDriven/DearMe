@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-canvas-width="900" data-canvas-height="5132" style="width:900px;height:5132px;">
+<head>
+<meta charset="UTF-8">
+<title>计划库与热度依据 · DearMe</title>
+<style>
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{background:#FFFBF8;color:#2A2433;font-family:"PingFang SC","Helvetica Neue",Arial,sans-serif;
+ -webkit-font-smoothing:antialiased;}
+[data-canvas-root]{background:#FFFBF8;position:relative;overflow:hidden;}
+[data-canvas-root]::before{content:"";position:absolute;inset:0 0 auto 0;height:520px;
+ background:
+  radial-gradient(680px 320px at 88% -60px, rgba(255,128,171,.28), rgba(255,128,171,0) 70%),
+  radial-gradient(520px 300px at 4% 40px, rgba(179,157,219,.28), rgba(179,157,219,0) 72%);
+ pointer-events:none;}
+.wrap{position:relative;padding:0 56px;}
+.topbar{height:78px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #F0E7F1;}
+.mark{width:40px;height:40px;border-radius:12px;object-fit:cover;box-shadow:0 6px 16px rgba(179,157,219,.28);}
+.brand{font-family:Georgia,"Songti SC",serif;font-size:16px;letter-spacing:.16em;color:#2A2433;}
+.brand-sub{font-size:11px;letter-spacing:.14em;color:#9A90A6;text-transform:uppercase;margin-left:2px;}
+.topbar .spacer{flex:1;}
+.pill{font-size:10.5px;letter-spacing:.1em;color:#8C6F8F;border:1px solid #F0D9E6;background:#FFF6FA;
+ border-radius:999px;padding:6px 12px;text-transform:uppercase;}
+.hero{padding-top:34px;}
+.kicker{font-size:10.5px;letter-spacing:.22em;color:#B08BC7;text-transform:uppercase;}
+h1{font-family:"Songti SC","Source Han Serif CN",Georgia,serif;font-weight:600;font-size:42px;
+ line-height:54px;margin:10px 0 0;letter-spacing:.01em;color:#241E2D;}
+.lead{font-size:15px;line-height:26px;color:#6F6579;margin:12px 0 0;max-width:612px;}
+.stats{display:flex;gap:0;margin-top:22px;}
+.stat{padding-right:26px;margin-right:26px;border-right:1px solid #EFE4F0;}
+.stat:last-child{border-right:0;margin-right:0;padding-right:0;}
+.stat b{display:block;font-family:Georgia,serif;font-size:22px;line-height:26px;color:#2A2433;font-weight:600;}
+.stat span{display:block;font-size:10.5px;letter-spacing:.08em;color:#9A90A6;margin-top:4px;}
+.usage{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 28px;margin-top:28px;padding-bottom:26px;}
+.ucard{border-left:2px solid #FFB3CB;padding:2px 0 2px 14px;}
+.un{font-family:Georgia,serif;font-size:11px;letter-spacing:.16em;color:#C79BD4;}
+.ut{font-size:13.5px;line-height:21px;font-weight:600;margin:6px 0 0;}
+.ud{font-size:11.5px;line-height:18px;color:#7C7188;margin:5px 0 0;}
+.sect-head{display:flex;align-items:flex-end;justify-content:space-between;
+ padding-bottom:10px;border-bottom:2px solid #2A2433;margin-top:12px;}
+.sect-head h2{font-family:"Songti SC",Georgia,serif;font-size:24px;line-height:30px;margin:0;font-weight:600;}
+.sect-head .en{font-size:10.5px;letter-spacing:.2em;color:#A296AC;margin-left:10px;text-transform:uppercase;}
+.sect-head .count{font-size:11px;letter-spacing:.08em;color:#8C8197;}
+.block{margin-top:30px;}
+.bhead{height:62px;display:flex;align-items:center;gap:14px;}
+.bnum{font-family:Georgia,serif;font-size:30px;line-height:1;color:#E3C9E8;width:44px;}
+.bname{font-size:19px;line-height:24px;font-weight:600;}
+.ben{font-size:10px;letter-spacing:.18em;color:#A296AC;text-transform:uppercase;margin-top:3px;}
+.bdesc{font-size:11.5px;color:#7C7188;margin-left:14px;padding-left:14px;border-left:1px solid #EADFEE;}
+.bhead .spacer{flex:1;}
+.bcount{font-family:Georgia,serif;font-size:13px;color:#8C8197;}
+ul.entries{margin:0;padding:0;list-style:none;}
+.entry{display:grid;grid-template-columns:46px 1fr 236px;column-gap:18px;height:68px;
+ padding:9px 0;border-top:1px solid #EFE7F2;align-items:start;}
+.eid{font-family:"SF Mono",Menlo,monospace;font-size:10px;letter-spacing:.06em;color:#B08BC7;padding-top:4px;}
+.zh{font-size:15.5px;line-height:22px;font-weight:500;margin:0;color:#241E2D;}
+.en{font-family:Georgia,serif;font-style:italic;font-size:12.5px;line-height:17px;color:#7C7188;margin:1px 0 0;}
+.kind{display:inline-block;font-size:9.5px;letter-spacing:.06em;color:#8C6F8F;border:1px solid #EEDCE7;
+ background:#FFF8FA;border-radius:4px;padding:2px 6px;margin-right:7px;vertical-align:2px;}
+.basis{font-size:11.5px;line-height:15.5px;color:#6F6579;margin:0;padding:2px 0 0 12px;border-left:1px solid #F6DCE9;}
+.freq{display:grid;grid-template-columns:repeat(5,1fr);gap:0 1px;margin-top:22px;background:#EFE4F0;border:1px solid #EFE4F0;}
+.fitem{background:#FFFDFB;padding:12px 14px;}
+.fname{font-size:13px;font-weight:600;}
+.fgloss{font-size:10.5px;line-height:16px;color:#7C7188;margin-top:4px;}
+table.heat{width:100%;border-collapse:collapse;margin-top:4px;}
+.heat th{font-size:10px;letter-spacing:.12em;color:#A296AC;font-weight:500;text-align:left;padding:9px 0;border-bottom:1px solid #EADFEE;text-transform:uppercase;}
+.heat td{font-size:12.5px;padding:11px 0;border-bottom:1px solid #F1E9F3;color:#3A3242;vertical-align:top;}
+.heat .aid{width:46px;font-family:"SF Mono",Menlo,monospace;font-size:10px;color:#B08BC7;}
+.heat .atitle{width:auto;padding-right:18px;line-height:18px;}
+.heat .auth{width:112px;color:#7C7188;font-size:11.5px;}
+.heat .alk{width:64px;text-align:right;font-family:Georgia,serif;color:#B08BC7;}
+.heat .alink{width:26px;text-align:right;}
+.heat a{color:#B06A8E;text-decoration:none;font-size:13px;}
+.note{font-size:11px;line-height:18px;color:#8C8197;margin-top:14px;}
+.tips{margin-top:8px;}
+.tip{display:grid;grid-template-columns:40px 1fr;column-gap:14px;padding:10px 0;border-top:1px solid #F1E9F3;}
+.tipn{font-family:Georgia,serif;font-size:12px;color:#C79BD4;letter-spacing:.08em;}
+.tipt{font-size:13px;line-height:20px;color:#3A3242;}
+.footer{margin-top:34px;padding:18px 0 22px;border-top:1px solid #EFE4F0;display:flex;justify-content:space-between;
+ font-size:10.5px;letter-spacing:.06em;color:#A296AC;}
+</style>
+</head>
+<body style="width:900px;height:5132px;">
+<main data-canvas-root id="canvas-root" style="width:900px;height:5132px;">
+
+<div class="wrap">
+<header class="topbar"><img class="mark" src="https://aka.doubaocdn.com/s/bXfmRbKhMO" alt="DearMe"><div><div class="brand">LOBUS</div><div class="brand-sub">DearMe · iOS</div></div><div class="spacer"></div><div class="pill">Plan Library · v1.0</div></header>
+<section class="hero">
+  <div class="kicker">Plan Library &amp; Evidence</div>
+  <h1>计划库与热度依据</h1>
+  <p class="lead">40 条计划，五档频次各 8 条，覆盖习惯、任务、项目、清单、陪伴。频次不是要求，是节奏；跳过不进分母，中断不显示零。</p>
+  <div class="stats">
+    <div class="stat"><b>40</b><span>计划文案</span></div>
+    <div class="stat"><b>5</b><span>频次档位</span></div>
+    <div class="stat"><b>5</b><span>计划类型</span></div>
+    <div class="stat"><b>22</b><span>可点开的依据</span></div>
+  </div>
+</section>
+<div class="freq"><div class="fitem"><div class="fname">单次</div><div class="fgloss">有日子的事，做完就收</div></div><div class="fitem"><div class="fname">每日</div><div class="fgloss">最小的一步，一天一格</div></div><div class="fitem"><div class="fname">每周</div><div class="fgloss">给节奏留一个固定位置</div></div><div class="fitem"><div class="fname">每月</div><div class="fgloss">整块的注意力，按月回收</div></div><div class="fitem"><div class="fname">每年</div><div class="fgloss">只放一两件，才放得下</div></div></div>
+<section>
+  <div class="sect-head" style="margin-top:32px"><div><h2>计划库</h2><span class="en">Plan Library</span></div>
+    <div class="count">五档 · 40 条 · 中英对照</div></div>
+  <section class="block" id="once"><div class="bhead"><div class="bnum">01</div><div><div class="bname">单次</div><div class="ben">ONCE</div></div><div class="bdesc">有日子的事，做完就收</div><div class="spacer"></div><div class="bcount">8 条</div></div><ul class="entries"><li class="entry"><span class="eid">P-ON01</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>今晚把简历改完。</p><p class="en">Finish the resume tonight.</p></div><p class="basis">有日子的事才需要写下来，单次也要有截止</p></li>
+<li class="entry"><span class="eid">P-ON02</span><div class="ecopy"><p class="zh"><span class="kind">清单</span>出门前把行李清单勾完。</p><p class="en">Tick the packing list before leaving.</p></div><p class="basis">清单型以全勾选为完成，最不容易半途（E04·3391）</p></li>
+<li class="entry"><span class="eid">P-ON03</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>这周约一次体检。</p><p class="en">Book one checkup this week.</p></div><p class="basis">一个电话就能完成的事，别放进&quot;以后&quot;（E18·424）</p></li>
+<li class="entry"><span class="eid">P-ON04</span><div class="ecopy"><p class="zh"><span class="kind">清单</span>一次把书桌清空。</p><p class="en">Clear the desk in one go.</p></div><p class="basis">只做一次的整理，做完就结束</p></li>
+<li class="entry"><span class="eid">P-ON05</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>今晚写下三个愿望。</p><p class="en">Write down three wishes tonight.</p></div><p class="basis">先写下，再决定哪个值得投入（E11·885）</p></li>
+<li class="entry"><span class="eid">P-ON06</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>这个月去一次海边。</p><p class="en">Get to the sea this month.</p></div><p class="basis">给愿望一个具体月份，才不是空想</p></li>
+<li class="entry"><span class="eid">P-ON07</span><div class="ecopy"><p class="zh"><span class="kind">项目</span>把手机相册按年份整理成三本。</p><p class="en">Sort my camera roll into three year albums.</p></div><p class="basis">大工程拆成三个里程碑，才有终点</p></li>
+<li class="entry"><span class="eid">P-ON08</span><div class="ecopy"><p class="zh"><span class="kind">陪伴</span>约一次老朋友的饭。</p><p class="en">Have one dinner with an old friend.</p></div><p class="basis">陪伴型计划没有指标，只有这一顿（E14·819）</p></li></ul></section><section class="block" id="daily"><div class="bhead"><div class="bnum">02</div><div><div class="bname">每日</div><div class="ben">DAILY</div></div><div class="bdesc">最小的一步，一天一格</div><div class="spacer"></div><div class="bcount">8 条</div></div><ul class="entries"><li class="entry"><span class="eid">P-D01</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每天喝够八杯水。</p><p class="en">Eight glasses of water a day.</p></div><p class="basis">最小的身体照顾，最容易连续（E22·6568）</p></li>
+<li class="entry"><span class="eid">P-D02</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每天睡前写一行。</p><p class="en">One line before sleep.</p></div><p class="basis">一行就够，降低每天的启动成本（E21·1.3万）</p></li>
+<li class="entry"><span class="eid">P-D03</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每天走六千步。</p><p class="en">Six thousand steps a day.</p></div><p class="basis">用步数把&quot;多动一点&quot;变成可数的</p></li>
+<li class="entry"><span class="eid">P-D04</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每天拉伸十分钟。</p><p class="en">Ten minutes of stretching daily.</p></div><p class="basis">短时长才留得住，长了会先放弃</p></li>
+<li class="entry"><span class="eid">P-D05</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每天读十页。</p><p class="en">Ten pages a day.</p></div><p class="basis">用页数替代&quot;多读书&quot;的模糊要求</p></li>
+<li class="entry"><span class="eid">P-D06</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每天记一笔账。</p><p class="en">Log one expense a day.</p></div><p class="basis">记账是存钱的第一步（E10·1005）</p></li>
+<li class="entry"><span class="eid">P-D07</span><div class="ecopy"><p class="zh"><span class="kind">陪伴</span>每天和一个人说句话。</p><p class="en">Say one sentence to someone daily.</p></div><p class="basis">关系的最小单位是一句话</p></li>
+<li class="entry"><span class="eid">P-D08</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每天二十二点半关灯。</p><p class="en">Lights off at half past ten.</p></div><p class="basis">用一个动作收住一天（E22·6568）</p></li></ul></section><section class="block" id="weekly"><div class="bhead"><div class="bnum">03</div><div><div class="bname">每周</div><div class="ben">WEEKLY</div></div><div class="bdesc">给节奏留一个固定位置</div><div class="spacer"></div><div class="bcount">8 条</div></div><ul class="entries"><li class="entry"><span class="eid">P-W01</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每周运动三次。</p><p class="en">Work out three times a week.</p></div><p class="basis">次数比时长更能维持节奏（E22·6568）</p></li>
+<li class="entry"><span class="eid">P-W02</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每周留一个独处的晚上。</p><p class="en">One solo evening each week.</p></div><p class="basis">独处要占位，否则会被别的事挤掉</p></li>
+<li class="entry"><span class="eid">P-W03</span><div class="ecopy"><p class="zh"><span class="kind">陪伴</span>每周给爸妈打一次电话。</p><p class="en">Call my parents once a week.</p></div><p class="basis">固定一次通话，比&quot;想起来再说&quot;稳（E14·819）</p></li>
+<li class="entry"><span class="eid">P-W04</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每周复盘十五分钟。</p><p class="en">Fifteen minutes of review each week.</p></div><p class="basis">复盘短一点，才每周都做得到</p></li>
+<li class="entry"><span class="eid">P-W05</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每周做一道没做过的菜。</p><p class="en">Cook one new dish each week.</p></div><p class="basis">生活感来自新意，不来自效率</p></li>
+<li class="entry"><span class="eid">P-W06</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每周清理一次房间。</p><p class="en">Tidy the room once a week.</p></div><p class="basis">空间清爽，情绪才跟得上</p></li>
+<li class="entry"><span class="eid">P-W07</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每周存一笔钱。</p><p class="en">Put money aside once a week.</p></div><p class="basis">用频率替代金额焦虑（E01·3417）</p></li>
+<li class="entry"><span class="eid">P-W08</span><div class="ecopy"><p class="zh"><span class="kind">陪伴</span>每周和朋友见一次面。</p><p class="en">Meet a friend once a week.</p></div><p class="basis">见面比点赞更能维持关系</p></li></ul></section><section class="block" id="monthly"><div class="bhead"><div class="bnum">04</div><div><div class="bname">每月</div><div class="ben">MONTHLY</div></div><div class="bdesc">整块的注意力，按月回收</div><div class="spacer"></div><div class="bcount">8 条</div></div><ul class="entries"><li class="entry"><span class="eid">P-M01</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每月存下收入的百分之二十。</p><p class="en">Save twenty percent of income monthly.</p></div><p class="basis">先存后花，比例比金额更可持续（E19·406）</p></li>
+<li class="entry"><span class="eid">P-M02</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每月读完一本书。</p><p class="en">Finish one book a month.</p></div><p class="basis">月度节奏适合整块的注意力</p></li>
+<li class="entry"><span class="eid">P-M03</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每月出门一次，离开熟悉的城区。</p><p class="en">Go somewhere outside my district once a month.</p></div><p class="basis">小出走比年度旅行更常发生</p></li>
+<li class="entry"><span class="eid">P-M04</span><div class="ecopy"><p class="zh"><span class="kind">陪伴</span>每月给爸妈寄一次东西。</p><p class="en">Send my parents something every month.</p></div><p class="basis">关系需要可重复的动作（E17·616）</p></li>
+<li class="entry"><span class="eid">P-M05</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>每月对一次账。</p><p class="en">Reconcile the accounts each month.</p></div><p class="basis">数字对得上，计划才敢继续</p></li>
+<li class="entry"><span class="eid">P-M06</span><div class="ecopy"><p class="zh"><span class="kind">项目</span>每月交一个小作品。</p><p class="en">Ship one small piece a month.</p></div><p class="basis">用月度交付逼出完成（E09·1327）</p></li>
+<li class="entry"><span class="eid">P-M07</span><div class="ecopy"><p class="zh"><span class="kind">清单</span>每月盘点一次身体信号。</p><p class="en">Check in on my body once a month.</p></div><p class="basis">清单化自检，比感觉更可靠</p></li>
+<li class="entry"><span class="eid">P-M08</span><div class="ecopy"><p class="zh"><span class="kind">习惯</span>每月请自己吃一顿好的。</p><p class="en">Treat myself to one good meal a month.</p></div><p class="basis">奖励要写进计划，不能靠心情</p></li></ul></section><section class="block" id="yearly"><div class="bhead"><div class="bnum">05</div><div><div class="bname">每年</div><div class="ben">YEARLY</div></div><div class="bdesc">只放一两件，才放得下</div><div class="spacer"></div><div class="bcount">8 条</div></div><ul class="entries"><li class="entry"><span class="eid">P-Y01</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>每年一次远行。</p><p class="en">One long trip a year.</p></div><p class="basis">年度目标要有一个记得住的锚点（E05·3290）</p></li>
+<li class="entry"><span class="eid">P-Y02</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>每年一次完整体检。</p><p class="en">One full checkup a year.</p></div><p class="basis">年度节奏最适合不可延后的事（E18·424）</p></li>
+<li class="entry"><span class="eid">P-Y03</span><div class="ecopy"><p class="zh"><span class="kind">项目</span>每年学一个新技能。</p><p class="en">Learn one new skill a year.</p></div><p class="basis">一年一项，才学得完（E20·4328）</p></li>
+<li class="entry"><span class="eid">P-Y04</span><div class="ecopy"><p class="zh"><span class="kind">项目</span>每年整理一次照片。</p><p class="en">Sort the year&#x27;s photos once.</p></div><p class="basis">记录要回收，才留下来（E12·841）</p></li>
+<li class="entry"><span class="eid">P-Y05</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>每年给未来写一封信。</p><p class="en">Write a letter to my future self each year.</p></div><p class="basis">给时间一个可以被读到的落点</p></li>
+<li class="entry"><span class="eid">P-Y06</span><div class="ecopy"><p class="zh"><span class="kind">陪伴</span>每年陪家人过一个完整的节日。</p><p class="en">Spend one full holiday with my family.</p></div><p class="basis">完整的节日，比礼物更像陪伴</p></li>
+<li class="entry"><span class="eid">P-Y07</span><div class="ecopy"><p class="zh"><span class="kind">项目</span>每年完成一件作品。</p><p class="en">Finish one piece each year.</p></div><p class="basis">作品是最不会说谎的年度成绩</p></li>
+<li class="entry"><span class="eid">P-Y08</span><div class="ecopy"><p class="zh"><span class="kind">任务</span>每年回一次老家，看一次旧友。</p><p class="en">Go back home once a year, see an old friend.</p></div><p class="basis">有些关系一年只够见一次，也要见</p></li></ul></section>
+</section>
+<section style="margin-top:40px">
+  <div class="sect-head"><div><h2>热度依据</h2><span class="en">Evidence</span></div>
+    <div class="count">22 条 · 搜索页可见点赞量级</div></div>
+  <table class="heat"><thead><tr><th>ID</th><th>笔记标题</th><th>作者</th><th style="text-align:right">量级</th><th></th></tr></thead>
+  <tbody><tr><td class="aid">E01</td><td class="atitle">存钱也可以可视化啦</td><td class="auth">OrinG🍊</td><td class="alk">3417</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6ae4d3ee000000000e0272c4?xsec_token=ABL-QZYxxqQJbNvDR1VFNoMyYe9dHaWCg0AX6t1sxz1Gs=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E02</td><td class="atitle">怎么看年轻人趁能赚钱拼命存，35岁退休</td><td class="auth">付鹏观察</td><td class="alk">7034</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6ad43231000000002503476f?xsec_token=ABksHmnmp1LWHjoyl7EjlUFc7jhgoJuDWm0a0IMneBiiE=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E03</td><td class="atitle">羡慕没步入社会的人 还记得生活应有的样子</td><td class="auth">读书与旅行</td><td class="alk">4086</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/69fc5c63000000003701c4da?xsec_token=ABi5vxtS2_1F3raVZPUnyBQIaJmH6vH-nirxhKpE2ibUY=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E04</td><td class="atitle">出门旅游超全准备清单（文字版）</td><td class="auth">是是是是是是是是是</td><td class="alk">3391</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6a799d040000000021022ec6?xsec_token=ABhvbk0BS8GlA3rR6FIIrdvhRNpGNc_rxaOkvBuJHtz3k=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E05</td><td class="atitle">J人整理了国庆旅行必备清单</td><td class="auth">momo</td><td class="alk">3290</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6ab9db4c00000000120394e8?xsec_token=ABZ3nfln-4lopUQ9oyEs7ALBYM8EIZUlxnpM4bOaWoi5Y=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E06</td><td class="atitle">超全旅行清单｜直接照着收拾</td><td class="auth">小镜的清单库</td><td class="alk">1817</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6a9f62200000000025036d65?xsec_token=AB6Ou2TFI59pEYckHE4xSWP0-P5ZU747U5O4IxpYBJn3w=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E07</td><td class="atitle">8个方向，布局你的2027年（附表）</td><td class="auth">Luna energy精力管理</td><td class="alk">1803</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6ad82a59000000002a028203?xsec_token=AB9XfsTl3aWLm14bw14SnhNf6sIYKGo4MX2fHZ0_I9SD4=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E08</td><td class="atitle">2026一2030个人建设规划</td><td class="auth">方蓝成长日记</td><td class="alk">1757</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6a8dc0b5000000002003357b?xsec_token=ABG1nFIaCBM1KjZtpwGOanQ2VwtvR4BuknfcLCSAJzhhs=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E09</td><td class="atitle">26年10月-12月横版月计划表</td><td class="auth">熙妍</td><td class="alk">1327</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6ac8217b000000001400065f?xsec_token=ABEKQ0ActgxZVele1Q41nF01eE6PF7tDU9cod1rt_bORk=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E10</td><td class="atitle">一定要大量存钱，特别是2026-2028年</td><td class="auth">蒋小涵慢谈</td><td class="alk">1005</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6a54413c000000001102c9d8?xsec_token=ABwNiB14cppMIcCC_TIW3CJIuiyrXPms9eBsLLBcQSHxM=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E11</td><td class="atitle">Ye的遗愿清单</td><td class="auth">KanyeEast</td><td class="alk">885</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6951d804000000001e015b1a?xsec_token=ABdkoc6Rj22fm-jGQYPqjTxbHhcika__KR6F8nu_GIgcg=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E12</td><td class="atitle">用日历规划 2026：把一年慢慢安排好</td><td class="auth">滴答清单</td><td class="alk">841</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/694d06560000000022031563?xsec_token=ABFLJLqbAFCbu8SkzSiqXTZsPskEAsM3AQ_Yrx2hXSW9M=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E13</td><td class="atitle">重启人生：第一个五年计划（2026-2031）</td><td class="auth">小小慢学</td><td class="alk">824</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6aa393b9000000002902caf0?xsec_token=AB-yN3uRbXk80A8GNsm5jk-mpWpMblmjKABT18EPCQdBQ=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E14</td><td class="atitle">随手做的15件小事，把爸妈重新爱一遍</td><td class="auth">SK同学</td><td class="alk">819</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/69cf4a9f00000000230167b5?xsec_token=ABq8QKxj7o2cUzGoeIwwEyqToFJIVoRRTtVIf2fz6v03Q=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E15</td><td class="atitle">保持青春的七大习惯</td><td class="auth">X-健康频道</td><td class="alk">816</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6ace44a4000000001b023f0b?xsec_token=ABc3FsApndty_Gv60-hnORPf75TXeFN6qkSeHf10Zy_FM=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E16</td><td class="atitle">布局2027｜敢不敢用一年彻底改变自己</td><td class="auth">自律的中年少女</td><td class="alk">623</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6af96d74000000002a03a8d1?xsec_token=ABskV0VJSUBwF1wawJaWwRtVQ1-T-BeZyUUjjqikRNAMQ=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E17</td><td class="atitle">重养爸妈｜100件小事 把爱藏在日常细节里</td><td class="auth">小安的健康笔记</td><td class="alk">616</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/68fdeed0000000000503307b?xsec_token=AB-4gO8CaupTzL8dAAj5i1LI8QhVZk8hq82pZdPEA_AzM=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E18</td><td class="atitle">10 年营养师总结住院清单</td><td class="auth">营养师美冴</td><td class="alk">424</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/694e8a7c000000001f0048dd?xsec_token=ABxCOdKlsg7oGi0jMbWOMJbG54Wddq4IYc0IVNjqROdiQ=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E19</td><td class="atitle">天涯神贴：存够百万</td><td class="auth">呦呦懂置换</td><td class="alk">406</td><td class="alink"><a href="https://www.xiaohongshu.com/search_result/6aa0fd34000000001001c76f?xsec_token=AB_RGqUXzbp0ntHPR099U99HkzvEeSA4XmpLrlwYuOQoQ=&amp;xsec_source=" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E20</td><td class="atitle">2027极简规划｜删到只剩&quot;必做的事&quot;</td><td class="auth">Aura在成长</td><td class="alk">4328</td><td class="alink"><a href="https://www.xiaohongshu.com/explore/6ad5e26a000000002a02e01e?xsec_token=ABeyamt0Aa4Ud0B_JkyjahURrcY1ADXsjSC4lepmRDwVs&amp;xsec_source=pc_search" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E21</td><td class="atitle">如何拥有建模级别的精力水平（习惯清单）</td><td class="auth">乔治的备忘录</td><td class="alk">1.3万</td><td class="alink"><a href="https://www.xiaohongshu.com/explore/6ab64328000000001a03083e?xsec_token=ABlQD0T1jR1IZK3yXdPsZCoOG0HG46uEgnYLqv2sFZWJY&amp;xsec_source=pc_search" target="_blank" rel="noopener">↗</a></td></tr><tr><td class="aid">E22</td><td class="atitle">全网最全把自己养的很好的小tips（附计划）</td><td class="auth">是山恬呀</td><td class="alk">6568</td><td class="alink"><a href="https://www.xiaohongshu.com/explore/6abc5548000000001402f46c?xsec_token=ABO8pYXIH8T5DvrlSDIK5-QxYtWsFf9_j9rk6134yx4WU&amp;xsec_source=pc_search" target="_blank" rel="noopener">↗</a></td></tr></tbody></table>
+  <p class="note">口径：量级只看搜索页展示的点赞数，收藏数平台不公开、未估算；显示「赞」的笔记不进本表。卡片抓取出现过标题与直链错位，本表只保留标题与卡片文本逐字一致的记录。</p>
+</section>
+<section style="margin-top:34px">
+  <div class="sect-head"><div><h2>落位建议</h2><span class="en">Where to use</span></div>
+    <div class="count">官网 + App + 分享图</div></div>
+  <div class="tips"><div class="tip"><div class="tipn">01</div><div class="tipt">官网功能页：每类取 2 条做「可以这样许愿」示例带，配图标，不做成按钮。</div></div><div class="tip"><div class="tipn">02</div><div class="tipt">App 心愿空态：六类各 1 条轮换，点选后进入表单并预填标题，用户仍可改。</div></div><div class="tip"><div class="tipn">03</div><div class="tipt">App 计划空态：按「今天想动一下 / 这周想稳一点 / 这个月想做成一件」给 3 条。</div></div><div class="tip"><div class="tipn">04</div><div class="tipt">分享图标题：取愿景组与每年组文案做纪念页标题备选。</div></div></div>
+</section>
+<footer class="footer"><div>DearMe · lobus ｜ 计划库与热度依据 v1.0</div><div>第一页：心愿库 60 条</div></footer>
+</div>
+</main>
+</body>
+</html>

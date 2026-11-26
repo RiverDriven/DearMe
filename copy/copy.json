@@ -25,6 +25,12 @@
       "block": "site.nav",
       "html": false
     },
+    "site.nav.10": {
+      "zh": "灵感库",
+      "en": "Library",
+      "block": "site.nav",
+      "html": false
+    },
     "site.nav.05": {
       "zh": "下载 App",
       "en": "Get the app",
@@ -46,6 +52,12 @@
     "site.nav.08": {
       "zh": "故事",
       "en": "Story",
+      "block": "site.nav",
+      "html": false
+    },
+    "site.nav.11": {
+      "zh": "灵感库",
+      "en": "Library",
       "block": "site.nav",
       "html": false
     },
@@ -401,6 +413,36 @@
       "zh": "读这个故事 →",
       "en": "Read the story →",
       "block": "home.blk4",
+      "html": false
+    },
+    "home.lib.01": {
+      "zh": "灵感库 · 100 条",
+      "en": "Library · 100 entries",
+      "block": "home.blk5",
+      "html": false
+    },
+    "home.lib.02": {
+      "zh": "不知道许什么愿？看看这 100 条",
+      "en": "Not sure what to wish for? Start with these 100.",
+      "block": "home.blk5",
+      "html": false
+    },
+    "home.lib.03": {
+      "zh": "60 条心愿、40 条计划，都是能直接写进 DearMe 的那一句话。挑一条，改成你自己的。",
+      "en": "60 wishes and 40 plans, each one written as a sentence you could type into DearMe. Pick one and make it yours.",
+      "block": "home.blk5",
+      "html": false
+    },
+    "home.lib.04": {
+      "zh": "打开灵感库 →",
+      "en": "Open the library →",
+      "block": "home.blk5",
+      "html": false
+    },
+    "home.lib.05": {
+      "zh": "60 心愿 · 40 计划 · 22 条依据",
+      "en": "60 wishes · 40 plans · 22 sources",
+      "block": "home.blk5",
       "html": false
     },
     "home.cta1.01": {
@@ -1216,6 +1258,12 @@
     "site.footer.05": {
       "zh": "故事",
       "en": "Story",
+      "block": "site.footer",
+      "html": false
+    },
+    "site.footer.17": {
+      "zh": "灵感库",
+      "en": "Library",
       "block": "site.footer",
       "html": false
     },
